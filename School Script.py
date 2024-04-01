@@ -8,14 +8,16 @@ import shapely
 # 19th March 2024 at https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202324
 
 # URL for the 2023/24 primary school level data
-url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202223.XLSX"
+primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202223.XLSX"
+
+# URL for BT postcodes CSV saved in GitHub
+bt_postcodes_url = "https://raw.githubusercontent.com/nkellyulster/EGM_Project/main/BT%20postcodes.csv"
 
 # The following chunk reads in the url for the Primary School XLSX
 # spreadsheet, open the 'reference data' tab and skips the first 3 rows
-schools = pd.read_excel(url,
+schools = pd.read_excel(primary_school_url,
                         sheet_name = "reference data",
                         skiprows = 3)
 
-# Read the CSV file
-bt_postcodes = pd.read_csv("C:\\Users\\Niall\\Downloads\\BT postcodes.csv")
-
+# Read the bt_postcodes CSV file which contains Postcode / co-oridnates data
+bt_postcodes = pd.read_csv(bt_postcodes_url)
