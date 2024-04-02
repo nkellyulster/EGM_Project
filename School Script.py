@@ -33,7 +33,7 @@ merged_data = pd.merge(schools, selected_bt_postcodes, how='inner', left_on='pos
 merged_data['geom'] = merged_data.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
 
 # Create a map centered at the mean Latitude and Longitude
-m = folium.Map(location=[merged_data['Latitude'].mean(), merged_data['Longitude'].mean()], zoom_start=10)
+m = folium.Map(location=[merged_data['Latitude'].mean(), merged_data['Longitude'].mean()], zoom_start=8)
 
 # Add markers for each school
 for idx, row in merged_data.iterrows():
