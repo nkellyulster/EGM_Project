@@ -21,3 +21,9 @@ schools = pd.read_excel(primary_school_url,
 
 # Read the bt_postcodes CSV file which contains Postcode / co-oridnates data
 bt_postcodes = pd.read_csv(bt_postcodes_url)
+
+# Retain only the selected columns from the bt_postcodes dataframe
+selected_bt_postcodes = bt_postcodes.loc[:, ['Postcode', 'Latitude', 'Longitude']]
+
+# Join the schools and selected_bt_postcodes dataframes using potcode and Postcode variables
+merged_data = pd.merge(schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
