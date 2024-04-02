@@ -1,6 +1,7 @@
 import pandas as pd
 import folium
 import shapely
+from shapely.geometry import Point
 
 # The NI Department of Education publish school level enrolment data every year.
 # This is based on the school census that takes place every October.
@@ -27,3 +28,16 @@ selected_bt_postcodes = bt_postcodes.loc[:, ['Postcode', 'Latitude', 'Longitude'
 
 # Join the schools and selected_bt_postcodes dataframes using potcode and Postcode variables
 merged_data = pd.merge(schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+
+# Create a geometry column by combining Longitude and Latitude
+merged_data['geom'] = merged_data.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
+
+# Create a map centered at the mean Latitude and Longitude
+m = folium.Map(location=[merged_data['Latitude'].mean(), merged_data['Longitude'].mean()], zoom_start=10)
+
+# Add markers for each school
+for idx, row in merged_data.iterrows():
+    folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name']).add_to(m)
+
+# Save the map to an HTML file
+m.save('map.html')
