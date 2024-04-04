@@ -17,8 +17,19 @@ bt_postcodes_url = "https://raw.githubusercontent.com/nkellyulster/EGM_Project/m
 # The following chunk reads in the url for the Primary School XLSX
 # spreadsheet, open the 'reference data' tab and skips the first 3 rows
 schools = pd.read_excel(primary_school_url,
-                        sheet_name = "reference data",
-                        skiprows = 3)
+sheet_name = "reference data",
+skiprows = 3)
+
+# Read in the enrolment tab and skip the first 3 rows                        
+enrolment = pd.read_excel(primary_school_url,
+sheet_name = "Enrolments",
+skiprows = 3)
+
+# Filter to retain only the DE Referene and the Total Enrolment columns                        
+selected_enrolment = enrolment.loc[:, ['DE ref', 'total enrolment']]
+
+# Join the schools dataframe and the enrolment dataframe
+all_schools = pd.merge(schools, selected_enrolment, how='inner', left_on='De ref', right_on='DE ref')
 
 # Read the bt_postcodes CSV file which contains Postcode / co-oridnates data
 bt_postcodes = pd.read_csv(bt_postcodes_url)
@@ -27,7 +38,23 @@ bt_postcodes = pd.read_csv(bt_postcodes_url)
 selected_bt_postcodes = bt_postcodes.loc[:, ['Postcode', 'Latitude', 'Longitude']]
 
 # Join the schools and selected_bt_postcodes dataframes using potcode and Postcode variables
-merged_data = pd.merge(schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+
+# Count the number of pupils in each constituency and sort descending
+constituency_count = merged_data.groupby(['constituency']).agg({'total enrolment': 'sum'})
+constituency_count = constituency_count.sort_values(by='total enrolment', ascending=False)
+
+# Count the number of pupils in each constituency and by management type and sort descending
+constituency_management_type_count = merged_data.groupby(['constituency', 'management type']).agg({'total enrolment': 'sum'}).reset_index()
+constituency_management_type_count = constituency_management_type_count.sort_values(by=['constituency', 'total enrolment'], ascending=[True, False])
+
+# Count the number of pupils educated in Urban and Rural schools and sort descending
+urban_rural_count = merged_data.groupby(['urban/ rural     ']).agg({'total enrolment': 'sum'})
+urban_rural_count = urban_rural_count.sort_values(by='total enrolment', ascending=False)
+
+# Calculate the total sum of pupils and then calculate the urban/ rural percentage split
+total_sum = urban_rural_count['total enrolment'].sum()
+urban_rural_count['Percentage'] = (urban_rural_count['total enrolment'] / total_sum) * 100
 
 # Create a geometry column by combining Longitude and Latitude
 merged_data['geom'] = merged_data.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
