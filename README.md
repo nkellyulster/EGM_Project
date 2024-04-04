@@ -1,2 +1,2 @@
-# EGM_Project
+# Primary School analysis
 Repository for EGM project
