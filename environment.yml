@@ -1,0 +1,12 @@
+name: 
+channels:
+  - 
+  - 
+dependencies:
+  - python=3.9
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
