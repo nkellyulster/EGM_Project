@@ -5,6 +5,10 @@ import shapely
 from shapely.geometry import Point
 from haversine import haversine, Unit
 
+# Import my functions
+from functions import km_to_miles
+from functions import sustainability
+
 ###############################################################################
 # Context
 
