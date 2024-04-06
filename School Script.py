@@ -3,6 +3,7 @@ import pandas as pd
 import folium
 import shapely
 from shapely.geometry import Point
+from haversine import haversine, Unit
 
 ###############################################################################
 # Context
@@ -10,8 +11,8 @@ from shapely.geometry import Point
 """
 The NI Department of Education publish school level enrolment data every year.
 This is based on the school census that takes place every October.
-The Primary School data for the most recent year, 2023/24, was published on
-19th March 2024 at https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202324
+The Primary School data for the most recent year, 2023/24, was published on 19th March 2024 
+at https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202324
 """
 
 ###############################################################################
@@ -58,6 +59,19 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Postcode'], axis=1)
+
+################################################################################
+# Spatial analysis
+"""
+This section of the code creates various distance calculations. The different 
+calculations are as follows:
+* the distance from each school to the nearest school
+* the distance from each school to the nearest school in the same management type
+* the distance from each school to the nearest school NOT in the same management type
+
+All of these calculations will be created in one master dataframe and will then be
+seperated out into smaller dataframes for ease of navigation and analysis.
+"""
 
 
 ################################################################################
