@@ -4,9 +4,11 @@ def km_to_miles(kilometers):
     return miles
 km_to_miles(345)
 
-# Function to apply the conditional logic
+# Function to apply the conditional sustainability logic
 def sustainability(row):
-    if (row['urban/ rural     '] == "Rural" and row['total enrolment'] < 105) or (row['urban/ rural     '] == "Urban" and row['total enrolment'] < 140):
+    if (row['Urban/ Rural     '] == "Rural" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "Urban" and row['total enrolment'] < 140):
         return 'Not Sustainable'
     else:
         return 'Sustainable'
+      
+sustainability(45)
