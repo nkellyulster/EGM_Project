@@ -5,6 +5,7 @@ import shapely
 from shapely.geometry import Point
 from haversine import haversine, Unit
 import plotly.express as px
+import numpy
 
 # Import my functions
 from functions import km_to_miles
