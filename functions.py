@@ -11,4 +11,7 @@ def sustainability(row):
     else:
         return 'Sustainable'
       
-sustainability(45)
+# Function to convert distance to area
+def convert_distance_to_area(distance):
+    global merged_data
+    return merged_data[distance] ** 2 * math.pi
