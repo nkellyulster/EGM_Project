@@ -1,3 +1,9 @@
+# The department of Education dataset is poorly formatted and lots of columns
+# have leading and trailing whitespace. This fuction address this issue.
+def remove_whitespace_from_columns(df):
+    df.columns = df.columns.str.strip()
+    return df
+
 #Function for converting kilometers to miles
 def km_to_miles(kilometers):
     miles = kilometers * 0.621371
@@ -6,7 +12,7 @@ km_to_miles(345)
 
 # Function to apply the conditional sustainability logic
 def sustainability(row):
-    if (row['Urban/ Rural'] == "Rural" and row['total enrolment'] < 105) or (row['Urban/ Rural'] == "Urban" and row['total enrolment'] < 140):
+    if (row['Urban/ Rural '] == "Rural" and row['total enrolment'] < 105) or (row['Urban/ Rural '] == "Urban" and row['total enrolment'] < 140):
         return 'Not Sustainable'
     else:
         return 'Sustainable'
