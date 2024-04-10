@@ -9,7 +9,18 @@ import numpy
 
 # Import my functions
 from functions import km_to_miles
-from functions import sustainability
+#from functions import sustainable_schools
+from functions import convert_distance_to_area
+#from functions import remove_whitespace function not working correctly
+
+###############################################################################
+
+# Function to apply the conditional sustainability logic
+def sustainable_schools(row):
+    if (row['Urban/ Rural     '] == "RURAL" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "URBAN" and row['total enrolment'] < 140):
+        return 'Not Sustainable'
+    else:
+        return 'Sustainable'
 
 ###############################################################################
 # Context
@@ -65,6 +76,9 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Irish Medium School', 'Postcode'], axis=1)
+
+# Function to remove leading and trailing whitespace
+#merged_data.columns = merged_data.columns.str.strip()
 
 ################################################################################
 # Spatial analysis
@@ -157,26 +171,54 @@ merged_data['nearest_management_type_other_management'] = nearest_management_typ
 # have more than 140 pupils for an Urban school and more than 105 pupils for a 
 # Rural school. For this the custom 'sustainable' function is used.
 
-merged_data['Sustainability'] = merged_data.apply(sustainability, axis=1)
+merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
 ################################################################################
 # Create new dataframes
 
 # Count all schools
+school_count = merged_data['total enrolment'].count()
+school_count
 
 # Count all schools by management type
+management_type_count = merged_data.groupby(['management type']).size().reset_index(name='count')
+management_type_count = management_type_count.sort_values(by='count', ascending=False)
+management_type_count
 
 # Count all schools by parliamentary constituency
+management_type_count = merged_data.groupby(['constituency']).agg({'total enrolment': 'count'})
+management_type_count = management_type_count.sort_values(by='total enrolment', ascending=False)
+management_type_count
+
+# Count all schools by management type & parliamentary constituency
+management_type_constituency_count = merged_data.groupby(['constituency', 'management type']).size().reset_index(name='count')
+management_type_constituency_count
 
 # Total number of pupils
+total_enrolment_sum = merged_data['total enrolment'].sum()
+total_enrolment_sum
 
 # Total number of pupils by management type
+total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
+total_enrolment_by_management_type_sorted = total_enrolment_by_management_type.sort_values(ascending=False)
+total_enrolment_by_management_type
 
 # Total number of pupils by parliamentary constituency
+total_enrolment_constituency = merged_data.groupby('constituency')['total enrolment'].sum()
+total_enrolment_constituency = total_enrolment_constituency.sort_values(ascending=False)
+total_enrolment_constituency
 
 # Total number of sustainable and unsutainable schools
+sustainable_count = merged_data.groupby(['Sustainability']).agg({'total enrolment': 'count'})
+sustainable_count['Percentage'] = (sustainable_count['total enrolment'] / school_count) * 100
+sustainable_count
 
 # Total number of pupils in unsustainable schools
+sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
+sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
+sustainable_pupils
+
+print(merged_data.columns)
 
 # Nearest School
 nearest_school = merged_data.loc[:, ['Postcode', 'Latitude', 'Longitude']]
@@ -186,6 +228,8 @@ nearest_school_same_management =
 
 # Nearest school not in the same managment type
 nearest_school_not_same_management =
+
+# Strategically important small schools
 
 ################################################################################
 # Charts
