@@ -232,6 +232,10 @@ nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'm
 # Nearest school not in the same managment type
 nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management']]
+nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
+
+#Roulston_Cook = nearest_school_not_same_management[(nearest_school_not_same_management['management type'] == 'Catholic Maintained') | (strategically_important_small_schools['management type'] == 'Controlled')]
+
 
 # Strategically important small schools
 strategically_important_small_schools = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
