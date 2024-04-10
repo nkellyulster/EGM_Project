@@ -216,21 +216,27 @@ sustainable_count
 # Total number of pupils in unsustainable schools
 sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
 sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
-sustainable_pupils
-
-print(merged_data.columns)
 
 # Nearest School
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
        'nearest_management_type']]
 
 # Nearest school in the same management type
-nearest_school_same_management = 
+nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
+       'nearest_same_management_school']]
 
 # Nearest school not in the same managment type
-nearest_school_not_same_management =
+nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
+       'nearest_school_other_management', 'nearest_management_type_other_management']]
 
 # Strategically important small schools
+strategically_important_small_schools = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
+       'nearest_same_management_school', 'Sustainability']]
+strategically_important_small_schools = strategically_important_small_schools[(strategically_important_small_schools['Sustainability'] == 'Not Sustainable')]
+strategically_important_small_schools = strategically_important_small_schools[(strategically_important_small_schools['management type'] == 'Catholic Maintained') | (strategically_important_small_schools['management type'] == 'Controlled')]
+strategically_important_small_schools.drop(columns=['Sustainability'], inplace=True)
+strategically_important_small_schools = strategically_important_small_schools.sort_values(by='nearest_same_management_distance', ascending=False)
+strategically_important_small_schools
 
 ################################################################################
 # Charts
