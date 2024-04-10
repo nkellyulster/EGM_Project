@@ -176,6 +176,10 @@ merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 ################################################################################
 # Create new dataframes
 
+# Define the bins for distance ranges
+bins = [0, 1, 2.9, 4.9, 7.4, 9.9, float('inf')]
+labels = ['<1', '1-2.9', '3-4.9', '5-7.4', '7.5-9.9', '>10']
+
 # Count all schools
 school_count = merged_data['total enrolment'].count()
 school_count
@@ -236,8 +240,25 @@ strategically_important_small_schools = strategically_important_small_schools[(s
 strategically_important_small_schools = strategically_important_small_schools[(strategically_important_small_schools['management type'] == 'Catholic Maintained') | (strategically_important_small_schools['management type'] == 'Controlled')]
 strategically_important_small_schools.drop(columns=['Sustainability'], inplace=True)
 strategically_important_small_schools = strategically_important_small_schools.sort_values(by='nearest_same_management_distance', ascending=False)
+
+# Bin the distances into specified ranges
+strategically_important_small_schools['distance_range'] = pd.cut(strategically_important_small_schools['nearest_same_management_distance'], bins=bins, labels=labels, right=False)
+
+# Count occurrences in each bin
+distance_counts = pd.DataFrame(strategically_important_small_schools['distance_range'].value_counts(sort=False).reindex(labels, fill_value=0))
+distance_counts.reset_index(inplace=True)
+
+strategically_important_small_schools = strategically_important_small_schools.head(20)
+strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools
 
+count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
+count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
+count_strategically_important_small_schools_constituency
+
+count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
+count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
+count_strategically_important_small_schools_management_type
 ################################################################################
 # Charts
 
