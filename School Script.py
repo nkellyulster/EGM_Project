@@ -221,7 +221,8 @@ sustainable_pupils
 print(merged_data.columns)
 
 # Nearest School
-nearest_school = merged_data.loc[:, ['Postcode', 'Latitude', 'Longitude']]
+nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
+       'nearest_management_type']]
 
 # Nearest school in the same management type
 nearest_school_same_management = 
