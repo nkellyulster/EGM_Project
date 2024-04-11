@@ -221,6 +221,10 @@ sustainable_count
 sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
 sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
 
+# Number of Catholic Maintained & Controlled Schools
+
+# Number of pupils educated in Catholic Maintained & Controlled Schools
+
 # Nearest School
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
        'nearest_management_type']]
@@ -234,7 +238,17 @@ nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name'
        'nearest_school_other_management', 'nearest_management_type_other_management']]
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
 
-#Roulston_Cook = nearest_school_not_same_management[(nearest_school_not_same_management['management type'] == 'Catholic Maintained') | (strategically_important_small_schools['management type'] == 'Controlled')]
+# Roulston Cook
+Roulston_Cook = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
+Roulston_Cook = Roulston_Cook.loc[:, ['De ref', 'school name', 'town', 'management type', 'total enrolment', 'nearest_distance_other_management',
+       'nearest_school_other_management', 'nearest_management_type_other_management', 'Sustainability']]
+Roulston_Cook = Roulston_Cook.sort_values(by='nearest_distance_other_management', ascending=True)
+Roulston_Cook = Roulston_Cook[(Roulston_Cook['Sustainability'] == 'Not Sustainable')]
+Roulston_Cook = Roulston_Cook[(Roulston_Cook['nearest_distance_other_management'] <1.60934)]
+
+duplicate_indices = Roulston_Cook[Roulston_Cook['school name'].isin(Roulston_Cook['nearest_school_other_management'])].index
+Roulston_Cook.drop(duplicate_indices, inplace=True)
+
 
 
 # Strategically important small schools
