@@ -1,0 +1,5 @@
+# ignores all .txt files
+.md
+
+# ignores all .sav files
+.sav
