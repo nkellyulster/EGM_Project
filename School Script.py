@@ -222,8 +222,20 @@ sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment
 sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
 
 # Number of Catholic Maintained & Controlled Schools
+count_catholic_maintained_controlled = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
+count_catholic_maintained_controlled = count_catholic_maintained_controlled['total enrolment'].count()
+count_catholic_maintained_controlled
+
+percentage_schools_catholic_maintained_controlled = count_catholic_maintained_controlled / school_count
+percentage_schools_catholic_maintained_controlled
 
 # Number of pupils educated in Catholic Maintained & Controlled Schools
+sum_catholic_maintained_controlled = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
+sum_catholic_maintained_controlled = sum_catholic_maintained_controlled['total enrolment'].sum()
+sum_catholic_maintained_controlled
+
+percentage_enroled_catholic_maintained_controlled = sum_catholic_maintained_controlled / total_enrolment_sum
+percentage_enroled_catholic_maintained_controlled
 
 # Nearest School
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
@@ -239,17 +251,25 @@ nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name'
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
 
 # Roulston Cook
+""" 
+In their 2020 research "Isolated Together", Roulston & Cook used the Department
+of Educatio  2018/19 primary school data "to identify pairs of primary schools 
+consisting of one Controlled and one Maintained school, located in close proximity 
+to each other but not in the vicinity of other schools of the same management 
+type". The following chuck of code replicates this research. Full referencing
+for this research is provided in the attached report.
+"""
+
 Roulston_Cook = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
 Roulston_Cook = Roulston_Cook.loc[:, ['De ref', 'school name', 'town', 'management type', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management', 'Sustainability']]
 Roulston_Cook = Roulston_Cook.sort_values(by='nearest_distance_other_management', ascending=True)
 Roulston_Cook = Roulston_Cook[(Roulston_Cook['Sustainability'] == 'Not Sustainable')]
+Roulston_Cook.drop(columns=['Sustainability'], inplace=True)
 Roulston_Cook = Roulston_Cook[(Roulston_Cook['nearest_distance_other_management'] <1.60934)]
-
 duplicate_indices = Roulston_Cook[Roulston_Cook['school name'].isin(Roulston_Cook['nearest_school_other_management'])].index
 Roulston_Cook.drop(duplicate_indices, inplace=True)
-
-
+Roulston_Cook
 
 # Strategically important small schools
 strategically_important_small_schools = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
