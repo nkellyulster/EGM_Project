@@ -1,5 +1,5 @@
 # ignores all .txt files
-.md
+.txt
 
 # ignores all .sav files
 .sav
