@@ -1,11 +1,14 @@
 # Import libraries
-import pandas as pd
+import csv
 import folium
-import shapely
-from shapely.geometry import Point
-from haversine import haversine, Unit
+import geopandas as gpd
+import numpy as np
+import pandas as pd
 import plotly.express as px
-import numpy
+from collections import defaultdict
+from folium.plugins import MarkerCluster
+from haversine import haversine
+from shapely.geometry import Point
 
 # Import my functions
 from functions import km_to_miles
@@ -44,21 +47,24 @@ bt_postcodes_url = "https://raw.githubusercontent.com/nkellyulster/EGM_Project/m
 bt_postcodes = pd.read_csv(bt_postcodes_url)
 
 # The following chunk reads in the url for the Primary School XLSX spreadsheet, 
-# open the 'reference data' tab and skips the first 3 rows
+# opens the 'reference data' tab and skips the first 3 rows
 schools = pd.read_excel(primary_school_url,
 sheet_name = "reference data",
 skiprows = 3)
 
-# Read in the enrolment tab and skip the first 3 rows                        
+# Reads in the enrolment tab and skip the first 3 rows                        
 enrolment = pd.read_excel(primary_school_url,
 sheet_name = "Enrolments",
 skiprows = 3)
+
+# Import GeoJSON file with parliamentary boundaries
+constituency_boundaries = gpd.read_file("C:\\Users\\Niall\\Documents\\EGM_Project\\OSNI_Open_Data_-_50K_Boundaries_-_Parliamentary_Constituencies.geojson")
 
 # Removes the bt_postcodes_url and primary_school_url as they are no longer needed
 del bt_postcodes_url
 del primary_school_url
 
-###############################################################################
+################################################################################
 # Data cleaning
 
 # Retain only the DE Reference and the Total Enrolment columns from the enrolment df                        
@@ -80,6 +86,9 @@ merged_data = merged_data.drop(['address 1', 'school type', 'district council (2
 # Function to remove leading and trailing whitespace
 #merged_data.columns = merged_data.columns.str.strip()
 
+# Write the merged_data df as a CSV
+merged_data.to_csv("Outputs/1. merged_data.csv", index=False)
+
 ################################################################################
 # Spatial analysis
 """
@@ -91,12 +100,12 @@ calculations are as follows:
 
 All of these calculations will be created in one master dataframe and will then be
 seperated out into smaller dataframes for ease of navigation and analysis.
-"""
 
-# Calculate distance to nearest school, the name of the nearest school, the 
-# management type of the nearest school, distance to the nearest school in the 
-# same management type, and the name of the nearest school in the same management type, 
-# for each school
+Calculate distance to nearest school, the name of the nearest school, the 
+management type of the nearest school, distance to the nearest school in the 
+same management type, and the name of the nearest school in the same management type, 
+for each school
+"""
 
 nearest_distances = []
 nearest_schools = []
@@ -122,7 +131,7 @@ for idx, row in merged_data.iterrows():
                 nearest_same_management_distance = distance
                 nearest_same_management_school = row2['school name']
     
-    # Append values to the lists inside the loop
+# Append values to the lists inside the loop
     nearest_distances.append(min_distance)
     nearest_schools.append(nearest_school)
     nearest_management_types.append(nearest_management_type)
@@ -136,9 +145,11 @@ merged_data['nearest_management_type'] = nearest_management_types
 merged_data['nearest_same_management_distance'] = nearest_same_management_distances
 merged_data['nearest_same_management_school'] = nearest_same_management_schools
 
-# This chunk finds the distance from each school to the nearest school not in the
-# same management type, the name of the nearest school not in the same management 
-# type and the management type of the nearest school not in the same management type
+"""
+This chunk finds the distance from each school to the nearest school not in the
+same management type, the name of the nearest school not in the same management 
+type and the management type of the nearest school not in the same management type
+"""
 
 nearest_schools = []
 nearest_distances = []
@@ -167,9 +178,9 @@ merged_data['nearest_school_other_management'] = nearest_schools
 merged_data['nearest_management_type_other_management'] = nearest_management_types
 
 # Sustainability
-# For a school to be deemed sustainable by the Department of Education it must 
-# have more than 140 pupils for an Urban school and more than 105 pupils for a 
-# Rural school. For this the custom 'sustainable' function is used.
+"""For a school to be deemed sustainable by the Department of Education it must 
+have more than 140 pupils for an Urban school and more than 105 pupils for a 
+Rural school. For this the custom 'sustainable' function is used."""
 
 merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
@@ -197,6 +208,7 @@ management_type_count
 # Count all schools by management type & parliamentary constituency
 management_type_constituency_count = merged_data.groupby(['constituency', 'management type']).size().reset_index(name='count')
 management_type_constituency_count
+management_type_constituency_count.to_csv("Outputs/2. management_type_constituency_count.csv", index=False)
 
 # Total number of pupils
 total_enrolment_sum = merged_data['total enrolment'].sum()
@@ -206,11 +218,13 @@ total_enrolment_sum
 total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
 total_enrolment_by_management_type_sorted = total_enrolment_by_management_type.sort_values(ascending=False)
 total_enrolment_by_management_type
+total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
 # Total number of pupils by parliamentary constituency
 total_enrolment_constituency = merged_data.groupby('constituency')['total enrolment'].sum()
 total_enrolment_constituency = total_enrolment_constituency.sort_values(ascending=False)
 total_enrolment_constituency
+total_enrolment_constituency.to_csv("Outputs/4. total_enrolment_constituency.csv", index=False)
 
 # Total number of sustainable and unsutainable schools
 sustainable_count = merged_data.groupby(['Sustainability']).agg({'total enrolment': 'count'})
@@ -220,6 +234,7 @@ sustainable_count
 # Total number of pupils in unsustainable schools
 sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
 sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
+sustainable_pupils
 
 # Number of Catholic Maintained & Controlled Schools
 count_catholic_maintained_controlled = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
@@ -240,15 +255,21 @@ percentage_enroled_catholic_maintained_controlled
 # Nearest School
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
        'nearest_management_type']]
+nearest_school
+nearest_school.to_csv("Outputs/5. nearest_school.csv", index=False)
 
 # Nearest school in the same management type
 nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
        'nearest_same_management_school']]
+nearest_school_same_management
+nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management.csv", index=False)
 
 # Nearest school not in the same managment type
 nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management']]
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
+nearest_school_not_same_management
+nearest_school_not_same_management.to_csv("Outputs/6. nearest_school_not_same_management.csv", index=False)
 
 # Roulston Cook
 """ 
@@ -270,8 +291,17 @@ Roulston_Cook = Roulston_Cook[(Roulston_Cook['nearest_distance_other_management'
 duplicate_indices = Roulston_Cook[Roulston_Cook['school name'].isin(Roulston_Cook['nearest_school_other_management'])].index
 Roulston_Cook.drop(duplicate_indices, inplace=True)
 Roulston_Cook
+Roulston_Cook.to_csv("Outputs/7. Roulston_Cook.csv", index=False)
+
 
 # Strategically important small schools
+"""
+This is the key section of the project.
+This chuck filters for all schools that are not sustainable based on enrolment.
+It filters out to retain only the Catholic Maintianed and the Controlled schools.
+They are sorted in descending order by the distance to the nearest school in the 
+same management type.
+"""
 strategically_important_small_schools = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
        'nearest_same_management_school', 'Sustainability']]
 strategically_important_small_schools = strategically_important_small_schools[(strategically_important_small_schools['Sustainability'] == 'Not Sustainable')]
@@ -289,6 +319,8 @@ distance_counts.reset_index(inplace=True)
 strategically_important_small_schools = strategically_important_small_schools.head(20)
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools
+strategically_important_small_schools.to_csv("Outputs/8. strategically_important_small_schools.csv", index=False)
+
 
 count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
 count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
@@ -297,6 +329,8 @@ count_strategically_important_small_schools_constituency
 count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
 count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_management_type
+count_strategically_important_small_schools_management_type.to_csv("Outputs/9. count_strategically_important_small_schools_management_type.csv", index=False)
+
 ################################################################################
 # Charts
 
@@ -304,15 +338,82 @@ count_strategically_important_small_schools_management_type
 ################################################################################
 # Maps
 
-# Create a geometry column by combining Longitude and Latitude
+# Define colors for each management type - this will be used in all maps
+colors = {
+    'Controlled': 'blue',
+    'Catholic Maintained': 'green',
+    'Other Maintained': 'red',
+    'Controlled Integrated': 'yellow',
+    'GMI': 'orange',
+    'Voluntary': 'purple',}
+
+## Map 1: All Primary Schools by Management Type
 merged_data['geom'] = merged_data.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
+m = folium.Map(location=[merged_data['Latitude'].mean(), merged_data['Longitude'].mean()], zoom_start=8)
+title_html = '<h3 align="center" style="font-size:20px"><b>All Primary Schools by Management Type</b></h3>'
+m.get_root().html.add_child(folium.Element(title_html))
+for idx, row in merged_data.iterrows():
+    color = colors.get(row['management type'], 'black')
+    folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name'], icon=folium.Icon(color=color)).add_to(m)
+m.save("Outputs/All Primary Schools by Management Type.html")
+
+## Map 2: Strategically Important Small Schools
+# The merged_data df is filtered to retain only the rows which are in the 
+# strategically_important_small_schools df
+strategically_important_schools = merged_data[merged_data['De ref'].isin(strategically_important_small_schools['De ref'].unique())].copy()
+
+# Create a geometry column by combining Longitude and Latitude
+strategically_important_schools['geom'] = strategically_important_schools.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
 
 # Create a map centered at the mean Latitude and Longitude
-m = folium.Map(location=[merged_data['Latitude'].mean(), merged_data['Longitude'].mean()], zoom_start=8)
+m = folium.Map(location=[strategically_important_schools['Latitude'].mean(), strategically_important_schools['Longitude'].mean()], zoom_start=8)
 
-# Add markers for each school
-for idx, row in merged_data.iterrows():
-    folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name']).add_to(m)
+# Add a title to the map
+title_html = '<h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type</b></h3>'
+m.get_root().html.add_child(folium.Element(title_html))
+
+# Add markers for each school with colors based on management type
+for idx, row in strategically_important_schools.iterrows():
+    color = colors.get(row['management type'], 'black')
+    popup_content = f"<b>School Name:</b> {row['school name']}<br>"
+    popup_content += f"<b>Management Type:</b> {row['management type']}<br>"
+    popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
+    folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
 
 # Save the map to an HTML file
-m.save('map.html')
+
+m.save("Outputs/Strategically Important Small Schools.html")
+
+###
+## Map 3: Strategically Important Small Schools with boundaries
+
+# The merged_data df is filtered to retain only the rows which are in the 
+# strategically_important_small_schools df
+strategically_important_schools = merged_data[merged_data['De ref'].isin(strategically_important_small_schools['De ref'].unique())].copy()
+
+# Create a geometry column by combining Longitude and Latitude
+strategically_important_schools['geom'] = strategically_important_schools.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
+
+# Create a map centered at the mean Latitude and Longitude
+m = folium.Map(location=[strategically_important_schools['Latitude'].mean(), strategically_important_schools['Longitude'].mean()], zoom_start=8)
+
+# Add a title to the map
+title_html = '<h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type with boundaries</b></h3>'
+m.get_root().html.add_child(folium.Element(title_html))
+
+# Add markers for each school with colors based on management type
+for idx, row in strategically_important_schools.iterrows():
+    color = colors.get(row['management type'], 'black')
+    popup_content = f"<b>School Name:</b> {row['school name']}<br>"
+    popup_content += f"<b>Management Type:</b> {row['management type']}<br>"
+    popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
+    folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
+
+# Add constituency boundaries
+folium.GeoJson(
+    constituency_boundaries,
+    name='constituency boundaries',
+).add_to(m)
+
+# Save the map to an HTML file
+m.save("Outputs/Strategically Important Small Schools with boundaries.html")
