@@ -10,3 +10,4 @@ dependencies:
   - haversine
   - plotly
   - numpy
+  - csv
