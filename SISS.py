@@ -85,6 +85,14 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
+```
+Harmony Primary School 54.615622286274096, -5.9826709693148885
+Campbell College Junior School, Belfast 54.601342361930584, -5.85227797613058
+Downey House Preparatory School 54.580655978215916, -5.905930187775612
+St Dympna's Primary School, Dromore 54.512571453329244, -7.469365801273217
+Gaelscoil Na gCrann, Omagh 54.5993316600317, -7.2545584724318095
+```
+
 
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Irish Medium School', 'Postcode'], axis=1)
