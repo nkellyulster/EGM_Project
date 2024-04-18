@@ -9,12 +9,16 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 ## 📥 Installation Instructions
 All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
 
-To access this code you will need to clone this repository to your own machine. This code was written in Python V3.13 in R Studio. To connect this repository to R Studio you will need Git For Windows and the latest version of R Studio installed. Once they are installed complete the following steps to access the repository.
+You will need to ensure that you have the [latest version of Python installed](https://www.python.org/downloads/). You will also require an IDE such as [R Studio](https://posit.co/download/rstudio-desktop/), [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
+
+Once you have both Python and your IDE installed the easiest way to access the code and files is to link your IDE to the GitHub repository. To do this you will need to have a [GitHub account](https://github.com/) and then [install Git For Windows](https://git-scm.com/download/win).
+
+To access this code you will need to clone this repository to your machine. This code was written in `Python Version 3.13` in R Studio. To connect this repository to R Studio you will need Git For Windows and the latest version of R Studio installed. Once they are installed complete the following steps to access the repository.
 1.  In R Studio click on File > New Project
 2.  Select Version Control
 3.  Select Git
 4.  Paste `https://github.com/nkellyulster/Strategically-Important-Small-Schools` as the Repository URL
-5.  The Project directory name should auto populate as` Strategically-Important-Small-Schools`
+5.  The Project directory name should auto-populate as` Strategically-Important-Small-Schools`
 6.  Select a location on your machine as the `subdirectory` location
 7.  Click Create Project
 8.  This should clone the Repo and allow you to run the `SISS.py` file.
@@ -38,10 +42,33 @@ sheet_name = "total enrolment",
 skiprows = 3)
 ```
 
-The locational data comes from the Doogal website and is already saved in GitHub as the BT_postcodes.csv file. Should you wish to manually read the spreadsheet you first need to download the file from the [BT postcodes Northern Ireland page](https://www.doogal.co.uk/UKPostcodes?Search=BT). Click on the Download button and select "Data for this area as CSV (for Excel etc)". This will download the CSV file to your machine. Simply insert the file path in the code chuck below to read it into Pyth:
+The locational data comes from the Doogal website and is already saved in GitHub as the `BT_postcodes.csv` file. Should you wish to manually read the spreadsheet you first need to download the file from the [BT postcodes Northern Ireland page](https://www.doogal.co.uk/UKPostcodes?Search=BT). Click on the Download button and select "Data for this area as CSV (for Excel etc)". This will download the CSV file to your machine. Simply insert the file path in the code chuck below to read it into Pyth:
 ```ruby
 bt_postcodes = pd.read_csv(<you_file_path.csv>)
 ```
 
+## 🏃 Running the code
+Running the code is a fairly straightforward process.
+
+The code can be run in small chucks to produce some of the outputs or can be run in its entirety to produce all outputs.
+
+### 🐍 Outputs
+In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
+
 ## 📖 Background
-According to NI school enrolment data there are XXX primary schools in Northern Ireland. The Department of Education’s policy document ‘Schools for the Future: A Policy for Sustainable Schools’, outlines six criteria which provide a framework for considering issues of school sustainability. In reality, the key determinant of a school's sustainability is it’s enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own threshold, in 2023/24 there are XXX schools (XX% of the total primary schools) which are ‘not sustainable’ based on enrolment.
+According to NI school enrolment data there are 787 primary schools in Northern Ireland. 
+
+The Department of Education’s policy document [‘Schools for the Future: A Policy for Sustainable Schools’](https://www.education-ni.gov.uk/publications/schools-future-policy-sustainable-schools), outlines six criteria that provide a framework for considering issues of school sustainability. This document stems from the [2006 Independent Strategic Review of Education](https://dera.ioe.ac.uk/id/eprint/9777/1/review_of_education.pdf), more commonly known as the Bain Report.
+
+In reality, the key determinant of a school's sustainability is it’s enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
+
+## 🎛️ Troubleshooting
+There are limited things that can go wrong with this code, which means there are probably more things that can go wrong with the code than I am willing to admit.
+
+All of the input files are read directly from the GitHub repository and guidance is provided above on how to manually read in data.
+
+This means the only other problem that could realistically exist is that your version of Python is too old or you have not read in the required Python libraries.
+
+If your version of Python is too old, you should get the most recent version of Python that is available. This code was written using version 3.12 so I would suggest using `version 3.12.`
+
+If you have not installed the required libraries I would recommend installing the required libraries. A list of all the required libraries is contained at the very top of the [SISS.py script](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/SISS.py) or in the [environment file](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/environment.yml).
