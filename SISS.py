@@ -80,6 +80,12 @@ all_schools = all_schools.drop('DE ref', axis = 1)
 # Join the schools and selected_bt_postcodes dfs using postcode and Postcode variables
 merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
 
+# This check is added to identify any schools which do not appear in the merged_data
+# df becuase their school postcode does not appear in the bt_postcodes df
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+
+
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Irish Medium School', 'Postcode'], axis=1)
 
