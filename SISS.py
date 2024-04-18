@@ -8,6 +8,7 @@ import plotly.express as px
 from collections import defaultdict
 from folium.plugins import MarkerCluster
 from haversine import haversine
+from haversine import haversine, Unit
 from shapely.geometry import Point
 
 # Import my functions
@@ -85,14 +86,29 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
-```
-Harmony Primary School 54.615622286274096, -5.9826709693148885
-Campbell College Junior School, Belfast 54.601342361930584, -5.85227797613058
-Downey House Preparatory School 54.580655978215916, -5.905930187775612
-St Dympna's Primary School, Dromore 54.512571453329244, -7.469365801273217
-Gaelscoil Na gCrann, Omagh 54.5993316600317, -7.2545584724318095
-```
+missing_postcodes = pd.DataFrame({
+    'Postcode': ['BT13 3SY', 'BT4 3HJ', 'BT78 3GA', 'BT79 0GZ'],
+    'Latitude': [54.615622286274096, 54.601342361930584, 54.512571453329244, 54.5993316600317],
+    'Longitude': [-5.9826709693148885, -5.85227797613058, -7.469365801273217, -7.2545584724318095]
+})
+selected_bt_postcodes = selected_bt_postcodes._append(missing_postcodes, ignore_index=True)
 
+# Rerun the process again
+merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+
+# At this point there is still one school missing. The issue has been caused with
+# a tab rather than a single between the psotcode in the all_schools df. This 
+# value will be replaced.
+all_schools.replace('BT6  0AG', 'BT6 0AG', inplace=True)
+
+# Rerun the process one final time
+merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+# There are now no longer any rows_not_in_bt_postcodes df and the number of rows
+# (787) is the same in both the all_schools and merged_data dfs. Success!
 
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Irish Medium School', 'Postcode'], axis=1)
