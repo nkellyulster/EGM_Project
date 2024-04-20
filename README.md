@@ -50,10 +50,36 @@ bt_postcodes = pd.read_csv(<you_file_path.csv>)
 ## 🏃 Running the code
 Running the code is a fairly straightforward process.
 
-The code can be run in small chucks to produce some of the outputs or can be run in its entirety to produce all outputs.
+The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
 
 ### 🐍 Outputs
 In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
+
+This code produces the following outputs: 
+*  `rows_not_in_bt_postcodes` a dataframe with all the school postcodes which do not appear in the `bt_postcodes` dataframe
+*  `school_count` a simple count of the number of primary schools in Northern Ireland 
+*  `management_type_count` a count of all primary schools in Northern Ireland broken down by management type
+*  `constituency_count` a count of all primary schools in Northern Ireland broken down by constituency
+*  `management_type_constituency_count` a count of all primary schools in Northern Ireland broken down by management type **and** constituency 
+*  `total_enrolment_sum` the sum of all pupils in all primary schools in Northern Ireland
+*  `total_enrolment_by_management_type` the total number of pupils educated in each management type in Northern Ireland
+*  `total_enrolment_constituency` the total number of pupils educated in each constituency in Northern Ireland
+*  `sustainable_count` the number of sustainable and unsustainable primary schools in Northern Ireland (based on the criteria laid out in the `sustainable_schools` function)
+*  `sustainable_pupils` is the sum of pupils being educated in sustainable and unsustainable schools
+*  `count_catholic_maintained_controlled` is a count of the number of Catholic Maintained and Controlled schools
+*  `percentage_schools_catholic_maintained_controlled` is the percentage of Catholic Maintained and Controlled schools relative to the total number of primary schools in Northern Ireland
+*  `sum_catholic_maintained_controlled` is a sum of the number of pupils being educated in Catholic Maintained and Controlled schools
+*  `percentage_enroled_catholic_maintained_controlled` is the number of pupils educated in Catholic Maintained and Controlled schools relative to the total number of primary school pupils in Northern Ireland
+*  `nearest_school` this provides the nearest primary school to each primary school, **irrespective of the management type**
+*  `nearest_school_same_management` this provides the nearest primary school to each primary school in the **same management type**
+*  nearest_school_not_same_management this provides the nearest primary school to each primary school that is **not in the same management type**
+*  `Roulston_Cook` this replicate the research carried out by [Roulston & Cook](https://pure.ulster.ac.uk/en/publications/isolated-together-pairs-of-primary-schools-duplicating-provision) in their 2020 Research `Isolated Together: Pairs of Primary Schools Duplicating Provision`
+*  `strategically_important_small_schools` this produces the primary schools which meet the criteria of being *Strategically Important Small Schools*.  To produce this output the `nearest_school_same_management` dataframe is filtered to show only the schools which are deemed as *Unsustainable*. The distance to the nearest school in the same management time is sorted in descending order and only those schools which are at least 7.5km away from another school in the same management type are retained 
+*  `count_strategically_important_small_schools_constituency` this is a simple count of the number of schools in the `strategically_important_small_schools` by constituency
+*  `count_strategically_important_small_schools_management_type` this is a count of the number of `strategically_important_small_schools` by management type
+*  `Map: All Primary Schools by Management Type` this map shows all primary schools in Northern Ireland, with the marker for each management type coloured differently 
+*  `Map: Strategically Important Small Schools` this map shows all of the Strategically Important Small Schools in Northern Ireland, with the marker for each management type coloured differently
+*  `Map: Strategically Important Small Schools with boundaries` this is the same as `Map: Strategically Important Small Schools` only this has the parliamentary boundaries layer added
 
 ## 📖 Background
 According to NI school enrolment data there are 787 primary schools in Northern Ireland. 
