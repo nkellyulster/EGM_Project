@@ -231,9 +231,9 @@ management_type_count = management_type_count.sort_values(by='count', ascending=
 management_type_count
 
 # Count all schools by parliamentary constituency
-management_type_count = merged_data.groupby(['constituency']).agg({'total enrolment': 'count'})
-management_type_count = management_type_count.sort_values(by='total enrolment', ascending=False)
-management_type_count
+constituency_count = merged_data.groupby(['constituency']).agg({'total enrolment': 'count'})
+constituency_count = constituency_count.sort_values(by='total enrolment', ascending=False)
+constituency_count
 
 # Count all schools by management type & parliamentary constituency
 management_type_constituency_count = merged_data.groupby(['constituency', 'management type']).size().reset_index(name='count')
@@ -323,7 +323,6 @@ Roulston_Cook.drop(duplicate_indices, inplace=True)
 Roulston_Cook
 Roulston_Cook.to_csv("Outputs/7. Roulston_Cook.csv", index=False)
 
-
 # Strategically important small schools
 """
 This is the key section of the project.
@@ -350,7 +349,6 @@ strategically_important_small_schools = strategically_important_small_schools.he
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools
 strategically_important_small_schools.to_csv("Outputs/8. strategically_important_small_schools.csv", index=False)
-
 
 count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
 count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
@@ -447,3 +445,5 @@ folium.GeoJson(
 
 # Save the map to an HTML file
 m.save("Outputs/Strategically Important Small Schools with boundaries.html")
+
+# A map shaded to show the number of pupils in each constituency/ number unstustinable schools?
