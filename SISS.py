@@ -66,6 +66,40 @@ del bt_postcodes_url
 del primary_school_url
 
 ################################################################################
+# Previous years data
+"""
+The calcualtions in this script are all based on the most recent data published 
+by the Department of Education (2023/24). It may be of use to others to look at 
+other years enrolment data.
+
+As of April 2024, enrolment data for schools is available as far back as 2009/10
+on the Department of Education website at: 
+https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data
+  
+Should you wish to carry out this analysis on historic data simply uncomment the
+line below which relates to the year that you want to analyse and comment out
+the Import data files line which contains primary_school_url
+
+There may be issues with data struture of files changing over the year so you 
+should tke care when readin in the data that it the all_schools dataframe is
+correct
+"""
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-0910-supp-r.xlsx" #2009/10
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-1011-supp-inc-unfilled-r.xlsx" #2010/11
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-11-12-supp-inc-unfilled-places-r.xlsx" #2011/12
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-2012-13-supp-inc-unfilled-places-2.xlsx" #2012/13
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-2013-14-supp-inc-unfilled-places.xlsx" #2013/14
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/primary-schools-data-1415-supp-with-unfilled-places.xlsx" #2014/15
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/de/School%20level%20-%20primary%20schools%20data%201516%20supp_0.XLSX" #2015/16
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%201617%20supp.XLSX" #2016/17
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%20supp%201718.xlsx" #2017/18
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/Copy%20of%20School%20level%20-%20primary%20schools%20data%201819.XLSX" #2018/19
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%201920%20suppressed.XLSX" #2019/20
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202020-21.xlsx" #2020/21
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202122.XLSX" #2021/22
+#primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202223.XLSX" #2022/23
+
+################################################################################
 # Data cleaning
 
 # Retain only the DE Reference and the Total Enrolment columns from the enrolment df                        
