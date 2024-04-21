@@ -280,12 +280,14 @@ total_enrolment_sum
 
 # Total number of pupils by management type
 total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
+total_enrolment_by_management_type = pd.DataFrame(total_enrolment_by_management_type)
 total_enrolment_by_management_type_sorted = total_enrolment_by_management_type.sort_values(ascending=False)
 total_enrolment_by_management_type
 total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
 # Total number of pupils by parliamentary constituency
 total_enrolment_constituency = merged_data.groupby('constituency')['total enrolment'].sum()
+total_enrolment_constituency = pd.DataFrame(total_enrolment_constituency)
 total_enrolment_constituency = total_enrolment_constituency.sort_values(ascending=False)
 total_enrolment_constituency
 total_enrolment_constituency.to_csv("Outputs/4. total_enrolment_constituency.csv", index=False)
