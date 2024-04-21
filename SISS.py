@@ -396,6 +396,12 @@ count_strategically_important_small_schools_management_type.to_csv("Outputs/9. c
 ################################################################################
 # Charts
 
+# Bar chart of all schools by management type
+# Bar chart of all pupils by management type
+# Treemap of all pupils by management type (possibly with constituency)
+
+# Bar chart of SISS by management type, constituency, both
+
 
 ################################################################################
 # Maps
@@ -481,3 +487,5 @@ folium.GeoJson(
 m.save("Outputs/Strategically Important Small Schools with boundaries.html")
 
 # A map shaded to show the number of pupils in each constituency/ number unstustinable schools?
+
+# A map to replicate the findings of Roulston/ Cook
