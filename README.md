@@ -6,6 +6,10 @@ The aim of the Strategically Important Small Schools (SISS) project is to look a
 ## 🙋 Audience
 Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to decision-makers within the Department of Education as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
 
+##  🚗 Roadmap
+![alt text](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Strategically%20Important%20Small%20Schools%20Roadmap.png?raw=true)
+
+
 ## 📥 Installation Instructions
 All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
 
