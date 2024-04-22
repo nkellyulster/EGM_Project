@@ -281,14 +281,16 @@ total_enrolment_sum
 # Total number of pupils by management type
 total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
 total_enrolment_by_management_type = pd.DataFrame(total_enrolment_by_management_type)
-total_enrolment_by_management_type_sorted = total_enrolment_by_management_type.sort_values(ascending=False)
+total_enrolment_by_management_type = total_enrolment_by_management_type.sort_values(by='total enrolment', ascending=False)
+total_enrolment_by_management_type = total_enrolment_by_management_type_sorted.rename_axis('management type').reset_index()
 total_enrolment_by_management_type
 total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
 # Total number of pupils by parliamentary constituency
 total_enrolment_constituency = merged_data.groupby('constituency')['total enrolment'].sum()
 total_enrolment_constituency = pd.DataFrame(total_enrolment_constituency)
-total_enrolment_constituency = total_enrolment_constituency.sort_values(ascending=False)
+total_enrolment_constituency = total_enrolment_constituency.sort_values(by='total enrolment', ascending=False)
+total_enrolment_constituency = total_enrolment_constituency.rename_axis('constituency').reset_index()
 total_enrolment_constituency
 total_enrolment_constituency.to_csv("Outputs/4. total_enrolment_constituency.csv", index=False)
 
@@ -399,11 +401,43 @@ count_strategically_important_small_schools_management_type.to_csv("Outputs/9. c
 # Charts
 
 # Bar chart of all schools by management type
+fig = px.bar(management_type_count, x='management type', y='count',
+             title='Number of Schools by Management Type',
+             labels={'management type': 'Management Type', 'count': 'School Count'})
+fig.write_html('school_count_by_management_type.html')
+
 # Bar chart of all pupils by management type
-# Treemap of all pupils by management type (possibly with constituency)
+fig = px.bar(total_enrolment_by_management_type, x='management type', y='total enrolment', 
+             title='Total Enrolment by Management Type', 
+             labels={'management type': 'Management Type', 'total enrolment': 'Total Enrolment'})
+fig.write_html('total_enrolment_by_management_type.html')
 
-# Bar chart of SISS by management type, constituency, both
+# Treemap of all schools by management type
+fig = px.treemap(management_type_count, path=['management type'], values='count',
+                 title='Number of Schools by Management Type')
+fig.write_html('school_count_by_management_type_treemap.html')
 
+# Treemap of all schools by constituency and management type
+fig = px.treemap(management_type_constituency_count, 
+                 path=['constituency', 'management type'], 
+                 values='count',
+                 title='Number of Schools by Constituency and Management Type')
+fig.write_html('school_count_by_constituency_management_type_treemap.html')
+
+# Treemap of total enrolment in  SISS by management type and constituency
+fig = px.treemap(strategically_important_small_schools, 
+                 path=['constituency', 'management type'], 
+                 values='total enrolment',
+                 title='Number of Pupils enrolled in Strategically Important Small Schools by Constituency and Management Type')
+fig.write_html('SSIS_by_constituency_management_type_treemap.html')
+
+# Treemap of count of SISS by constituency and management type
+SISS_count_by_group = strategically_important_small_schools.groupby(['constituency', 'management type']).size().reset_index(name='count')
+fig = px.treemap(SISS_count_by_group, 
+                 path=['constituency', 'management type'], 
+                 values='count',
+                 title='Number of Strategically Important Small Schools by Constituency and Management Type')
+fig.write_html('SISS_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
 # Maps
@@ -451,7 +485,6 @@ for idx, row in strategically_important_schools.iterrows():
     folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
 
 # Save the map to an HTML file
-
 m.save("Outputs/Strategically Important Small Schools.html")
 
 ###
