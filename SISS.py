@@ -13,18 +13,18 @@ from shapely.geometry import Point
 
 # Import my functions
 from functions import km_to_miles
-#from functions import sustainable_schools
+from functions import sustainable_schools
 from functions import convert_distance_to_area
 #from functions import remove_whitespace function not working correctly
 
 ###############################################################################
 
-# Function to apply the conditional sustainability logic
-def sustainable_schools(row):
-    if (row['Urban/ Rural     '] == "RURAL" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "URBAN" and row['total enrolment'] < 140):
-        return 'Not Sustainable'
-    else:
-        return 'Sustainable'
+# # Function to apply the conditional sustainability logic
+# def sustainable_schools(row):
+#     if (row['Urban/ Rural     '] == "RURAL" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "URBAN" and row['total enrolment'] < 140):
+#         return 'Not Sustainable'
+#     else:
+#         return 'Sustainable'
 
 ###############################################################################
 # Context
@@ -244,7 +244,7 @@ merged_data['nearest_management_type_other_management'] = nearest_management_typ
 # Sustainability
 """For a school to be deemed sustainable by the Department of Education it must 
 have more than 140 pupils for an Urban school and more than 105 pupils for a 
-Rural school. For this the custom 'sustainable' function is used."""
+Rural school. For this the custom 'sustainable_schools' function is used."""
 
 merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
@@ -404,32 +404,32 @@ count_strategically_important_small_schools_management_type.to_csv("Outputs/9. c
 fig = px.bar(management_type_count, x='management type', y='count',
              title='Number of Schools by Management Type',
              labels={'management type': 'Management Type', 'count': 'School Count'})
-fig.write_html('school_count_by_management_type.html')
+fig.write_html('Outputs/Chart - school_count_by_management_type.html')
 
 # Bar chart of all pupils by management type
-fig = px.bar(total_enrolment_by_management_type, x='management type', y='total enrolment', 
+fig = px.bar(total_enrolment_by_management_type, y='total enrolment', 
              title='Total Enrolment by Management Type', 
              labels={'management type': 'Management Type', 'total enrolment': 'Total Enrolment'})
-fig.write_html('total_enrolment_by_management_type.html')
+fig.write_html('Outputs/Chart - total_enrolment_by_management_type.html')
 
 # Treemap of all schools by management type
 fig = px.treemap(management_type_count, path=['management type'], values='count',
                  title='Number of Schools by Management Type')
-fig.write_html('school_count_by_management_type_treemap.html')
+fig.write_html('Outputs/Chart - school_count_by_management_type_treemap.html')
 
 # Treemap of all schools by constituency and management type
 fig = px.treemap(management_type_constituency_count, 
                  path=['constituency', 'management type'], 
                  values='count',
                  title='Number of Schools by Constituency and Management Type')
-fig.write_html('school_count_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/Chart - school_count_by_constituency_management_type_treemap.html')
 
 # Treemap of total enrolment in SISS by management type and constituency
 fig = px.treemap(strategically_important_small_schools, 
                  path=['constituency', 'management type'], 
                  values='total enrolment',
                  title='Number of Pupils enrolled in Strategically Important Small Schools by Constituency and Management Type')
-fig.write_html('SSIS_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/Chart - SSIS_by_constituency_management_type_treemap.html')
 
 # Treemap of count of SISS by constituency and management type
 SISS_count_by_group = strategically_important_small_schools.groupby(['constituency', 'management type']).size().reset_index(name='count')
@@ -437,7 +437,7 @@ fig = px.treemap(SISS_count_by_group,
                  path=['constituency', 'management type'], 
                  values='count',
                  title='Number of Strategically Important Small Schools by Constituency and Management Type')
-fig.write_html('SISS_count_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/Chart - SISS_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
 # Maps
@@ -459,7 +459,7 @@ m.get_root().html.add_child(folium.Element(title_html))
 for idx, row in merged_data.iterrows():
     color = colors.get(row['management type'], 'black')
     folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name'], icon=folium.Icon(color=color)).add_to(m)
-m.save("Outputs/All Primary Schools by Management Type.html")
+m.save("Outputs/Map - All Primary Schools by Management Type.html")
 
 ## Map 2: Strategically Important Small Schools
 # The merged_data df is filtered to retain only the rows which are in the 
@@ -485,7 +485,7 @@ for idx, row in strategically_important_schools.iterrows():
     folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
 
 # Save the map to an HTML file
-m.save("Outputs/Strategically Important Small Schools.html")
+m.save("Outputs/Map - Strategically Important Small Schools.html")
 
 ###
 ## Map 3: Strategically Important Small Schools with boundaries
@@ -519,8 +519,6 @@ folium.GeoJson(
 ).add_to(m)
 
 # Save the map to an HTML file
-m.save("Outputs/Strategically Important Small Schools with boundaries.html")
+m.save("Outputs/Map - Strategically Important Small Schools with boundaries.html")
 
 # A map shaded to show the number of pupils in each constituency/ number unstustinable schools?
-
-# A map to replicate the findings of Roulston/ Cook
