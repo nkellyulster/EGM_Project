@@ -1,3 +1,6 @@
+###############################################################################
+# Setup 
+
 # Import libraries
 import csv
 import folium
@@ -15,16 +18,6 @@ from shapely.geometry import Point
 from functions import km_to_miles
 from functions import sustainable_schools
 from functions import convert_distance_to_area
-#from functions import remove_whitespace function not working correctly
-
-###############################################################################
-
-# # Function to apply the conditional sustainability logic
-# def sustainable_schools(row):
-#     if (row['Urban/ Rural     '] == "RURAL" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "URBAN" and row['total enrolment'] < 140):
-#         return 'Not Sustainable'
-#     else:
-#         return 'Sustainable'
 
 ###############################################################################
 # Context
@@ -34,6 +27,7 @@ The NI Department of Education publish school level enrolment data every year.
 This is based on the school census that takes place every October.
 The Primary School data for the most recent year, 2023/24, was published on 19th March 2024 
 at https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202324
+For further detail see the README file
 """
 
 ###############################################################################
@@ -102,10 +96,12 @@ correct
 ################################################################################
 # Data cleaning
 
-# Retain only the DE Reference and the Total Enrolment columns from the enrolment df                        
+# Retain only the DE Reference and the Total Enrolment columns from the enrolment df   
+# Creates a new df called selected_enrolment
 selected_enrolment = enrolment.loc[:, ['DE ref', 'total enrolment']]
 
 # Retain only the selected columns from the bt_postcodes df
+# Creates a new df called selected_bt_postcodes
 selected_bt_postcodes = bt_postcodes.loc[:, ['Postcode', 'Latitude', 'Longitude']]
 
 # Join the schools df and the enrolment df and drop 'DE ref' column from new df
@@ -120,11 +116,15 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
+# The following 3 postcodes were identified from the rows_not_in_bt_postcodes df
+# so their latitiude and logitude values were sourced from Google Maps
 missing_postcodes = pd.DataFrame({
     'Postcode': ['BT13 3SY', 'BT4 3HJ', 'BT78 3GA', 'BT79 0GZ'],
     'Latitude': [54.615622286274096, 54.601342361930584, 54.512571453329244, 54.5993316600317],
     'Longitude': [-5.9826709693148885, -5.85227797613058, -7.469365801273217, -7.2545584724318095]
 })
+
+# Missing_postcodes df is appeneded to bottom of selecteD_bt_postcodes df
 selected_bt_postcodes = selected_bt_postcodes._append(missing_postcodes, ignore_index=True)
 
 # Rerun the process again
@@ -133,7 +133,7 @@ bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
 # At this point there is still one school missing. The issue has been caused with
-# a tab rather than a single between the psotcode in the all_schools df. This 
+# a `tab` rather than a single space in the postcode in the all_schools df. This 
 # value will be replaced.
 all_schools.replace('BT6  0AG', 'BT6 0AG', inplace=True)
 
@@ -146,9 +146,6 @@ rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcode
 
 # Remove unused columns from merged_data df
 merged_data = merged_data.drop(['address 1', 'school type', 'district council (2014)', 'ward (2014)', 'DEA (2014)', 'Irish Medium School', 'Postcode'], axis=1)
-
-# Function to remove leading and trailing whitespace
-#merged_data.columns = merged_data.columns.str.strip()
 
 # Write the merged_data df as a CSV
 merged_data.to_csv("Outputs/1. merged_data.csv", index=False)
@@ -169,6 +166,8 @@ Calculate distance to nearest school, the name of the nearest school, the
 management type of the nearest school, distance to the nearest school in the 
 same management type, and the name of the nearest school in the same management type, 
 for each school
+
+All distance calculations are give in km
 """
 
 nearest_distances = []
@@ -202,7 +201,7 @@ for idx, row in merged_data.iterrows():
     nearest_same_management_distances.append(nearest_same_management_distance)
     nearest_same_management_schools.append(nearest_same_management_school)
 
-# Add the columns to the merged_data DataFrame
+# Add the columns to the merged_data df
 merged_data['nearest_distance'] = nearest_distances
 merged_data['nearest_school'] = nearest_schools
 merged_data['nearest_management_type'] = nearest_management_types
@@ -242,9 +241,12 @@ merged_data['nearest_school_other_management'] = nearest_schools
 merged_data['nearest_management_type_other_management'] = nearest_management_types
 
 # Sustainability
-"""For a school to be deemed sustainable by the Department of Education it must 
+"""
+For a school to be deemed sustainable by the Department of Education it must 
 have more than 140 pupils for an Urban school and more than 105 pupils for a 
-Rural school. For this the custom 'sustainable_schools' function is used."""
+Rural school. For this the custom 'sustainable_schools' function is used.
+Further information on sustainability is provided in the README file.
+"""
 
 merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
@@ -252,6 +254,7 @@ merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 # Create new dataframes
 
 # Define the bins for distance ranges
+# Bins are created for the purposes of grouping data
 bins = [0, 1, 2.9, 4.9, 7.4, 9.9, float('inf')]
 labels = ['<1', '1-2.9', '3-4.9', '5-7.4', '7.5-9.9', '>10']
 
@@ -272,6 +275,7 @@ constituency_count
 # Count all schools by management type & parliamentary constituency
 management_type_constituency_count = merged_data.groupby(['constituency', 'management type']).size().reset_index(name='count')
 management_type_constituency_count
+# Writes this output as a CSV file
 management_type_constituency_count.to_csv("Outputs/2. management_type_constituency_count.csv", index=False)
 
 # Total number of pupils
@@ -284,6 +288,7 @@ total_enrolment_by_management_type = pd.DataFrame(total_enrolment_by_management_
 total_enrolment_by_management_type = total_enrolment_by_management_type.sort_values(by='total enrolment', ascending=False)
 total_enrolment_by_management_type = total_enrolment_by_management_type_sorted.rename_axis('management type').reset_index()
 total_enrolment_by_management_type
+# Writes this output as a CSV file
 total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
 # Total number of pupils by parliamentary constituency
@@ -292,6 +297,7 @@ total_enrolment_constituency = pd.DataFrame(total_enrolment_constituency)
 total_enrolment_constituency = total_enrolment_constituency.sort_values(by='total enrolment', ascending=False)
 total_enrolment_constituency = total_enrolment_constituency.rename_axis('constituency').reset_index()
 total_enrolment_constituency
+# Writes this output as a CSV file
 total_enrolment_constituency.to_csv("Outputs/4. total_enrolment_constituency.csv", index=False)
 
 # Total number of sustainable and unsutainable schools
@@ -321,22 +327,29 @@ percentage_enroled_catholic_maintained_controlled = sum_catholic_maintained_cont
 percentage_enroled_catholic_maintained_controlled
 
 # Nearest School
+# Finalises the nearest_school df by removing unnecessary columns
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
        'nearest_management_type']]
 nearest_school
+# Writes this output as a CSV file
 nearest_school.to_csv("Outputs/5. nearest_school.csv", index=False)
 
 # Nearest school in the same management type
+# Finalises the nearest_school_same_management df by removing unnecessary columns
+
 nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
        'nearest_same_management_school']]
 nearest_school_same_management
+# Writes this output as a CSV file
 nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management.csv", index=False)
 
 # Nearest school not in the same managment type
+# Finalises the nearest_school_not_same_management df by removing unnecessary columns
 nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management']]
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
 nearest_school_not_same_management
+# Writes this output as a CSV file
 nearest_school_not_same_management.to_csv("Outputs/6. nearest_school_not_same_management.csv", index=False)
 
 # Roulston Cook
@@ -349,16 +362,26 @@ type". The following chuck of code replicates this research. Full referencing
 for this research is provided in the attached report.
 """
 
+# As Catholic Maintained and Controlled schools acount for almsot 90% of pupils
+# this analysis is carried out looking at only these two management types
 Roulston_Cook = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
+# Only required columns and analysis is retained
 Roulston_Cook = Roulston_Cook.loc[:, ['De ref', 'school name', 'town', 'management type', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management', 'Sustainability']]
 Roulston_Cook = Roulston_Cook.sort_values(by='nearest_distance_other_management', ascending=True)
 Roulston_Cook = Roulston_Cook[(Roulston_Cook['Sustainability'] == 'Not Sustainable')]
 Roulston_Cook.drop(columns=['Sustainability'], inplace=True)
+# Roulston Cook analysis only looked at schools "that were not withing one mile"
+# of a school from the other management type so the data is filtered to only look
+# at schools less than 1.60934km / 1 mile apart
 Roulston_Cook = Roulston_Cook[(Roulston_Cook['nearest_distance_other_management'] <1.60934)]
+# The duplicate_indicies was used to remove ans schools which appear from the 
+# 'school name' column that have appeared in the 'nearest_school_other_management
+# column as they will be duplicates.
 duplicate_indices = Roulston_Cook[Roulston_Cook['school name'].isin(Roulston_Cook['nearest_school_other_management'])].index
 Roulston_Cook.drop(duplicate_indices, inplace=True)
 Roulston_Cook
+# Writes this output as a CSV file
 Roulston_Cook.to_csv("Outputs/7. Roulston_Cook.csv", index=False)
 
 # Strategically important small schools
@@ -383,18 +406,28 @@ strategically_important_small_schools['distance_range'] = pd.cut(strategically_i
 distance_counts = pd.DataFrame(strategically_important_small_schools['distance_range'].value_counts(sort=False).reindex(labels, fill_value=0))
 distance_counts.reset_index(inplace=True)
 
-strategically_important_small_schools = strategically_important_small_schools.head(20)
+# This next line counts th enumber of schools where the distance to the nearest
+# school in a differnet management type is greater than 7.5km
+greater_than_7500m = len(strategically_important_small_schools[strategically_important_small_schools['nearest_same_management_distance'] >= 7.5])
+
+# This df selects only the schools where the distance to the nearest school in a
+# different management type is greater then 7.5km
+strategically_important_small_schools = strategically_important_small_schools.head(greater_than_7500m)
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools
+# Writes this output as a CSV file
 strategically_important_small_schools.to_csv("Outputs/8. strategically_important_small_schools.csv", index=False)
 
+# Counts the number of strategically important small schools by management type
 count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
 count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_constituency
 
+# Counts the number of strategically important small schools by constituency
 count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
 count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_management_type
+# Writes this output as a CSV file
 count_strategically_important_small_schools_management_type.to_csv("Outputs/9. count_strategically_important_small_schools_management_type.csv", index=False)
 
 ################################################################################
@@ -404,17 +437,20 @@ count_strategically_important_small_schools_management_type.to_csv("Outputs/9. c
 fig = px.bar(management_type_count, x='management type', y='count',
              title='Number of Schools by Management Type',
              labels={'management type': 'Management Type', 'count': 'School Count'})
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - school_count_by_management_type.html')
 
-# Bar chart of all pupils by management type
+# Bar chart of sum all pupils by management type
 fig = px.bar(total_enrolment_by_management_type, y='total enrolment', 
              title='Total Enrolment by Management Type', 
              labels={'management type': 'Management Type', 'total enrolment': 'Total Enrolment'})
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - total_enrolment_by_management_type.html')
 
 # Treemap of all schools by management type
 fig = px.treemap(management_type_count, path=['management type'], values='count',
                  title='Number of Schools by Management Type')
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - school_count_by_management_type_treemap.html')
 
 # Treemap of all schools by constituency and management type
@@ -422,6 +458,7 @@ fig = px.treemap(management_type_constituency_count,
                  path=['constituency', 'management type'], 
                  values='count',
                  title='Number of Schools by Constituency and Management Type')
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - school_count_by_constituency_management_type_treemap.html')
 
 # Treemap of total enrolment in SISS by management type and constituency
@@ -429,6 +466,7 @@ fig = px.treemap(strategically_important_small_schools,
                  path=['constituency', 'management type'], 
                  values='total enrolment',
                  title='Number of Pupils enrolled in Strategically Important Small Schools by Constituency and Management Type')
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - SSIS_by_constituency_management_type_treemap.html')
 
 # Treemap of count of SISS by constituency and management type
@@ -437,6 +475,7 @@ fig = px.treemap(SISS_count_by_group,
                  path=['constituency', 'management type'], 
                  values='count',
                  title='Number of Strategically Important Small Schools by Constituency and Management Type')
+# Saves this output as a HTML file
 fig.write_html('Outputs/Chart - SISS_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
@@ -459,6 +498,7 @@ m.get_root().html.add_child(folium.Element(title_html))
 for idx, row in merged_data.iterrows():
     color = colors.get(row['management type'], 'black')
     folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name'], icon=folium.Icon(color=color)).add_to(m)
+# Saves this output as a HTML file
 m.save("Outputs/Map - All Primary Schools by Management Type.html")
 
 ## Map 2: Strategically Important Small Schools
@@ -471,20 +511,15 @@ strategically_important_schools['geom'] = strategically_important_schools.apply(
 
 # Create a map centered at the mean Latitude and Longitude
 m = folium.Map(location=[strategically_important_schools['Latitude'].mean(), strategically_important_schools['Longitude'].mean()], zoom_start=8)
-
-# Add a title to the map
 title_html = '<h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type</b></h3>'
 m.get_root().html.add_child(folium.Element(title_html))
-
-# Add markers for each school with colors based on management type
 for idx, row in strategically_important_schools.iterrows():
     color = colors.get(row['management type'], 'black')
     popup_content = f"<b>School Name:</b> {row['school name']}<br>"
     popup_content += f"<b>Management Type:</b> {row['management type']}<br>"
     popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
     folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
-
-# Save the map to an HTML file
+# Saves this output as a HTML file
 m.save("Outputs/Map - Strategically Important Small Schools.html")
 
 ###
@@ -493,32 +528,21 @@ m.save("Outputs/Map - Strategically Important Small Schools.html")
 # The merged_data df is filtered to retain only the rows which are in the 
 # strategically_important_small_schools df
 strategically_important_schools = merged_data[merged_data['De ref'].isin(strategically_important_small_schools['De ref'].unique())].copy()
-
-# Create a geometry column by combining Longitude and Latitude
 strategically_important_schools['geom'] = strategically_important_schools.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
-
-# Create a map centered at the mean Latitude and Longitude
 m = folium.Map(location=[strategically_important_schools['Latitude'].mean(), strategically_important_schools['Longitude'].mean()], zoom_start=8)
-
-# Add a title to the map
 title_html = '<h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type with boundaries</b></h3>'
 m.get_root().html.add_child(folium.Element(title_html))
-
-# Add markers for each school with colors based on management type
 for idx, row in strategically_important_schools.iterrows():
     color = colors.get(row['management type'], 'black')
     popup_content = f"<b>School Name:</b> {row['school name']}<br>"
     popup_content += f"<b>Management Type:</b> {row['management type']}<br>"
     popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
     folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
-
-# Add constituency boundaries
 folium.GeoJson(
     constituency_boundaries,
     name='constituency boundaries',
 ).add_to(m)
-
-# Save the map to an HTML file
+# Saves this output as a HTML file
 m.save("Outputs/Map - Strategically Important Small Schools with boundaries.html")
 
 # A map shaded to show the number of pupils in each constituency/ number unstustinable schools?
