@@ -3,12 +3,22 @@
 ## 📰 Aim
 The aim of the Strategically Important Small Schools (SISS) project is to look at the number of primary schools in Northern Ireland and identify which small schools are strategically important, based on their location, enrolment, and management type.
 
+## 📖 Background
+According to NI school enrolment data there are 787 primary schools in Northern Ireland for the academic year 2023/24. 
+
+The Department of Education’s policy document [‘Schools for the Future: A Policy for Sustainable Schools’](https://www.education-ni.gov.uk/publications/schools-future-policy-sustainable-schools), outlines six criteria that provide a framework for considering issues of school sustainability. This document stems from the [2006 Independent Strategic Review of Education](https://dera.ioe.ac.uk/id/eprint/9777/1/review_of_education.pdf), more commonly known as the Bain Report.
+
+In reality, the key determinant of a school's sustainability is its enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
+
+Every year the management authority of schools work together with the Education Authority and Department of Education to determine which primary schools which are deemed as unsustainable should be considered for closure. The process that feeds in to this involves the publication of a Case for Change from the management authority and this can lead to the creation of a Development Proposal which can ultimately lead to the Minister of Education making a decision on whether or not a school should close. Since 2009/10 over 60 small, mostly rural primary schools have been closed, having been deemed unsustainable.
+
+For a number of years, there has been a growing sense that the Sustainable Schools Policy has been a blunt instrument used as the justification for the closing of small, rural schools, and that criteria should be used to identify small schools which are strategically important. This would not mean that these schools would be exempt from the consideration of the Sustainable Schools Policy but that their relative remoteness would be taken into consideration when schools were being assessed under the policy.
+
 ## 🙋 Audience
 Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to decision-makers within the Department of Education as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
 
 ##  🚗 Roadmap
 ![alt text](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Strategically%20Important%20Small%20Schools%20Roadmap.png?raw=true)
-
 
 ## 📥 Installation Instructions
 All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
@@ -30,6 +40,8 @@ To access this code you will need to clone this repository to your machine. This
 Should you wish to manually load the data from the original sources you can do this.
 
 NI primary school enrolment data is updated on an annual basis by the NI Department of Education. The [school enrolments page](https://www.education-ni.gov.uk/topics/statistics-and-research/school-enrolments) contains a plethora of information and datasets. School level enrolment data from 2009/10 - 2023/24 is available on the [School enrolments - school level data page](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). The most recent dataset, for 2023/24 was published on 19 March 2024 and the [datatset used in this project is available as an XLSX file](https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX).
+
+Links are provided in the code so that enrolment data from every year since 2009/10 can be analsysed.
 
 ### 📤 Manual Installation
 To load the 2023/24 dataset and read in the reference data sheet run the following Python script:
@@ -92,12 +104,7 @@ This code produces the following outputs:
 *  `Chart: treemap of total enrolment in SISS by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
 
-## 📖 Background
-According to NI school enrolment data there are 787 primary schools in Northern Ireland. 
-
-The Department of Education’s policy document [‘Schools for the Future: A Policy for Sustainable Schools’](https://www.education-ni.gov.uk/publications/schools-future-policy-sustainable-schools), outlines six criteria that provide a framework for considering issues of school sustainability. This document stems from the [2006 Independent Strategic Review of Education](https://dera.ioe.ac.uk/id/eprint/9777/1/review_of_education.pdf), more commonly known as the Bain Report.
-
-In reality, the key determinant of a school's sustainability is it’s enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
+The purpose of this research is to identify the methodology behind identifying Strategically Important Small Schools and use evidence-based, GIS approaches to identify these schools.
 
 ## 🎛️ Troubleshooting
 There are limited things that can go wrong with this code, which means there are probably more things that can go wrong with the code than I am willing to admit.
@@ -106,7 +113,7 @@ All of the input files are read directly from the GitHub repository and guidance
 
 This means the only other problem that could realistically exist is that your version of Python is too old or you have not read in the required Python libraries.
 
-If your version of Python is too old, you should get the most recent version of Python that is available. This code was written using version 3.12 so I would suggest using `version 3.12.`
+If your version of Python is too old, you should get the most recent version of Python that is available. This code was written using `version 3.12` so I would suggest using `version 3.12.`
 
 If you have not installed the required libraries I would recommend installing the required libraries. A list of all the required libraries is contained at the very top of the [SISS.py script](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/SISS.py) or in the [environment file](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/environment.yml).
 
