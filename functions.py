@@ -26,7 +26,7 @@ using the caluclation:
 """
 
 def convert_distance_to_area(row, distance_column):
-    return row[distance_column] ** 2 * math.pi
+    return row[distance_column] ** 2 * 3.141592653589793
 
 # Function to apply the conditional sustainability logic
 """
