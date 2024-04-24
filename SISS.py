@@ -424,7 +424,7 @@ fig = px.treemap(management_type_constituency_count,
                  title='Number of Schools by Constituency and Management Type')
 fig.write_html('school_count_by_constituency_management_type_treemap.html')
 
-# Treemap of total enrolment in  SISS by management type and constituency
+# Treemap of total enrolment in SISS by management type and constituency
 fig = px.treemap(strategically_important_small_schools, 
                  path=['constituency', 'management type'], 
                  values='total enrolment',
