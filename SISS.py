@@ -7,6 +7,7 @@ import folium
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+import math as math
 import plotly.express as px
 from collections import defaultdict
 from folium.plugins import MarkerCluster
@@ -329,16 +330,19 @@ percentage_enroled_catholic_maintained_controlled
 # Nearest School
 # Finalises the nearest_school df by removing unnecessary columns
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
-       'nearest_management_type']]
+       'nearest_management_type', 'nearest_distance']]
+# custom convert_distance_to_area function used to calculate area
+nearest_school['area'] = nearest_school.apply(lambda row: convert_distance_to_area(row, 'nearest_distance'), axis=1)
 nearest_school
 # Writes this output as a CSV file
 nearest_school.to_csv("Outputs/5. nearest_school.csv", index=False)
 
 # Nearest school in the same management type
 # Finalises the nearest_school_same_management df by removing unnecessary columns
-
 nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
        'nearest_same_management_school']]
+# custom convert_distance_to_area function used to calculate area
+nearest_school_same_management['area'] = nearest_school_same_management.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
 nearest_school_same_management
 # Writes this output as a CSV file
 nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management.csv", index=False)
@@ -347,6 +351,8 @@ nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management
 # Finalises the nearest_school_not_same_management df by removing unnecessary columns
 nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management']]
+# custom convert_distance_to_area function used to calculate area
+nearest_school_not_same_management['area'] = nearest_school_not_same_management.apply(lambda row: convert_distance_to_area(row, 'nearest_distance_other_management'), axis=1)
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
 nearest_school_not_same_management
 # Writes this output as a CSV file
@@ -380,6 +386,9 @@ Roulston_Cook = Roulston_Cook[(Roulston_Cook['nearest_distance_other_management'
 # column as they will be duplicates.
 duplicate_indices = Roulston_Cook[Roulston_Cook['school name'].isin(Roulston_Cook['nearest_school_other_management'])].index
 Roulston_Cook.drop(duplicate_indices, inplace=True)
+# Apply the custom km_to_miles function to create a new column called 'distance
+# in miles'
+Roulston_Cook['distance in miles'] = Roulston_Cook['nearest_distance_other_management'].apply(km_to_miles)
 Roulston_Cook
 # Writes this output as a CSV file
 Roulston_Cook.to_csv("Outputs/7. Roulston_Cook.csv", index=False)
@@ -406,7 +415,7 @@ strategically_important_small_schools['distance_range'] = pd.cut(strategically_i
 distance_counts = pd.DataFrame(strategically_important_small_schools['distance_range'].value_counts(sort=False).reindex(labels, fill_value=0))
 distance_counts.reset_index(inplace=True)
 
-# This next line counts th enumber of schools where the distance to the nearest
+# This next line counts the enumber of schools where the distance to the nearest
 # school in a differnet management type is greater than 7.5km
 greater_than_7500m = len(strategically_important_small_schools[strategically_important_small_schools['nearest_same_management_distance'] >= 7.5])
 
@@ -414,6 +423,7 @@ greater_than_7500m = len(strategically_important_small_schools[strategically_imp
 # different management type is greater then 7.5km
 strategically_important_small_schools = strategically_important_small_schools.head(greater_than_7500m)
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
+strategically_important_small_schools['area'] = strategically_important_small_schools.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
 strategically_important_small_schools
 # Writes this output as a CSV file
 strategically_important_small_schools.to_csv("Outputs/8. strategically_important_small_schools.csv", index=False)
