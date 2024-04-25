@@ -34,10 +34,13 @@ For further detail see the README file
 ###############################################################################
 # Import data files
 # URL for the 2023/24 primary school level data saved in GitHub
-primary_school_url = "https://github.com/nkellyulster/EGM_Project/raw/main/School%20level%20-%20primary%20schools%20-%20data%20202324.XLSX"
+primary_school_url = "https://github.com/nkellyulster/Strategically-Important-Small-Schools/raw/main/Data/School%20level%20-%20primary%20schools%20-%20data%20202324.XLSX"
 
 # URL for BT postcodes CSV saved in GitHub
-bt_postcodes_url = "https://raw.githubusercontent.com/nkellyulster/EGM_Project/main/BT%20postcodes.csv"
+bt_postcodes_url = "https://raw.githubusercontent.com/nkellyulster/Strategically-Important-Small-Schools/main/Data/BT%20postcodes.csv"
+
+# URL for constituency parliamentary boundaries
+constituency_boundaries_url = "https://github.com/nkellyulster/Strategically-Important-Small-Schools/raw/main/Data/OSNI_Open_Data_-_50K_Boundaries_-_Parliamentary_Constituencies.geojson"
 
 # Read the bt_postcodes CSV file which contains Postcode / co-oridnates data
 bt_postcodes = pd.read_csv(bt_postcodes_url)
@@ -54,7 +57,7 @@ sheet_name = "Enrolments",
 skiprows = 3)
 
 # Import GeoJSON file with parliamentary boundaries
-constituency_boundaries = gpd.read_file("C:\\Users\\Niall\\Documents\\EGM_Project\\OSNI_Open_Data_-_50K_Boundaries_-_Parliamentary_Constituencies.geojson")
+constituency_boundaries = gpd.read_file(constituency_boundaries_url)
 
 # Removes the bt_postcodes_url and primary_school_url as they are no longer needed
 del bt_postcodes_url
