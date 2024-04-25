@@ -56,7 +56,7 @@ enrolment = pd.read_excel(primary_school_url,
 sheet_name = "Enrolments",
 skiprows = 3)
 
-# Import GeoJSON file with parliamentary boundaries
+# Read in constituency boundaries url for GeoJSON file with parliamentary boundaries
 constituency_boundaries = gpd.read_file(constituency_boundaries_url)
 
 # Removes the bt_postcodes_url and primary_school_url as they are no longer needed
