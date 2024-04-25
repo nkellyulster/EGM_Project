@@ -13,6 +13,7 @@ roulston_cook dataframe distances are converted to miles.
 """
 
 def km_to_miles(kilometers):
+  """ Take a value in kilometers, multiples it by 0.621371"""
     miles = kilometers * 0.621371
     return miles
       
@@ -26,6 +27,7 @@ using the caluclation:
 """
 
 def convert_distance_to_area(row, distance_column):
+  """ Take in a distance value and squares it the multiplies it by pi """
     return row[distance_column] ** 2 * 3.141592653589793
 
 # Function to apply the conditional sustainability logic
@@ -39,6 +41,8 @@ and any which do not are classified as being 'Unsustianble'.
 """
 
 def sustainable_schools(row):
+  """ If a schools is Urban and has enrolment of less than 140, or is Rural and has
+  an enrolment of less than 105 it is deemed as Not Sustainable, else Sustainable"""
     if (row['Urban/ Rural     '] == "RURAL" and row['total enrolment'] < 105) or (row['Urban/ Rural     '] == "URBAN" and row['total enrolment'] < 140):
         return 'Not Sustainable'
     else:
