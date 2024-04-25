@@ -4,10 +4,14 @@ channels:
   - defaults
 dependencies:
   - python=3.12
-  - pandas
-  - folium
-  - shapley
-  - haversine
-  - plotly
-  - numpy
   - csv
+  - math
+  - collections
+  - folium
+  - geopandas
+  - numpy
+  - pandas
+  - plotly.express
+  - folium.plugins
+  - haversine
+  - shapely
