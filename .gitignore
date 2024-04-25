@@ -1,7 +1,5 @@
-# ignores all .txt files
+# Files to be excluded/ ignored
 .txt
-
-# ignores all .sav files
 .sav
 .Rproj
 .Rhistory
