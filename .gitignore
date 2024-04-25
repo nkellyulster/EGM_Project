@@ -3,3 +3,6 @@
 
 # ignores all .sav files
 .sav
+.Rproj.user
+.Rhistory
+__pycache__
