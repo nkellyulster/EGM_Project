@@ -3,4 +3,5 @@
 .sav
 .Rproj
 .Rhistory
+.RData
 __pycache__
