@@ -14,11 +14,15 @@ Every year the management authority of schools work together with the Education 
 
 For a number of years, there has been a growing sense that the Sustainable Schools Policy has been a blunt instrument used as the justification for the closing of small, rural schools, and that criteria should be used to identify small schools which are strategically important. This would not mean that these schools would be exempt from the consideration of the Sustainable Schools Policy but that their relative remoteness would be taken into consideration when schools were being assessed under the policy.
 
+![Strategically Important Small Schools Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Tyrone%20Constitution.jpg)
+*Caption: Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"*
+
+
 ## 🙋 Audience
 Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to decision-makers within the Department of Education as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
 
 ##  🚗 Roadmap
-![alt text](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Strategically%20Important%20Small%20Schools%20Roadmap.png?raw=true)
+![Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Strategically%20Important%20Small%20Schools%20Roadmap.png)
 
 ## 📥 Installation Instructions
 All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
