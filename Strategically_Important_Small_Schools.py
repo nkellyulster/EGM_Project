@@ -1,17 +1,16 @@
 ###############################################################################
 # Setup 
 
-# Import libraries
+# External modules
 import csv
+import math
+from collections import defaultdict
 import folium
 import geopandas as gpd
 import numpy as np
 import pandas as pd
-import math as math
 import plotly.express as px
-from collections import defaultdict
 from folium.plugins import MarkerCluster
-from haversine import haversine
 from haversine import haversine, Unit
 from shapely.geometry import Point
 
@@ -359,7 +358,7 @@ nearest_school_not_same_management['area'] = nearest_school_not_same_management.
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
 nearest_school_not_same_management
 # Writes this output as a CSV file
-nearest_school_not_same_management.to_csv("Outputs/6. nearest_school_not_same_management.csv", index=False)
+nearest_school_not_same_management.to_csv("Outputs/7. nearest_school_not_same_management.csv", index=False)
 
 # Roulston Cook
 """ 
@@ -394,7 +393,7 @@ Roulston_Cook.drop(duplicate_indices, inplace=True)
 Roulston_Cook['distance in miles'] = Roulston_Cook['nearest_distance_other_management'].apply(km_to_miles)
 Roulston_Cook
 # Writes this output as a CSV file
-Roulston_Cook.to_csv("Outputs/7. Roulston_Cook.csv", index=False)
+Roulston_Cook.to_csv("Outputs/8. Roulston_Cook.csv", index=False)
 
 # Strategically important small schools
 """
@@ -429,7 +428,7 @@ strategically_important_small_schools = strategically_important_small_schools.dr
 strategically_important_small_schools['area'] = strategically_important_small_schools.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
 strategically_important_small_schools
 # Writes this output as a CSV file
-strategically_important_small_schools.to_csv("Outputs/8. strategically_important_small_schools.csv", index=False)
+strategically_important_small_schools.to_csv("Outputs/9. strategically_important_small_schools.csv", index=False)
 
 # Counts the number of strategically important small schools by management type
 count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
@@ -441,7 +440,7 @@ count_strategically_important_small_schools_management_type = strategically_impo
 count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_management_type
 # Writes this output as a CSV file
-count_strategically_important_small_schools_management_type.to_csv("Outputs/9. count_strategically_important_small_schools_management_type.csv", index=False)
+count_strategically_important_small_schools_management_type.to_csv("Outputs/10. count_strategically_important_small_schools_management_type.csv", index=False)
 
 ################################################################################
 # Charts
@@ -451,14 +450,14 @@ fig = px.bar(management_type_count, x='management type', y='count',
              title='Number of Schools by Management Type',
              labels={'management type': 'Management Type', 'count': 'School Count'})
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - school_count_by_management_type.html')
+fig.write_html('Outputs/Chart - school_count_by_management_type_bar_chart.html')
 
 # Bar chart of sum all pupils by management type
 fig = px.bar(total_enrolment_by_management_type, y='total enrolment', 
              title='Total Enrolment by Management Type', 
              labels={'management type': 'Management Type', 'total enrolment': 'Total Enrolment'})
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - total_enrolment_by_management_type.html')
+fig.write_html('Outputs/Chart - total_enrolment_by_management_type_bar_chart.html')
 
 # Treemap of all schools by management type
 fig = px.treemap(management_type_count, path=['management type'], values='count',
@@ -474,22 +473,21 @@ fig = px.treemap(management_type_constituency_count,
 # Saves this output as a HTML file
 fig.write_html('Outputs/Chart - school_count_by_constituency_management_type_treemap.html')
 
-# Treemap of total enrolment in SISS by management type and constituency
+# Treemap of total enrolment in Strategically Important Small Schools by management type and constituency
 fig = px.treemap(strategically_important_small_schools, 
                  path=['constituency', 'management type'], 
                  values='total enrolment',
                  title='Number of Pupils enrolled in Strategically Important Small Schools by Constituency and Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - SSIS_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/Chart - Strategically_Important_Small_Schools_by_constituency_management_type_treemap.html')
 
-# Treemap of count of SISS by constituency and management type
-SISS_count_by_group = strategically_important_small_schools.groupby(['constituency', 'management type']).size().reset_index(name='count')
-fig = px.treemap(SISS_count_by_group, 
+Strategically_Important_Small_Schools_count_by_group = strategically_important_small_schools.groupby(['constituency', 'management type']).size().reset_index(name='count')
+fig = px.treemap(Strategically_Important_Small_Schools_count_by_group, 
                  path=['constituency', 'management type'], 
                  values='count',
                  title='Number of Strategically Important Small Schools by Constituency and Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - SISS_count_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/Chart - Strategically_Important_Small_Schools_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
 # Maps
