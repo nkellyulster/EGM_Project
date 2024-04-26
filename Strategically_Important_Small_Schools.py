@@ -431,16 +431,18 @@ strategically_important_small_schools
 strategically_important_small_schools.to_csv("Outputs/9. strategically_important_small_schools.csv", index=False)
 
 # Counts the number of strategically important small schools by management type
-count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
-count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
-count_strategically_important_small_schools_constituency
-
-# Counts the number of strategically important small schools by constituency
-count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
+count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
 count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_management_type
 # Writes this output as a CSV file
 count_strategically_important_small_schools_management_type.to_csv("Outputs/10. count_strategically_important_small_schools_management_type.csv", index=False)
+
+# Counts the number of strategically important small schools by constituency
+count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
+count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
+count_strategically_important_small_schools_constituency
+# Writes this output as a CSV file
+count_strategically_important_small_schools_constituency.to_csv("Outputs/11. count_strategically_important_small_schools_constituency.csv", index=False)
 
 ################################################################################
 # Charts
