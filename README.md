@@ -26,10 +26,15 @@ For a number of years, there has been a growing sense that the Sustainable Schoo
 ![Strategically Important Small Schools Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Tyrone%20Constitution.jpg)
 *Caption: Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"*
 
-In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the New Decade, New Approach deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
+In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the New Decade, New Approach deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However, it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long-term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
+
+## 🏫 Strategically Important Small Schools
+The idea of designating some schools as being strategically important has been discussed for a number of years but there has been no actual progress on how to determine what constitutes a strategically important small school. And that is the issue which this project aims to address.
+
+Using GIS analysis of the distance between schools and looking at the distances between different management types a number of schools have been designated as being strategically important small schools as there is a considerable distance between them and the nearest school in the same management type. The outputs of this project can be examined in more detail, but produce very clear recommendations on a small number of schools which, if they were closed on the grounds of 'sustainability' would have a negative impact on their local areas. Due to the nature of this analysis, and the methodology adopted, these schools are typically schools from the minority community in an area that has schools for the other main management type, which is why the designation of these schools as being important takes on a more strategic approach.
 
 ## 🙋 Audience
-Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to decision-makers within the Department of Education as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
+Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to both policy-makers and decision-makers within the Department of Education, as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
 
 ##  🚗 Roadmap
 ![Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Strategically%20Important%20Small%20Schools%20Roadmap.png)
@@ -57,7 +62,7 @@ NI primary school enrolment data is updated on an annual basis by the NI Departm
 
 Links are provided in the code so that enrolment data from every year since 2009/10 can be analsysed.
 
-### 📤 Manual Installation
+## 📤 Manual Installation
 To load the 2023/24 dataset and read in the reference data sheet run the following Python script:
 ```ruby
 schools = pd.read_excel("https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX",
@@ -82,7 +87,7 @@ Running the code is a fairly straightforward process.
 
 The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
 
-### 🐍 Outputs
+## 🐍 Outputs
 In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
 
 This code produces the following outputs: 
