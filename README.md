@@ -1,22 +1,32 @@
 # Strategically Important Small Schools v1.0
 
 ## 📰 Aim
-The aim of the Strategically Important Small Schools (SISS) project is to look at the number of primary schools in Northern Ireland and identify which small schools are strategically important, based on their location, enrolment, and management type.
+This study uses the Python programming language to apply Geographic Information Systems (GIS) analysis to Northern Ireland (NI) primary school level enrolment data. The primary aim of the analysis is to produce evidence-based analysis of the distance between each of the 787 primary schools in NI and their closest school, based on differing management types. This study examines the sustainability of all primary schools, investigating the potential for designating a number of small schools as being Strategically Important Small Schools (SISS).
 
 ## 📖 Background
-According to NI school enrolment data there are 787 primary schools in Northern Ireland for the academic year 2023/24. 
+According to [NI school enrolment data published by the NI Department of Education](https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202223) there are 787 primary schools in Northern Ireland for the academic year 2023/24. 
 
-The Department of Education’s policy document [‘Schools for the Future: A Policy for Sustainable Schools’](https://www.education-ni.gov.uk/publications/schools-future-policy-sustainable-schools), outlines six criteria that provide a framework for considering issues of school sustainability. This document stems from the [2006 Independent Strategic Review of Education](https://dera.ioe.ac.uk/id/eprint/9777/1/review_of_education.pdf), more commonly known as the Bain Report.
+The Department is responsible for managing the school estate and planning, on an area basis, for the future provision of schools. This entire process is part of their objective to "ensure that all children get a first class education in fit for purpose facilities, regardless of background or where they live." The Department of Education’s policy document [‘Schools for the Future: A Policy for Sustainable Schools’](https://www.education-ni.gov.uk/publications/schools-future-policy-sustainable-schools), outlines six criteria that provide a framework for considering issues of school sustainability. This document stems from the [2006 Independent Strategic Review of Education](https://dera.ioe.ac.uk/id/eprint/9777/1/review_of_education.pdf), more commonly known as the Bain Report.
+
+The policy sets out six criteria to be considered in assessing a school's educational viability, as follows:-
+
+* quality educational experience
+* stable enrolment trends
+* sound financial position
+* strong leadership and management
+* accessibility
+* strong links with the community
 
 In reality, the key determinant of a school's sustainability is its enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
 
-Every year the management authority of schools work together with the Education Authority and Department of Education to determine which primary schools which are deemed as unsustainable should be considered for closure. The process that feeds in to this involves the publication of a Case for Change from the management authority and this can lead to the creation of a Development Proposal which can ultimately lead to the Minister of Education making a decision on whether or not a school should close. Since 2009/10 over 60 small, mostly rural primary schools have been closed, having been deemed unsustainable.
+Every year the management authority of schools work together with the Education Authority and Department of Education to determine which primary schools which are deemed as unsustainable should be considered for closure. The process that feeds into this involves the publication of a Case for Change from the management authority and this can lead to the creation of a Development Proposal which can ultimately lead to the Minister of Education making a decision on whether or not a school should close. Since 2009/10 over 60 small, mostly rural primary schools have been closed, having been deemed unsustainable.
 
 For a number of years, there has been a growing sense that the Sustainable Schools Policy has been a blunt instrument used as the justification for the closing of small, rural schools, and that criteria should be used to identify small schools which are strategically important. This would not mean that these schools would be exempt from the consideration of the Sustainable Schools Policy but that their relative remoteness would be taken into consideration when schools were being assessed under the policy.
 
 ![Strategically Important Small Schools Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Tyrone%20Constitution.jpg)
 *Caption: Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"*
 
+In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the New Decade, New Approach deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
 
 ## 🙋 Audience
 Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to decision-makers within the Department of Education as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
