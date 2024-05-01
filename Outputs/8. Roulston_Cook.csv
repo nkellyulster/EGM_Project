@@ -1,0 +1,46 @@
+De ref,school name,town,management type,total enrolment,nearest_distance_other_management,nearest_school_other_management,nearest_management_type_other_management,distance in miles
+5011596,"Gilford Primary School, Craigavon",Gilford,Controlled,88.0,0.0,"St John's Primary School, Gilford",Catholic Maintained,0.0
+3012290,Bellaghy Primary School,Bellaghy,Controlled,48.0,0.2247869741646852,"St Mary's Primary School, Bellaghy",Catholic Maintained,0.13967610692368462
+2036247,"St Columba's Primary School, Newbuildings",New Buildings,Catholic Maintained,41.0,0.24231527294724567,Newbuildings Primary School,Controlled,0.15056768346650298
+3030547,"St Patrick's Primary School, Portrush",Portrush,Catholic Maintained,69.0,0.28022907617630666,Portrush Primary School,Controlled,0.17412622129274785
+3036563,"St Nicholas' Primary School, Carrickfergus",Carrickfergus,Catholic Maintained,131.0,0.32379708509599325,"Central Integrated Primary School, Carrickfergus",Controlled Integrated,0.20119811856318243
+5012632,"Donaghmore Primary School, Dungannon",Donaghmore,Controlled,75.0,0.32581190226117646,"St Patrick's Primary School, Donaghmore",Catholic Maintained,0.20245006751992947
+2011860,Belleek No 2 Primary School,Belleek,Controlled,32.0,0.3261581872832987,"St Davog's Primary School, Belleek",Catholic Maintained,0.2026652389904106
+4033008,"St Anne's Primary School, Donaghadee",Donaghadee,Catholic Maintained,10.0,0.32893650746279035,Donaghadee Primary School,Controlled,0.2043916065786615
+5033004,"St Mary's Primary School, Rathfriland",Rathfriland,Catholic Maintained,95.0,0.3443436572220696,"Iveagh Primary School, Newry, Rathfriland",Controlled,0.21396516263173462
+5036000,"St Colman's Primary School, Dromore",Dromore,Catholic Maintained,107.0,0.3633735511220813,Dromore Central Primary School,Controlled,0.22578978683427878
+5011520,"Dromore Road Primary School, Warrenpoint",Warrenpoint,Controlled,87.0,0.3840189242493983,"St Dallan's Primary School, Warrenpoint",Catholic Maintained,0.2386182229797729
+5012636,Moy Regional Primary School,Moy,Controlled,69.0,0.41739452999574,"St John's Primary School, Moy",Catholic Maintained,0.25935685649798296
+1016647,"Bunscoil Mhic Reachtain, Belfast",Belfast,Controlled,50.0,0.4484619709164242,"St Patrick's Primary School, Belfast",Catholic Maintained,0.27866126333030944
+2016564,"Fountain Primary School, Londonderry",Londonderry,Controlled,77.0,0.4684479933802554,Longtower Primary School,Catholic Maintained,0.29107999809468266
+4033036,"St Mary's Primary School, Killyleagh",Killyleagh,Catholic Maintained,76.0,0.5312709260894175,"Killyleagh Integrated Primary School, Downpatrick",Controlled Integrated,0.33011634661510747
+4016681,"Glasswater Primary School, Downpatrick",Crossgar,Controlled,77.0,0.5543790681252476,"Cedar Integrated Primary School, Crossgar",GMI,0.3444750759400532
+2012052,Culmore Primary School,Londonderry,Controlled,55.0,0.5620483618499165,"Hollybush Primary School, Culmore",Catholic Maintained,0.3492405526510444
+5012657,"Walker Memorial Primary School, Dungannon",Dungannon,Controlled,63.0,0.5991311377264582,"Blessed Patrick O'Loughran Primary School, Dungannon",Catholic Maintained,0.37228271418022707
+4031662,"St Mary's Primary School, Comber",Comber,Catholic Maintained,84.0,0.616433008256792,Comber Primary School,Controlled,0.3830335947735311
+2012671,"Langfield Primary School, Drumquin",Drumquin,Controlled,18.0,0.6511531484261136,"St Joseph's Primary School, Drumquin",Catholic Maintained,0.4046076829906826
+5036120,"St Patrick's Primary School, Moneymore",Moneymore,Catholic Maintained,97.0,0.6571044835628659,Moneymore Primary School,Controlled,0.40830567005594154
+3010646,"Olderfleet Primary School, Larne",Larne,Controlled,114.0,0.729426120979564,"St MacNissi's Primary School, Larne",Catholic Maintained,0.4532442382191927
+1036048,"St Mary's Star of the Sea Primary School, Belfast",Belfast,Catholic Maintained,138.0,0.7467787627466487,Ben Madigan Preparatory School,Voluntary,0.4640266665866478
+1036388,"St Mary's Primary School, Belfast",Belfast,Catholic Maintained,132.0,0.7906527177678814,"Malvern Primary School, Belfast",Controlled,0.4912886698921462
+4610063,Regent House Preparatory,Newtownards,Controlled,81.0,0.8216847693451299,"St Finian's Primary School, Newtownards",Catholic Maintained,0.5105710868127528
+2012660,"Denamona Primary School, Fintona",Fintona,Controlled,78.0,0.8522216813613637,"St Lawrence's Primary School, Fintona",Catholic Maintained,0.5295458383691919
+3012291,Maghera Primary School,Maghera,Controlled,67.0,0.8576169839036627,"St Mary's Primary School, Glenview",Catholic Maintained,0.5328983229052028
+5032558,"Laghey Primary School, Dungannon",Dungannon,Catholic Maintained,91.0,0.8578231434533626,"Killyman Primary School, Dungannon",Controlled,0.5330264244707594
+5016141,"Churchtown Primary School, Killybasky",Cookstown,Controlled,50.0,0.8929723850057744,"Lissan Primary School, Cookstown",Catholic Maintained,0.5548671438434231
+2011899,Derrygonnelly Primary School,Derrygonnelly,Controlled,57.0,0.9014575155190924,"St Patrick's Primary School, Derrygonnelly",Catholic Maintained,0.560139557875614
+2011879,Newtownbutler Primary School,Newtownbutler,Controlled,30.0,0.9064509188898711,"St Mary's Primary School, Newtownbutler",Catholic Maintained,0.563242313921518
+3036683,"St Paul's Primary School, Ahoghill",Ahoghill,Catholic Maintained,26.0,0.9119070141309,"Fourtowns Primary School, Ahoghill",Controlled,0.5666325732775315
+4016144,"Old Warren Primary School, Lisburn",Lisburn,Controlled,137.0,0.9310262939300258,"St Aloysius Primary School, Lisburn",Catholic Maintained,0.5785127392855941
+3030900,"St Anthony's Primary School, Larne",Larne,Catholic Maintained,71.0,0.9331230872468375,"Linn Primary School, Larne",Controlled,0.5798156258456546
+2016102,Tempo Primary School,Tempo,Controlled,84.0,0.9799736148671137,"St Mary's Primary School, Tempo",Catholic Maintained,0.6089271850435933
+2012707,"Dromore Primary School, Tyrone",Dromore,Controlled,38.0,0.9802496134913143,"St Dympna's Primary School, Dromore",Catholic Maintained,0.6090986825847114
+3016125,Rasharkin Primary School,Ballymena,Controlled,68.0,1.009739419070042,"St Patrick's Primary School, Rasharkin",Catholic Maintained,0.6274227925669711
+3016225,"Woodlawn Primary School, Carrickfergus",Carrickfergus,Controlled,135.0,1.0392343308072194,"Central Integrated Primary School, Carrickfergus",Controlled Integrated,0.6457500753680128
+3012269,"Kilrea Primary School, Coleraine",Kilrea,Controlled,90.0,1.0643704315107556,"St Columba's Primary School, Kilrea",Catholic Maintained,0.6613689193982697
+2036459,"St Theresa's Primary School, Glebe",Sion Mills,Catholic Maintained,81.0,1.0889034717929176,Sion Mills Primary School,Controlled Integrated,0.676613039171437
+2031863,"Tattygar Primary School, Lisbellaw",Lisbellaw,Catholic Maintained,59.0,1.1679475275847935,Lisbellaw Primary School,Controlled,0.7257287231628907
+5032736,"St Mary's Primary School, Fivemiletown",Fivemiletown,Catholic Maintained,49.0,1.265142575149471,Fivemiletown Primary School,Controlled,0.7861229070632019
+5016200,"Queen Elizabeth II Primary School, Pomeroy",Pomeroy,Controlled,45.0,1.4096271549412729,"St Mary's Primary School, Pomeroy",Catholic Maintained,0.8759014348930136
+5031107,"St Teresa's Primary School, Tullyherron",Mountnorris,Catholic Maintained,61.0,1.4160404671823092,Mountnorris Primary School,Controlled,0.8798864811335387
+2016124,"Ashlea S, Tullyally",Londonderry,Controlled,101.0,1.6091123964245624,Glendermott Primary School,Catholic Maintained,0.9998557788787268
