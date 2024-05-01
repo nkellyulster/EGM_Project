@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_390ef7827f6028801096b3a191e17ef3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    <h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type</b></h3>
+    
+            <div class="folium-map" id="map_390ef7827f6028801096b3a191e17ef3" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_390ef7827f6028801096b3a191e17ef3 = L.map(
+                "map_390ef7827f6028801096b3a191e17ef3",
+                {
+                    center: [54.55437920000001, -7.0380439],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 8,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2d5fadfdce76dca30af53656e6d52897 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_2d5fadfdce76dca30af53656e6d52897.addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var marker_5bdd3ec1116f539ebe7b0b7507fca3ea = L.marker(
+                [54.478584, -8.088848],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_e63ac82530eac01eeefee57d6f6c781e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5bdd3ec1116f539ebe7b0b7507fca3ea.setIcon(icon_e63ac82530eac01eeefee57d6f6c781e);
+        
+    
+        var popup_2aab99662e8a669d9236a40601fda063 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7f33d30f60acf1c97cce953aaa38115a = $(`<div id="html_7f33d30f60acf1c97cce953aaa38115a" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Belleek No 2 Primary School<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 32.0<br></div>`)[0];
+                popup_2aab99662e8a669d9236a40601fda063.setContent(html_7f33d30f60acf1c97cce953aaa38115a);
+            
+        
+
+        marker_5bdd3ec1116f539ebe7b0b7507fca3ea.bindPopup(popup_2aab99662e8a669d9236a40601fda063)
+        ;
+
+        
+    
+    
+            var marker_9e150f11657706041052218e5b6a9f16 = L.marker(
+                [54.228318, -7.273448],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_a8661b2ff1d2f4deeebe1a3db295f45e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9e150f11657706041052218e5b6a9f16.setIcon(icon_a8661b2ff1d2f4deeebe1a3db295f45e);
+        
+    
+        var popup_b94e919655251b862598e1f3c5c157f9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0f43c81c26a42e6aa5d1248bfc2d07ea = $(`<div id="html_0f43c81c26a42e6aa5d1248bfc2d07ea" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Aghadrumsee Primary School, Roslea<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 31.0<br></div>`)[0];
+                popup_b94e919655251b862598e1f3c5c157f9.setContent(html_0f43c81c26a42e6aa5d1248bfc2d07ea);
+            
+        
+
+        marker_9e150f11657706041052218e5b6a9f16.bindPopup(popup_b94e919655251b862598e1f3c5c157f9)
+        ;
+
+        
+    
+    
+            var marker_4773d8e4148e38d457f21487909c71ef = L.marker(
+                [54.184655, -7.363636],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_669a1163287bf7c82f85bf83307f577e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4773d8e4148e38d457f21487909c71ef.setIcon(icon_669a1163287bf7c82f85bf83307f577e);
+        
+    
+        var popup_fe632ca319886516c6f295070f27dc4d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4a0243a2c81864d2684ba1e812dade13 = $(`<div id="html_4a0243a2c81864d2684ba1e812dade13" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Newtownbutler Primary School<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 30.0<br></div>`)[0];
+                popup_fe632ca319886516c6f295070f27dc4d.setContent(html_4a0243a2c81864d2684ba1e812dade13);
+            
+        
+
+        marker_4773d8e4148e38d457f21487909c71ef.bindPopup(popup_fe632ca319886516c6f295070f27dc4d)
+        ;
+
+        
+    
+    
+            var marker_d0771fe9ac82128da9365ef2176eafca = L.marker(
+                [54.418231, -7.814745],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_6b9abb846cadf2164db1fd8f56d9f239 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d0771fe9ac82128da9365ef2176eafca.setIcon(icon_6b9abb846cadf2164db1fd8f56d9f239);
+        
+    
+        var popup_b2f6871564e1bdd726fe704fa6c724e9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b4f34b04e4bee3de2c8706920d94a41e = $(`<div id="html_b4f34b04e4bee3de2c8706920d94a41e" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Derrygonnelly Primary School<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 57.0<br></div>`)[0];
+                popup_b2f6871564e1bdd726fe704fa6c724e9.setContent(html_b4f34b04e4bee3de2c8706920d94a41e);
+            
+        
+
+        marker_d0771fe9ac82128da9365ef2176eafca.bindPopup(popup_b2f6871564e1bdd726fe704fa6c724e9)
+        ;
+
+        
+    
+    
+            var marker_aa0299029e3fae35ff5308be94c177d9 = L.marker(
+                [54.510784, -7.454496],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_45cebbb61abb6de48258d57535d4cae6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_aa0299029e3fae35ff5308be94c177d9.setIcon(icon_45cebbb61abb6de48258d57535d4cae6);
+        
+    
+        var popup_8702fbeb5333941f5071a3c514383df2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7e1e3bc047de25dc0593c6795c86246d = $(`<div id="html_7e1e3bc047de25dc0593c6795c86246d" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Dromore Primary School, Tyrone<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 38.0<br></div>`)[0];
+                popup_8702fbeb5333941f5071a3c514383df2.setContent(html_7e1e3bc047de25dc0593c6795c86246d);
+            
+        
+
+        marker_aa0299029e3fae35ff5308be94c177d9.bindPopup(popup_8702fbeb5333941f5071a3c514383df2)
+        ;
+
+        
+    
+    
+            var marker_39538498c5d412591cc9b25087c3cf36 = L.marker(
+                [54.377149, -7.461287],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_e40f07f2a6b04f8ea96fdb1dad30e9d3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_39538498c5d412591cc9b25087c3cf36.setIcon(icon_e40f07f2a6b04f8ea96fdb1dad30e9d3);
+        
+    
+        var popup_ba3a220ab6219c658d13df86f7e2b75b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8a0a208290667b99118186fa045393ee = $(`<div id="html_8a0a208290667b99118186fa045393ee" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Tempo Primary School<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 84.0<br></div>`)[0];
+                popup_ba3a220ab6219c658d13df86f7e2b75b.setContent(html_8a0a208290667b99118186fa045393ee);
+            
+        
+
+        marker_39538498c5d412591cc9b25087c3cf36.bindPopup(popup_ba3a220ab6219c658d13df86f7e2b75b)
+        ;
+
+        
+    
+    
+            var marker_2797a6cd6c94bfe90af684bb2ef145b0 = L.marker(
+                [54.546551, -7.579352],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_b7a71419f2722dd6f311d0d86e952556 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2797a6cd6c94bfe90af684bb2ef145b0.setIcon(icon_b7a71419f2722dd6f311d0d86e952556);
+        
+    
+        var popup_ea68015f1059a1e1e94927540e5ca550 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e769c7ccbb9f3dfc9f1f5287ffd1f427 = $(`<div id="html_e769c7ccbb9f3dfc9f1f5287ffd1f427" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Lack Primary School, Enniskillen<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 22.0<br></div>`)[0];
+                popup_ea68015f1059a1e1e94927540e5ca550.setContent(html_e769c7ccbb9f3dfc9f1f5287ffd1f427);
+            
+        
+
+        marker_2797a6cd6c94bfe90af684bb2ef145b0.bindPopup(popup_ea68015f1059a1e1e94927540e5ca550)
+        ;
+
+        
+    
+    
+            var marker_a72a443219f36436d1c94a2bcbc1a83b = L.marker(
+                [54.719246, -7.23623],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_dd1b08132728501c709ab7387c4c2a7c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a72a443219f36436d1c94a2bcbc1a83b.setIcon(icon_dd1b08132728501c709ab7387c4c2a7c);
+        
+    
+        var popup_1d70a53611777802ebfff4394ec1da87 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fddff434cb9e4f972135ee9fc5bce00c = $(`<div id="html_fddff434cb9e4f972135ee9fc5bce00c" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Gortin Primary School, Omagh<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 63.0<br></div>`)[0];
+                popup_1d70a53611777802ebfff4394ec1da87.setContent(html_fddff434cb9e4f972135ee9fc5bce00c);
+            
+        
+
+        marker_a72a443219f36436d1c94a2bcbc1a83b.bindPopup(popup_1d70a53611777802ebfff4394ec1da87)
+        ;
+
+        
+    
+    
+            var marker_f02663a051e8fb2f5d8ad8a93c4a1850 = L.marker(
+                [54.556212, -7.124179],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_b1755610551f0b0a402ac16497669d1e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f02663a051e8fb2f5d8ad8a93c4a1850.setIcon(icon_b1755610551f0b0a402ac16497669d1e);
+        
+    
+        var popup_4b7282d8c67a2e39e628004c1c410a23 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_59f380a978d54b4c2601df5a400a1034 = $(`<div id="html_59f380a978d54b4c2601df5a400a1034" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Cooley Primary School, Sixmilecross<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 90.0<br></div>`)[0];
+                popup_4b7282d8c67a2e39e628004c1c410a23.setContent(html_59f380a978d54b4c2601df5a400a1034);
+            
+        
+
+        marker_f02663a051e8fb2f5d8ad8a93c4a1850.bindPopup(popup_4b7282d8c67a2e39e628004c1c410a23)
+        ;
+
+        
+    
+    
+            var marker_3ce613d510cfccd743831e0584478ecc = L.marker(
+                [54.780986, -7.08428],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_9099b8d3a64414a3bc3362afe20e4106 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_3ce613d510cfccd743831e0584478ecc.setIcon(icon_9099b8d3a64414a3bc3362afe20e4106);
+        
+    
+        var popup_a4f75807c10e7b2e005fa036bd1b2d37 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fa447acee4fe03763c896dadb72771b0 = $(`<div id="html_fa447acee4fe03763c896dadb72771b0" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Brigid's Primary School, Cranagh<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 25.0<br></div>`)[0];
+                popup_a4f75807c10e7b2e005fa036bd1b2d37.setContent(html_fa447acee4fe03763c896dadb72771b0);
+            
+        
+
+        marker_3ce613d510cfccd743831e0584478ecc.bindPopup(popup_a4f75807c10e7b2e005fa036bd1b2d37)
+        ;
+
+        
+    
+    
+            var marker_45bdbcb5eb3a9eb03ae69ba29b3bf84f = L.marker(
+                [55.151115, -6.90718],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_a2258690f01d2a7c4c620df383f9e75a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_45bdbcb5eb3a9eb03ae69ba29b3bf84f.setIcon(icon_a2258690f01d2a7c4c620df383f9e75a);
+        
+    
+        var popup_21f4e2b94e78358dafbce10dbd2bdd18 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f62674a01868f419f2e233ce1e406f97 = $(`<div id="html_f62674a01868f419f2e233ce1e406f97" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Aidan's Primary School, Limavady<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 60.0<br></div>`)[0];
+                popup_21f4e2b94e78358dafbce10dbd2bdd18.setContent(html_f62674a01868f419f2e233ce1e406f97);
+            
+        
+
+        marker_45bdbcb5eb3a9eb03ae69ba29b3bf84f.bindPopup(popup_21f4e2b94e78358dafbce10dbd2bdd18)
+        ;
+
+        
+    
+    
+            var marker_94b107b6e588c4adcfcec7166b2f8c7d = L.marker(
+                [54.3074, -7.895129],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_579dac29bb39822dbc4800ac60da0313 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_94b107b6e588c4adcfcec7166b2f8c7d.setIcon(icon_579dac29bb39822dbc4800ac60da0313);
+        
+    
+        var popup_aac2eb41bcd630731b40e1de4a48bde6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ce12eb7aadec5158a42c11497126c391 = $(`<div id="html_ce12eb7aadec5158a42c11497126c391" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Columban's Primary School, Belcoo<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 94.0<br></div>`)[0];
+                popup_aac2eb41bcd630731b40e1de4a48bde6.setContent(html_ce12eb7aadec5158a42c11497126c391);
+            
+        
+
+        marker_94b107b6e588c4adcfcec7166b2f8c7d.bindPopup(popup_aac2eb41bcd630731b40e1de4a48bde6)
+        ;
+
+        
+    
+    
+            var marker_4a10a1ec3a8ee967d88cb6d96336d46f = L.marker(
+                [55.293389, -6.197745],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_1e14c7054d1a1d4c177d48b7e1668e9c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_4a10a1ec3a8ee967d88cb6d96336d46f.setIcon(icon_1e14c7054d1a1d4c177d48b7e1668e9c);
+        
+    
+        var popup_3ef02734569a26a297feffd067896665 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_862e4086f0d2d5f176a887b272445090 = $(`<div id="html_862e4086f0d2d5f176a887b272445090" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Mary's Primary School, Rathlin<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 12.0<br></div>`)[0];
+                popup_3ef02734569a26a297feffd067896665.setContent(html_862e4086f0d2d5f176a887b272445090);
+            
+        
+
+        marker_4a10a1ec3a8ee967d88cb6d96336d46f.bindPopup(popup_3ef02734569a26a297feffd067896665)
+        ;
+
+        
+    
+    
+            var marker_73ec9b20e95c3da2bae0629b771f83f4 = L.marker(
+                [55.13272, -6.320666],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_96b9e9315357ae0c20edb8a00174e1dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_73ec9b20e95c3da2bae0629b771f83f4.setIcon(icon_96b9e9315357ae0c20edb8a00174e1dd);
+        
+    
+        var popup_e8a097060b7b41a9a89a24308120b512 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1dbbfdc8620f73c32daabc88e009fc1e = $(`<div id="html_1dbbfdc8620f73c32daabc88e009fc1e" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Olcan's Primary School, Ballymoney<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 77.0<br></div>`)[0];
+                popup_e8a097060b7b41a9a89a24308120b512.setContent(html_1dbbfdc8620f73c32daabc88e009fc1e);
+            
+        
+
+        marker_73ec9b20e95c3da2bae0629b771f83f4.bindPopup(popup_e8a097060b7b41a9a89a24308120b512)
+        ;
+
+        
+    
+    
+            var marker_d26c4b1711a867fb3c95170b70ba1a83 = L.marker(
+                [54.638978, -5.533164],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_bcf4707931a135f5c97ebd95ae8a3441 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_d26c4b1711a867fb3c95170b70ba1a83.setIcon(icon_bcf4707931a135f5c97ebd95ae8a3441);
+        
+    
+        var popup_e64bc434b567f512de87e70ee5abfb01 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c1a59dc5a30cb10e96c02d636d8afe84 = $(`<div id="html_c1a59dc5a30cb10e96c02d636d8afe84" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Anne's Primary School, Donaghadee<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 10.0<br></div>`)[0];
+                popup_e64bc434b567f512de87e70ee5abfb01.setContent(html_c1a59dc5a30cb10e96c02d636d8afe84);
+            
+        
+
+        marker_d26c4b1711a867fb3c95170b70ba1a83.bindPopup(popup_e64bc434b567f512de87e70ee5abfb01)
+        ;
+
+        
+    
+    
+            var marker_06246503905ae936b3c7a19eb3119d1a = L.marker(
+                [54.103439, -6.252096],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_8c3f2b192fb45a5b51e5db83bab9540f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_06246503905ae936b3c7a19eb3119d1a.setIcon(icon_8c3f2b192fb45a5b51e5db83bab9540f);
+        
+    
+        var popup_ce26a793df4d1954d35ba0ac17d79c99 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c25eb69ca1dac53d78ac568e960a15dd = $(`<div id="html_c25eb69ca1dac53d78ac568e960a15dd" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Dromore Road Primary School, Warrenpoint<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 87.0<br></div>`)[0];
+                popup_ce26a793df4d1954d35ba0ac17d79c99.setContent(html_c25eb69ca1dac53d78ac568e960a15dd);
+            
+        
+
+        marker_06246503905ae936b3c7a19eb3119d1a.bindPopup(popup_ce26a793df4d1954d35ba0ac17d79c99)
+        ;
+
+        
+    
+    
+            var marker_df787fca836f5ab0509b78e00c4a71bb = L.marker(
+                [54.26998, -6.78791],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_3e15a4eb174b5e62b36845eaadefd18b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_df787fca836f5ab0509b78e00c4a71bb.setIcon(icon_3e15a4eb174b5e62b36845eaadefd18b);
+        
+    
+        var popup_999332d6354adf207acd4bf24ab3c558 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ca818e61d30f7f59637ec5e6aaf4b82 = $(`<div id="html_0ca818e61d30f7f59637ec5e6aaf4b82" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Drumhillery Primary School, Middletown<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 69.0<br></div>`)[0];
+                popup_999332d6354adf207acd4bf24ab3c558.setContent(html_0ca818e61d30f7f59637ec5e6aaf4b82);
+            
+        
+
+        marker_df787fca836f5ab0509b78e00c4a71bb.bindPopup(popup_999332d6354adf207acd4bf24ab3c558)
+        ;
+
+        
+    
+    
+            var marker_b90aec713bba34b79c72a5a0d19a6d55 = L.marker(
+                [54.599411, -6.913408],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_882eaaa3c8d169f6e87f20aaea5fde20 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b90aec713bba34b79c72a5a0d19a6d55.setIcon(icon_882eaaa3c8d169f6e87f20aaea5fde20);
+        
+    
+        var popup_2eeef057bd689b012cc9220afaa7d9d9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_44b7463291529de4e820509b6412b135 = $(`<div id="html_44b7463291529de4e820509b6412b135" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> Queen Elizabeth II Primary School, Pomeroy<br><b>Management Type:</b> Controlled<br><b>Enrolment:</b> 45.0<br></div>`)[0];
+                popup_2eeef057bd689b012cc9220afaa7d9d9.setContent(html_44b7463291529de4e820509b6412b135);
+            
+        
+
+        marker_b90aec713bba34b79c72a5a0d19a6d55.bindPopup(popup_2eeef057bd689b012cc9220afaa7d9d9)
+        ;
+
+        
+    
+    
+            var marker_0f33eecbb0246ec36e2a26a0904bf1d2 = L.marker(
+                [54.373774, -7.325891],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_4a34e2181f9d2fc6bb788e19530c17fa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_0f33eecbb0246ec36e2a26a0904bf1d2.setIcon(icon_4a34e2181f9d2fc6bb788e19530c17fa);
+        
+    
+        var popup_b4cc72af766e0ca84d11935ada5cdd62 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7f9ddca6b3f914380f550fd9d3741091 = $(`<div id="html_7f9ddca6b3f914380f550fd9d3741091" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Mary's Primary School, Fivemiletown<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 49.0<br></div>`)[0];
+                popup_b4cc72af766e0ca84d11935ada5cdd62.setContent(html_7f9ddca6b3f914380f550fd9d3741091);
+            
+        
+
+        marker_0f33eecbb0246ec36e2a26a0904bf1d2.bindPopup(popup_b4cc72af766e0ca84d11935ada5cdd62)
+        ;
+
+        
+    
+    
+            var marker_19de6cb630087876786da44d7ce4d8af = L.marker(
+                [54.416662, -6.147188],
+                {}
+            ).addTo(map_390ef7827f6028801096b3a191e17ef3);
+        
+    
+            var icon_2d254286de9c772342d261aab2c557cc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_19de6cb630087876786da44d7ce4d8af.setIcon(icon_2d254286de9c772342d261aab2c557cc);
+        
+    
+        var popup_bbb147292397412827bb515c072edd56 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_39fe8e6c7cad585eca90cfef11e58a07 = $(`<div id="html_39fe8e6c7cad585eca90cfef11e58a07" style="width: 100.0%; height: 100.0%;"><b>School Name:</b> St Colman's Primary School, Dromore<br><b>Management Type:</b> Catholic Maintained<br><b>Enrolment:</b> 107.0<br></div>`)[0];
+                popup_bbb147292397412827bb515c072edd56.setContent(html_39fe8e6c7cad585eca90cfef11e58a07);
+            
+        
+
+        marker_19de6cb630087876786da44d7ce4d8af.bindPopup(popup_bbb147292397412827bb515c072edd56)
+        ;
+
+        
+    
+</script>
+</html>
