@@ -452,20 +452,20 @@ fig = px.bar(management_type_count, x='management type', y='count',
              title='Number of Schools by Management Type',
              labels={'management type': 'Management Type', 'count': 'School Count'})
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - school_count_by_management_type_bar_chart.html')
+fig.write_html('Outputs/12. Chart - school_count_by_management_type_bar_chart.html')
 
 # Bar chart of sum all pupils by management type
 fig = px.bar(total_enrolment_by_management_type, y='total enrolment', 
              title='Total Enrolment by Management Type', 
              labels={'management type': 'Management Type', 'total enrolment': 'Total Enrolment'})
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - total_enrolment_by_management_type_bar_chart.html')
+fig.write_html('Outputs/13. Chart - total_enrolment_by_management_type_bar_chart.html')
 
 # Treemap of all schools by management type
 fig = px.treemap(management_type_count, path=['management type'], values='count',
                  title='Number of Schools by Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - school_count_by_management_type_treemap.html')
+fig.write_html('Outputs/14. Chart - school_count_by_management_type_treemap.html')
 
 # Treemap of all schools by constituency and management type
 fig = px.treemap(management_type_constituency_count, 
@@ -473,7 +473,7 @@ fig = px.treemap(management_type_constituency_count,
                  values='count',
                  title='Number of Schools by Constituency and Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - school_count_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/15. Chart - school_count_by_constituency_management_type_treemap.html')
 
 # Treemap of total enrolment in Strategically Important Small Schools by management type and constituency
 fig = px.treemap(strategically_important_small_schools, 
@@ -481,7 +481,7 @@ fig = px.treemap(strategically_important_small_schools,
                  values='total enrolment',
                  title='Number of Pupils enrolled in Strategically Important Small Schools by Constituency and Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - Strategically_Important_Small_Schools_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/16. Chart - Strategically_Important_Small_Schools_by_constituency_management_type_treemap.html')
 
 Strategically_Important_Small_Schools_count_by_group = strategically_important_small_schools.groupby(['constituency', 'management type']).size().reset_index(name='count')
 fig = px.treemap(Strategically_Important_Small_Schools_count_by_group, 
@@ -489,7 +489,7 @@ fig = px.treemap(Strategically_Important_Small_Schools_count_by_group,
                  values='count',
                  title='Number of Strategically Important Small Schools by Constituency and Management Type')
 # Saves this output as a HTML file
-fig.write_html('Outputs/Chart - Strategically_Important_Small_Schools_count_by_constituency_management_type_treemap.html')
+fig.write_html('Outputs/17. Chart - Strategically_Important_Small_Schools_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
 # Maps
@@ -512,7 +512,7 @@ for idx, row in merged_data.iterrows():
     color = colors.get(row['management type'], 'black')
     folium.Marker([row['Latitude'], row['Longitude']], popup=row['school name'], icon=folium.Icon(color=color)).add_to(m)
 # Saves this output as a HTML file
-m.save("Outputs/Map - All Primary Schools by Management Type.html")
+m.save("Outputs/18. Map - All Primary Schools by Management Type.html")
 
 ## Map 2: Strategically Important Small Schools
 # The merged_data df is filtered to retain only the rows which are in the 
@@ -533,7 +533,7 @@ for idx, row in strategically_important_schools.iterrows():
     popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
     folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
 # Saves this output as a HTML file
-m.save("Outputs/Map - Strategically Important Small Schools.html")
+m.save("Outputs/19. Map - Strategically Important Small Schools.html")
 
 ###
 ## Map 3: Strategically Important Small Schools with boundaries
@@ -556,6 +556,4 @@ folium.GeoJson(
     name='constituency boundaries',
 ).add_to(m)
 # Saves this output as a HTML file
-m.save("Outputs/Map - Strategically Important Small Schools with boundaries.html")
-
-# A map shaded to show the number of pupils in each constituency/ number unstustinable schools?
+m.save("Outputs/20. Map - Strategically Important Small Schools with boundaries.html")
