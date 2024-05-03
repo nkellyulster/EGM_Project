@@ -12,7 +12,7 @@
 * [Outputs](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-outputs) 
 * [Troubleshooting](https://github.com/nkellyulster/Strategically-Important-Small-Schools#%EF%B8%8F-troubleshooting)
 
-## 📰 Aim
+## 🎯 Aim
 This study uses the Python programming language to apply Geographic Information Systems (GIS) analysis to Northern Ireland (NI) primary school level enrolment data. The primary aim of the analysis is to produce evidence-based analysis of the distance between each of the 787 primary schools in NI and their closest school, based on differing management types. This study examines the sustainability of all primary schools, investigating the potential for designating a number of small schools as being Strategically Important Small Schools (SISS).
 
 ## 📖 Background
@@ -52,7 +52,8 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 ![Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Strategically%20Important%20Small%20Schools%20Roadmap.png)
 
 ## 📥 Installation Instructions
-All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
+> [!IMPORTANT]  
+> All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
 
 You will need to ensure that you have the [latest version of Python installed](https://www.python.org/downloads/). You will also require an IDE such as [R Studio](https://posit.co/download/rstudio-desktop/), [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
 
