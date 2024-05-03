@@ -1,5 +1,17 @@
 # Strategically Important Small Schools v1.0
 
+## 🧮 Contents
+* [Aim](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-aim)
+* [Background](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-background)
+* [Strategically Important Small Schools](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-strategically-important-small-schools)
+* [Audience](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-audience)
+* [Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-roadmap)
+* [Installation Instructions](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-installation-instructions)
+* [Manual Instructions](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation)
+* [Running the code](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-running-the-code)
+* [Outputs](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-outputs) 
+* [Troubleshooting](https://github.com/nkellyulster/Strategically-Important-Small-Schools#%EF%B8%8F-troubleshooting)
+
 ## 📰 Aim
 This study uses the Python programming language to apply Geographic Information Systems (GIS) analysis to Northern Ireland (NI) primary school level enrolment data. The primary aim of the analysis is to produce evidence-based analysis of the distance between each of the 787 primary schools in NI and their closest school, based on differing management types. This study examines the sustainability of all primary schools, investigating the potential for designating a number of small schools as being Strategically Important Small Schools (SISS).
 
