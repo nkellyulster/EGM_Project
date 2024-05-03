@@ -52,6 +52,8 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 ![Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Strategically%20Important%20Small%20Schools%20Roadmap.png)
 
 # 📥 Installation Instructions
+
+## Setting up R Studio
 > [!IMPORTANT]  
 > All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
 
@@ -61,19 +63,51 @@ Once you have both Python and your IDE installed the easiest way to access the c
 
 To access this code you will need to clone this repository to your machine. This code was written in `Python Version 3.13` in R Studio. To connect this repository to R Studio you will need Git For Windows and the latest version of R Studio installed. Once they are installed complete the following steps to access the repository.
 1.  In R Studio click on File > New Project
+
+![Step 1](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step1.png)
+
 2.  Select Version Control
+
+![Step 2](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step2.png)
+
 3.  Select Git
-4.  Paste `https://github.com/nkellyulster/Strategically-Important-Small-Schools` as the Repository URL
-5.  The Project directory name should auto-populate as` Strategically-Important-Small-Schools`
-6.  Select a location on your machine as the `subdirectory` location
-7.  Click Create Project
-8.  This should clone the Repo and allow you to run the `SISS.py` file.
+
+![Step 3](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step3.png)
+
+4.	In the Clone Git Repository window, in the “Repository URL” box, add the url: “https://github.com/nkellyulster/Strategically-Important-Small-Schools”
+This automatically populates the “Project directory name” box but if it does not you should key “Strategically-Important-Small-Schools”.
+In “Create project as a subdirectory of:” you should select a folder on your machine to create a project folder.
+Finally, click the Create Project button.
+
+![Step 4](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step4.png)
+
+5.	This will clone the GitHub repository to your machine.
+   
+![Step 5](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step5.png)
+
+6.	Your project is now created and you are connected to the SISS GitHub repository.
+
+![Step 6](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step6.png)
 
 Should you wish to manually load the data from the original sources you can do this.
 
 NI primary school enrolment data is updated on an annual basis by the NI Department of Education. The [school enrolments page](https://www.education-ni.gov.uk/topics/statistics-and-research/school-enrolments) contains a plethora of information and datasets. School level enrolment data from 2009/10 - 2023/24 is available on the [School enrolments - school level data page](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). The most recent dataset, for 2023/24 was published on 19 March 2024 and the [datatset used in this project is available as an XLSX file](https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX).
 
 Links are provided in the code so that enrolment data from every year since 2009/10 can be analsysed.
+
+## Packages
+The following packages are used to run this Python script.
+*  [csv](https://docs.python.org/3/library/csv.html)
+*  [math](https://docs.python.org/3/library/math.html)
+*  [collections](https://docs.python.org/3/library/collections.html)
+*  [folium](https://pypi.org/project/folium/)
+*  [geopandas](https://geopandas.org/)
+*  [numpy](https://numpy.org/)
+*  [pandas](https://pandas.pydata.org/)
+*  [plotly.express](https://plotly.com/python/plotly-express/)
+*  [folium.plugins](https://python-visualization.github.io/folium/latest/user_guide/plugins.html)
+*  [haversine](https://pypi.org/project/haversine/)
+*  [shapely](https://pypi.org/project/shapely/)
 
 # 📤 Manual Installation
 To load the 2023/24 dataset and read in the reference data sheet run the following Python script:
