@@ -9,6 +9,7 @@
 * [Installation Instructions](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-installation-instructions)
 * [Manual Instructions](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation)
 * [Running the code](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-running-the-code)
+* [What the script does!](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-what-the-script-does)
 * [Outputs](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-outputs) 
 * [Troubleshooting](https://github.com/nkellyulster/Strategically-Important-Small-Schools#%EF%B8%8F-troubleshooting)
 
