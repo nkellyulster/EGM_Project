@@ -1,5 +1,6 @@
 ###############################################################################
-# Setup 
+# 1. Setup 
+###############################################################################
 
 # External modules
 import csv
@@ -20,8 +21,8 @@ from functions import sustainable_schools
 from functions import convert_distance_to_area
 
 ###############################################################################
-# Context
-
+# 2. Context
+###############################################################################
 """
 The NI Department of Education publish school level enrolment data every year.
 This is based on the school census that takes place every October.
@@ -31,7 +32,9 @@ For further detail see the README file
 """
 
 ###############################################################################
-# Import data files
+# 3. Import data files
+###############################################################################
+
 # URL for the 2023/24 primary school level data saved in GitHub
 primary_school_url = "https://github.com/nkellyulster/Strategically-Important-Small-Schools/raw/main/Data/School%20level%20-%20primary%20schools%20-%20data%20202324.XLSX"
 
@@ -63,7 +66,9 @@ del bt_postcodes_url
 del primary_school_url
 
 ################################################################################
-# Previous years data
+# 4. Previous years data
+###############################################################################
+
 """
 The calcualtions in this script are all based on the most recent data published 
 by the Department of Education (2023/24). It may be of use to others to look at 
@@ -97,7 +102,8 @@ correct
 #primary_school_url = "https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20primary%20schools%20data%202223.XLSX" #2022/23
 
 ################################################################################
-# Data cleaning
+# 5. Data cleaning
+################################################################################
 
 # Retain only the DE Reference and the Total Enrolment columns from the enrolment df   
 # Creates a new df called selected_enrolment
@@ -154,7 +160,9 @@ merged_data = merged_data.drop(['address 1', 'school type', 'district council (2
 merged_data.to_csv("Outputs/1. merged_data.csv", index=False)
 
 ################################################################################
-# Spatial analysis
+# 6. Spatial analysis
+################################################################################
+
 """
 This section of the code creates various distance calculations. The different 
 calculations are as follows:
@@ -254,7 +262,8 @@ Further information on sustainability is provided in the README file.
 merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
 ################################################################################
-# Create new dataframes
+# 7. Create dataframe outputs
+################################################################################
 
 # Define the bins for distance ranges
 # Bins are created for the purposes of grouping data
@@ -395,7 +404,9 @@ Roulston_Cook
 # Writes this output as a CSV file
 Roulston_Cook.to_csv("Outputs/8. Roulston_Cook.csv", index=False)
 
-# Strategically important small schools
+################################################################################
+# 8. Strategically Important Small Schools Analysis
+################################################################################
 """
 This is the key section of the project.
 This chuck filters for all schools that are not sustainable based on enrolment.
@@ -445,7 +456,8 @@ count_strategically_important_small_schools_constituency
 count_strategically_important_small_schools_constituency.to_csv("Outputs/11. count_strategically_important_small_schools_constituency.csv", index=False)
 
 ################################################################################
-# Charts
+# 9. Create charts outputs
+################################################################################
 
 # Bar chart of all schools by management type
 fig = px.bar(management_type_count, x='management type', y='count',
@@ -492,7 +504,8 @@ fig = px.treemap(Strategically_Important_Small_Schools_count_by_group,
 fig.write_html('Outputs/17. Chart - Strategically_Important_Small_Schools_count_by_constituency_management_type_treemap.html')
 
 ################################################################################
-# Maps
+# 10. Create maps outputs
+################################################################################
 
 # Define colors for each management type - this will be used in all maps
 colors = {
@@ -535,7 +548,6 @@ for idx, row in strategically_important_schools.iterrows():
 # Saves this output as a HTML file
 m.save("Outputs/19. Map - Strategically Important Small Schools.html")
 
-###
 ## Map 3: Strategically Important Small Schools with boundaries
 
 # The merged_data df is filtered to retain only the rows which are in the 
