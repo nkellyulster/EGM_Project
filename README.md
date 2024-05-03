@@ -135,6 +135,12 @@ Running the code is a fairly straightforward process.
 > [!TIP]  
 > The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
 
+To run all the code, from start to finish, to produce all of the outputs, simply click in the main script window, press `Control + A` to highlight all the text and press `Control + Enter` to run the script. Alternatively, when all of the text is highlighted you can click the `Run` button at the top of main script window. **Please be aware it take a few minutes to run the code from start to finish and produce all of the outputs.**
+
+![Running the code](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Running-Code.png)
+
+If you want to run through the code chunk by chunk, to see what the output of each process is, simply higlight the rows you wish to run, then run the code, as outlined above.
+
 # 🐍 Outputs
 In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
 
