@@ -141,8 +141,24 @@ To run all the code, from start to finish, to produce all of the outputs, simply
 
 If you want to run through the code chunk by chunk, to see what the output of each process is, simply higlight the rows you wish to run, then run the code, as outlined above.
 
-# 🐍 Outputs
-In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
+# 🐍 What the script does!
+The scripts are hopefully written in a way that are hopefully logical and clear to understand. This section will look at the scripts at a very high level, giving an overview, rather than a line-by-line blow of what they do.
+There are 2 main scripts used for this project.
+
+## Functions
+This is a short script file and is only 49 lines long. In it are 3 custom functions which:
+*   Convert kilometers to miles
+*   Convert distance to area
+*   Classify a school as being Sustainable or Not Sustainable based on Department of Education guidelines.
+
+All funtions use `docstrings` to explain in more detail what the functions do, what the inputs are and what the outputs are.
+All functions are read in to the Strategically Important Small Schools script.
+
+## Strategically Important Small Schools
+This is the main script file for the project and is almost 600 lines long.
+
+# 📤 Outputs
+In terms of outputs, the code produces over 30 outputs, including values, dataframes, csv outputs, html interactive maps and charts.
 
 This code produces the following outputs: 
 *  `rows_not_in_bt_postcodes` a dataframe with all the school postcodes which do not appear in the `bt_postcodes` dataframe
