@@ -35,18 +35,18 @@ Every year the management authority of schools work together with the Education 
 
 For a number of years, there has been a growing sense that the Sustainable Schools Policy has been a blunt instrument used as the justification for the closing of small, rural schools, and that criteria should be used to identify small schools which are strategically important. This would not mean that these schools would be exempt from the consideration of the Sustainable Schools Policy but that their relative remoteness would be taken into consideration when schools were being assessed under the policy.
 
-![Strategically Important Small Schools Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Tyrone%20Constitution.jpg)
-*Caption: Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"*
-
 In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the New Decade, New Approach deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However, it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long-term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
 
 ## 🏫 Strategically Important Small Schools
 The idea of designating some schools as being strategically important has been discussed for a number of years but there has been no actual progress on how to determine what constitutes a strategically important small school. And that is the issue which this project aims to address.
 
+![Strategically Important Small Schools Roadmap](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Tyrone%20Constitution.jpg)
+*Caption: Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"*
+
 Using GIS analysis of the distance between schools and looking at the distances between different management types a number of schools have been designated as being strategically important small schools as there is a considerable distance between them and the nearest school in the same management type. The outputs of this project can be examined in more detail, but produce very clear recommendations on a small number of schools which, if they were closed on the grounds of 'sustainability' would have a negative impact on their local areas. Due to the nature of this analysis, and the methodology adopted, these schools are typically schools from the minority community in an area that has schools for the other main management type, which is why the designation of these schools as being important takes on a more strategic approach.
 
 ## 🙋 Audience
-Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to both policy-makers and decision-makers within the Department of Education, as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
+Anyone with an interest in primary school education in Northern Ireland or anyone with a general interest in the role small schools play across the education system. This project should be of interest to both policy-makers and decision-makers within the Department of Education, the Educathion Authority, as well as management authorities who are involved in making strategic decisions about the future of primary education in Northern Ireland.
 
 ##  🚗 Roadmap
 ![Tyrone Constitution - Thursday 25 April 2024 - "Greater recognition needed for strategically important small schools"](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Strategically%20Important%20Small%20Schools%20Roadmap.png)
