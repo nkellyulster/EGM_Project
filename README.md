@@ -110,7 +110,7 @@ The following packages are used to run this Python script.
 *  [shapely](https://pypi.org/project/shapely/)
 
 # 📤 Manual Installation
-To manuall load the 2023/24 dataset and read in the reference data sheet run the following Python script:
+To manually load the 2023/24 dataset and read in the reference data sheet run the following Python script:
 ```ruby
 schools = pd.read_excel("https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX",
 sheet_name = "reference data",
@@ -157,6 +157,49 @@ All functions are read in to the Strategically Important Small Schools script.
 ## Strategically Important Small Schools
 This is the main script file for the project and is almost 600 lines long.
 
+This script is broken down into several different sections to make it easier to understand and navigate.
+### 1. Setup
+#### 1.1 External Modules
+External modules, which are outlined in the [Packages section of this document](https://github.com/nkellyulster/Strategically-Important-Small-Schools#packages) are laoded here.
+#### 1.2 Import my functions
+The 3 custom functions from [functions.py](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/functions.py) are loaded here.
+
+### 2. Context
+This brief section gives some background to the type of data that is read in to the analysis and provides a link to the Department of Education website where the raw data can be accessed.
+
+### 3. Import data files
+This section is where the inputs are read in from. Basic data manipulation is used to indicate which tabs from which spreadsheets are used.
+
+### 4. Previous years data
+Links to 14 years worth of data are provided. This covers the period from 2009/10 to 2022/23. By uncommenting these links the user can read in enrolment and school data for the academic year they want. This allows the users to compare the changing nature of the primary school estate over the past number of years.
+As the links point to the datasets held on the Department of Education website there is assurance that the data contained is the original and has not been amended or altered in any way.
+
+### 5. Data cleaning
+This section of code combines the `enrolment`, `school` and `postcodes` data into one master dataframe.
+A manual workaround is included to manually add co-ordinates for school postcode data which is missing from the `postcodes` dataframe. A check is built into this to ensure that the number of schools remains unchanged from the start of this process to the end. This section will need to be revised to look at school data from a different year.
+Dataframes are cleaned and unnecessary columns are removed in advances of the analysis stages.
+
+### 6. Spatial analysis
+Spatial analysis is carried out to calculate:
+* the distance from each school to the nearest school
+* the distance from each school to the nearest school in the same management type
+* the distance from each school to the nearest school NOT in the same management type
+This is the main section for spatial analysis and the outputs from this stage feed directly into the main conclusions of this project. The master dataframe that is produced at this stage will be filtered into more usable outputs at later stages.
+
+### 7. Create dataframe and value outputs
+This section is where the majority of analysis is carried out.
+Datasets are filtered to produce the main outputs and dataframes are counted and summed to produce a wide range of useful analysis and outputs.
+A number of csv outputs are produced from this stage.
+
+### 8. Strategically Important Small Schools Analysis
+The purpose of this project is to carry out analysis on Strategically Important Small Schools and this section is where this analysis is carried out.
+
+### 9. Create charts outputs
+3 interactive charts are created to highlight some of the key findings of this study.
+
+### 10. Create maps outputs
+3 interactive map are created to highlight some of the key findings of this study.
+
 # 📤 Outputs
 In terms of outputs, the code produces over 30 outputs, including values, dataframes, csv outputs, html interactive maps and charts.
 
@@ -192,8 +235,6 @@ This code produces the following outputs:
 *  `Chart: treemap of all schools by constituency and management type` this interactive treemap provides a breakdown of all schools by both constituency and management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of total enrolment in SISS by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
-
-The purpose of this research is to identify the methodology behind identifying Strategically Important Small Schools and use evidence-based, GIS approaches to identify these schools.
 
 # 🎛️ Troubleshooting
 There are limited things that can go wrong with this code, which means there are probably more things that can go wrong with the code than I am willing to admit.
