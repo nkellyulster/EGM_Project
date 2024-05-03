@@ -110,7 +110,7 @@ The following packages are used to run this Python script.
 *  [shapely](https://pypi.org/project/shapely/)
 
 # 📤 Manual Installation
-To load the 2023/24 dataset and read in the reference data sheet run the following Python script:
+To manuall load the 2023/24 dataset and read in the reference data sheet run the following Python script:
 ```ruby
 schools = pd.read_excel("https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX",
 sheet_name = "reference data",
@@ -132,7 +132,14 @@ bt_postcodes = pd.read_csv(<you_file_path.csv>)
 # 🏃 Running the code
 Running the code is a fairly straightforward process.
 
-The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
+> [!TIP]  
+> The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
+
+To run all the code, from start to finish, to produce all of the outputs, simply click in the main script window, press `Control + A` to highlight all the text and press `Control + Enter` to run the script. Alternatively, when all of the text is highlighted you can click the `Run` button at the top of main script window. **Please be aware it take a few minutes to run the code from start to finish and produce all of the outputs.**
+
+![Running the code](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Running-Code.png)
+
+If you want to run through the code chunk by chunk, to see what the output of each process is, simply higlight the rows you wish to run, then run the code, as outlined above.
 
 # 🐍 Outputs
 In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
