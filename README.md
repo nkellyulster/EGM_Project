@@ -110,7 +110,7 @@ The following packages are used to run this Python script.
 *  [shapely](https://pypi.org/project/shapely/)
 
 # 📤 Manual Installation
-To load the 2023/24 dataset and read in the reference data sheet run the following Python script:
+To manuall load the 2023/24 dataset and read in the reference data sheet run the following Python script:
 ```ruby
 schools = pd.read_excel("https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX",
 sheet_name = "reference data",
@@ -132,7 +132,8 @@ bt_postcodes = pd.read_csv(<you_file_path.csv>)
 # 🏃 Running the code
 Running the code is a fairly straightforward process.
 
-The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
+> [!TIP]  
+> The code can be run in small chunks to produce some of the outputs or can be run in its entirety to produce all outputs.
 
 # 🐍 Outputs
 In terms of outputs, the code produces a number of dataframes, csv outputs, html interactive maps and charts.
