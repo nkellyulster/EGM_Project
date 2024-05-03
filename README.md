@@ -238,16 +238,66 @@ This code produces the following outputs:
 *  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
 
 # 🎛️ Troubleshooting
-There are limited things that can go wrong with this code, which means there are probably more things that can go wrong with the code than I am willing to admit.
-
-All of the input files are read directly from the GitHub repository and guidance is provided above on how to manually read in data.
+There are limited things that can go wrong with this code, as all of the input files are read directly from the GitHub repository and guidance is provided above on how to manually read in data.
 
 This means the only other problem that could realistically exist is that your version of Python is too old or you have not read in the required Python libraries.
 
+## Out of date Python version
 If your version of Python is too old, you should get the most recent version of Python that is available. This code was written using `version 3.12` so I would suggest using `version 3.12.`
 
+## Package issue
 If you have not installed the required libraries I would recommend installing the required libraries. A list of all the required external modules is provided at the very top of the [Strategically Important Small Schools.py script](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Strategically_Important_Small_Schools.py) and in the [environment file](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/environment.yml).
 
-Functionality has been provided which allows for historic data to be read in from the [Department of Education's School enrolments - school level data website](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). This website contains primary school enrolment data as far back as 2009/10. This allows users to compare the various outputs from the current year against data at any point from 2009/2010. There is a comment in the script to explain how to do this as well as as advisory note to say that the data structure differs from year to year so care should be taken to ensure that the `all_schools` dataframe generates correctly. Should the `all_schools` dataframe not generate as a result of missing columns or column with different names you should consult the console to determine what the error is.
+Should any of these packages not install correctly they can be manually installed in the terminal using the following syntax. For example, to manually install pandas simply key the following in the terminal:
 
-For example, the error `KeyError: "['DE ref'] not found in axis"` indicates that the column `DE ref` is not found and when you look closer at the input file you can see that in this file the relevant column is called `De ref` so the code will need to be amended to read the data in correctly.
+`pip install pandas`
+
+![pip install pandas](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/terminal.png)
+
+## Changing structure of Department of Education data
+Analysis can be carried out on data going back as far as 2009/10, but unfortunately the structure of the data has changed numerous times over the years. This can cause errors when the school level data is being read in. Should there be errors in creating the `schools` or `enrolment` dataframes this is likely the cause of the error. 
+
+By amending the script in the `selected_enrolment` and `all_schools` dataframes this can easily be resolved.
+
+For example, the error `KeyError: "['DE ref'] not found in axis` indicates that the column `DE ref` is not found and when you look closer at the input file you can see that in this file the relevant column is called `De ref` so the code will need to be amended to read the data in correctly.
+
+## Postcode errors
+Functionality has been provided which allows for historic data to be read in from the [Department of Education's School enrolments - school level data website](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). 
+
+This website contains primary school enrolment data as far back as 2009/10. This allows users to compare the various outputs from the current year against data at any point from 2009/2010. There is a comment in the script to explain how to do this as well as as advisory note to say that the data structure differs from year to year so care should be taken to ensure that the `all_schools` dataframe generates correctly. Should the `all_schools` dataframe not generate as a result of missing columns or column with different names you should consult the console to determine what the error is.
+
+This is the extract of code which is used to identify and resolve this issue:
+~~~
+# This check is added to identify any schools which do not appear in the merged_data
+# df becuase their school postcode does not appear in the bt_postcodes df
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+
+# The following 3 postcodes were identified from the rows_not_in_bt_postcodes df
+# so their latitiude and logitude values were sourced from Google Maps
+missing_postcodes = pd.DataFrame({
+    'Postcode': ['BT13 3SY', 'BT4 3HJ', 'BT78 3GA', 'BT79 0GZ'],
+    'Latitude': [54.615622286274096, 54.601342361930584, 54.512571453329244, 54.5993316600317],
+    'Longitude': [-5.9826709693148885, -5.85227797613058, -7.469365801273217, -7.2545584724318095]
+})
+
+# Missing_postcodes df is appeneded to bottom of selecteD_bt_postcodes df
+selected_bt_postcodes = selected_bt_postcodes._append(missing_postcodes, ignore_index=True)
+
+# Rerun the process again
+merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+
+# At this point there is still one school missing. The issue has been caused with
+# a `tab` rather than a single space in the postcode in the all_schools df. This 
+# value will be replaced.
+all_schools.replace('BT6  0AG', 'BT6 0AG', inplace=True)
+
+# Rerun the process one final time
+merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
+bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
+rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
+# There are now no longer any rows_not_in_bt_postcodes df and the number of rows
+# (787) is the same in both the all_schools and merged_data dfs. Success!
+~~~
