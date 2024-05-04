@@ -16,6 +16,9 @@
 # 🎯 Aim
 This study uses the Python programming language to apply Geographic Information Systems (GIS) analysis to Northern Ireland (NI) primary school level enrolment data. The primary aim of the analysis is to produce evidence-based analysis of the distance between each of the 787 primary schools in NI and their closest school, based on differing management types. This study examines the sustainability of all primary schools, investigating the potential for designating a number of small schools as being Strategically Important Small Schools (SISS).
 
+> [!IMPORTANT]  
+> All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
+
 # 📖 Background
 According to [NI school enrolment data published by the NI Department of Education](https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202223) there are 787 primary schools in Northern Ireland for the academic year 2023/24. 
 
@@ -57,20 +60,17 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 ## Setup
 > [!IMPORTANT]  
 > To run this code you need to have R Studio (or a different IDE), Python and Git installed.
-> 1.	R Studio  Integrated Development Environment (IDE) from the [Posit website](https://posit.co/download/rstudio-desktop/).
-> 2.	Python which can be directly downloaded from the [Python website](https://www.python.org/downloads/). 
-> 3.	[Git](https://git-scm.com/downloads), this will ensure that you can connect your IDE to the[ Strategically Important Small Schools GitHub repository](https://github.com/nkellyulster/Strategically-Important-Small-Schools).
+> 1.	R Studio Integrated Development Environment (IDE) from the [Posit website](https://posit.co/download/rstudio-desktop/).
+> 2.	Python which can be directly downloaded from the [Python website](https://www.python.org/downloads/). This code was written in `Python Version 3.13` in R Studio.
+> 3.	[Git For Windows](https://git-scm.com/downloads), this will ensure that you can connect your IDE to the[ Strategically Important Small Schools GitHub repository](https://github.com/nkellyulster/Strategically-Important-Small-Schools).
+>
+> You will also need a [GitHub account which you can sign up for free](https://github.com/join).
+
+## Other IDEs
+This project was written in R Studio but other IDEs are available, such as [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
 
 ## Setting up R Studio
-> [!IMPORTANT]  
-> All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
-> 
-
-You will need to ensure that you have the [latest version of Python installed](https://www.python.org/downloads/). You will also require an IDE such as [R Studio](https://posit.co/download/rstudio-desktop/), [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
-
-Once you have both Python and your IDE installed the easiest way to access the code and files is to link your IDE to the GitHub repository. To do this you will need to have a [GitHub account](https://github.com/) and then [install Git For Windows](https://git-scm.com/download/win).
-
-To access this code you will need to clone this repository to your machine. This code was written in `Python Version 3.13` in R Studio. To connect this repository to R Studio you will need Git For Windows and the latest version of R Studio installed. Once they are installed complete the following steps to access the repository.
+To run this code you will need to clone this repository to your machine. Once you have all the software installed and have a GitHub account, complete the following steps to access the repository.
 1.  In R Studio click on File > New Project
 
 ![Step 1](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step1.png)
@@ -98,7 +98,7 @@ Finally, click the Create Project button.
 
 ![Step 6](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step6.png)
 
-Should you wish to manually load the data from the original sources you can do this.
+Should you wish to manually load the data from the original sources you can do this. A step by step guide on how to do this is provided in the [Manual Installation](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation) section of this Readme.
 
 NI primary school enrolment data is updated on an annual basis by the NI Department of Education. The [school enrolments page](https://www.education-ni.gov.uk/topics/statistics-and-research/school-enrolments) contains a plethora of information and datasets. School level enrolment data from 2009/10 - 2023/24 is available on the [School enrolments - school level data page](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). The most recent dataset, for 2023/24 was published on 19 March 2024 and the [datatset used in this project is available as an XLSX file](https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX).
 
