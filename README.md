@@ -54,9 +54,17 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 
 # 📥 Installation Instructions
 
+## Setup
+> [!IMPORTANT]  
+> To run this code you need to have R Studio (or a different IDE), Python and Git installed.
+> 1.	R Studio  Integrated Development Environment (IDE) from the [Posit website](https://posit.co/download/rstudio-desktop/).
+> 2.	Python which can be directly downloaded from the [Python website](https://www.python.org/downloads/). 
+> 3.	[Git](https://git-scm.com/downloads), this will ensure that you can connect your IDE to the[ Strategically Important Small Schools GitHub repository](https://github.com/nkellyulster/Strategically-Important-Small-Schools).
+
 ## Setting up R Studio
 > [!IMPORTANT]  
 > All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
+> 
 
 You will need to ensure that you have the [latest version of Python installed](https://www.python.org/downloads/). You will also require an IDE such as [R Studio](https://posit.co/download/rstudio-desktop/), [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
 
