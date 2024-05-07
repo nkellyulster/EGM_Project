@@ -203,6 +203,17 @@ A number of csv outputs are produced from this stage.
 ### 8. Strategically Important Small Schools Analysis
 The purpose of this project is to carry out analysis on Strategically Important Small Schools and this section is where this analysis is carried out.
 
+Distances between schools are binned into the following categories for ease of analysis.
+
+| Title | Bin Range |
+| --- | --- |
+|Less than 1km | <1 |
+|Between 1km and 2.9km | 1-2.9 |
+|Between 3km and 4.9km | 3 - 4.9 |
+|Between 5km and 7.4km | 5 - 7.4 |
+|Between 7.5km and 9.9km | 7.5 - 9.9 |
+|Greater than 10km | >=10 |
+
 ### 9. Create charts outputs
 3 interactive charts are created to highlight some of the key findings of this study.
 
@@ -244,6 +255,17 @@ This code produces the following outputs:
 *  `Chart: treemap of all schools by constituency and management type` this interactive treemap provides a breakdown of all schools by both constituency and management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of total enrolment in SISS by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
+
+##
+The Maps which are created label each of the schools by their Management Type. The legend for each Management Type is listed below:
+| Management Type | Legend |
+| --- | --- |
+| Controlled | Blue |
+| Catholic Maintained | Green | 
+| Other Maintained | Red |
+| Controlled Integrated | Yellow | 
+| GMI | Orange | 
+| Voluntary | Purple | 
 
 # 🎛️ Troubleshooting
 There are limited things that can go wrong with this code, as all of the input files are read directly from the GitHub repository and guidance is provided above on how to manually read in data.
