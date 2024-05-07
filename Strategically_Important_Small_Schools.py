@@ -1,7 +1,7 @@
 ###############################################################################
 # 1. Setup 
 ###############################################################################
-
+# This is where extrnal modules/ packages and custom functions are read in
 # External modules
 import csv
 import math
@@ -34,6 +34,8 @@ For further detail see the README file
 ###############################################################################
 # 3. Import data files
 ###############################################################################
+# URLs for datasets saved in GitHub are read in and a number of dataframes are
+# created
 
 # URL for the 2023/24 primary school level data saved in GitHub
 primary_school_url = "https://github.com/nkellyulster/Strategically-Important-Small-Schools/raw/main/Data/School%20level%20-%20primary%20schools%20-%20data%20202324.XLSX"
@@ -114,10 +116,12 @@ selected_enrolment = enrolment.loc[:, ['DE ref', 'total enrolment']]
 selected_bt_postcodes = bt_postcodes.loc[:, ['Postcode', 'Latitude', 'Longitude']]
 
 # Join the schools df and the enrolment df and drop 'DE ref' column from new df
+# and create a new df called all_schools
 all_schools = pd.merge(schools, selected_enrolment, how='inner', left_on='De ref', right_on='DE ref')
 all_schools = all_schools.drop('DE ref', axis = 1)
 
 # Join the schools and selected_bt_postcodes dfs using postcode and Postcode variables
+# to create a new master df called merged_data
 merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on='postcode', right_on='Postcode')
 
 # This check is added to identify any schools which do not appear in the merged_data
@@ -133,7 +137,7 @@ missing_postcodes = pd.DataFrame({
     'Longitude': [-5.9826709693148885, -5.85227797613058, -7.469365801273217, -7.2545584724318095]
 })
 
-# Missing_postcodes df is appeneded to bottom of selecteD_bt_postcodes df
+# Missing_postcodes df is appeneded to bottom of selected_bt_postcodes df
 selected_bt_postcodes = selected_bt_postcodes._append(missing_postcodes, ignore_index=True)
 
 # Rerun the process again
@@ -181,12 +185,15 @@ for each school
 All distance calculations are give in km
 """
 
+# New blank objects are created which will be populated further on
 nearest_distances = []
 nearest_schools = []
 nearest_management_types = []
 nearest_same_management_schools = []
 nearest_same_management_distances = []
 
+# The follow two chunks iterate the merged_data df to calcualte the nearest school
+# and the nearest school in the same management type
 for idx, row in merged_data.iterrows():
     min_distance = float('inf')
     nearest_school = None
@@ -205,14 +212,14 @@ for idx, row in merged_data.iterrows():
                 nearest_same_management_distance = distance
                 nearest_same_management_school = row2['school name']
     
-# Append values to the lists inside the loop
+# Calculated values from each iteration are appended to seperate lists
     nearest_distances.append(min_distance)
     nearest_schools.append(nearest_school)
     nearest_management_types.append(nearest_management_type)
     nearest_same_management_distances.append(nearest_same_management_distance)
     nearest_same_management_schools.append(nearest_same_management_school)
 
-# Add the columns to the merged_data df
+# New columns are added to the merged_data df to store the calcuated values
 merged_data['nearest_distance'] = nearest_distances
 merged_data['nearest_school'] = nearest_schools
 merged_data['nearest_management_type'] = nearest_management_types
@@ -225,10 +232,13 @@ same management type, the name of the nearest school not in the same management
 type and the management type of the nearest school not in the same management type
 """
 
+# Similar to above new blank value objects are created
 nearest_schools = []
 nearest_distances = []
 nearest_management_types = []
 
+# The follow two chunks iterate the merged_data df to calcualte the nearest school
+# not in the same management type, hence why 'management type' is excluded (!)
 for idx, row in merged_data.iterrows():
     min_distance = float('inf')
     nearest_school = None
@@ -259,6 +269,9 @@ Rural school. For this the custom 'sustainable_schools' function is used.
 Further information on sustainability is provided in the README file.
 """
 
+# Custom function 'sustainable schools' is applied to merged_data df to create
+# a new column in merged_data df called 'Sustainability' Details on fucntion are
+# included in docstring in functions.py
 merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 
 ################################################################################
@@ -266,35 +279,49 @@ merged_data['Sustainability'] = merged_data.apply(sustainable_schools, axis=1)
 ################################################################################
 
 # Define the bins for distance ranges
-# Bins are created for the purposes of grouping data
+# Bins are created for the purposes of grouping distance data
 bins = [0, 1, 2.9, 4.9, 7.4, 9.9, float('inf')]
 labels = ['<1', '1-2.9', '3-4.9', '5-7.4', '7.5-9.9', '>10']
 
 # Count all schools
+# Counts all rows in df - total enrolment column used but any one could have been
+# Produces a value output
 school_count = merged_data['total enrolment'].count()
 school_count
 
 # Count all schools by management type
+# Groups management type and counts numebr of occurances
+# Produces a df where results are ordered by count in descending order
 management_type_count = merged_data.groupby(['management type']).size().reset_index(name='count')
 management_type_count = management_type_count.sort_values(by='count', ascending=False)
 management_type_count
 
 # Count all schools by parliamentary constituency
+# Counts number of schools in each constituency by counting number of constituency
+# occurances. Produces a df where results are ordered by count in descending order
 constituency_count = merged_data.groupby(['constituency']).agg({'total enrolment': 'count'})
 constituency_count = constituency_count.sort_values(by='total enrolment', ascending=False)
 constituency_count
 
 # Count all schools by management type & parliamentary constituency
+# Counts number of schools in each constituency and management type. Output is
+# grouped by both variables. Produces a df where results are ordered by count in 
+# descending order
 management_type_constituency_count = merged_data.groupby(['constituency', 'management type']).size().reset_index(name='count')
 management_type_constituency_count
 # Writes this output as a CSV file
 management_type_constituency_count.to_csv("Outputs/2. management_type_constituency_count.csv", index=False)
 
 # Total number of pupils
+# Produces a value of the total number of pupils in all schools by summing values
+# in total enrolment column
 total_enrolment_sum = merged_data['total enrolment'].sum()
 total_enrolment_sum
 
 # Total number of pupils by management type
+# Produces a df which counts the numebr of pupils in each school and groups
+# output by management type. Produces a df where results are ordered by count in 
+# descending order
 total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
 total_enrolment_by_management_type = pd.DataFrame(total_enrolment_by_management_type)
 total_enrolment_by_management_type = total_enrolment_by_management_type.sort_values(by='total enrolment', ascending=False)
@@ -304,6 +331,8 @@ total_enrolment_by_management_type
 total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
 # Total number of pupils by parliamentary constituency
+# Similar to above, counts all pupils in all schools and groups output by parlimanetary
+# constituency. Produces a df where results are ordered by count in descending order
 total_enrolment_constituency = merged_data.groupby('constituency')['total enrolment'].sum()
 total_enrolment_constituency = pd.DataFrame(total_enrolment_constituency)
 total_enrolment_constituency = total_enrolment_constituency.sort_values(by='total enrolment', ascending=False)
@@ -313,33 +342,55 @@ total_enrolment_constituency
 total_enrolment_constituency.to_csv("Outputs/4. total_enrolment_constituency.csv", index=False)
 
 # Total number of sustainable and unsutainable schools
+# First step is that df is created which uses output from sustainable_schools to
+# count number of 'sustainable' and 'not sustainable' schools 
 sustainable_count = merged_data.groupby(['Sustainability']).agg({'total enrolment': 'count'})
+# New column, Percentage, is calcuated by dividing Sustainable count values from 
+# previous line by total number of primary schools (school_count). These values
+# are then multiplied by 100 to calcuate the percentage of sustainable and not
+# sustainable schools
 sustainable_count['Percentage'] = (sustainable_count['total enrolment'] / school_count) * 100
 sustainable_count
 
 # Total number of pupils in unsustainable schools
+# In a smilar approach as above, the number of pupils in sustainable and not
+# sustainable schools is calculated and the percenatge of pupils is determined
 sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
 sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
 sustainable_pupils
 
 # Number of Catholic Maintained & Controlled Schools
+# merged_data df is filtered to only retain Catholic Maintained and Controlled
+# management type schools. A sum of both schools is calcualted
 count_catholic_maintained_controlled = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
 count_catholic_maintained_controlled = count_catholic_maintained_controlled['total enrolment'].count()
 count_catholic_maintained_controlled
 
-percentage_schools_catholic_maintained_controlled = count_catholic_maintained_controlled / school_count
+# Percantage Catholic Maintained and Controlled schools
+# The output from above is divided by the school_count and then multiplied by 100
+# to calculate the percentage of schools which are either Catholic Maintained and Controlled
+percentage_schools_catholic_maintained_controlled = count_catholic_maintained_controlled / school_count * 100
 percentage_schools_catholic_maintained_controlled
 
 # Number of pupils educated in Catholic Maintained & Controlled Schools
+# Similar to above, the managementt ype column is filtered by Catholic Maintained 
+# and Controlled to determine the numbe rof pupils educated in these management types
 sum_catholic_maintained_controlled = merged_data[(merged_data['management type'] == 'Catholic Maintained') | (merged_data['management type'] == 'Controlled')]
 sum_catholic_maintained_controlled = sum_catholic_maintained_controlled['total enrolment'].sum()
 sum_catholic_maintained_controlled
 
-percentage_enroled_catholic_maintained_controlled = sum_catholic_maintained_controlled / total_enrolment_sum
+# Percantage Catholic Maintained and Controlled pupils
+# Similar to above the percentage of children educated in Catholic Maintained and
+# Controlled schools is calculated by dividing the number ofpupils by total_enrolment_sum
+# and multiplying this number by 100
+percentage_enroled_catholic_maintained_controlled = sum_catholic_maintained_controlled / total_enrolment_sum * 100
 percentage_enroled_catholic_maintained_controlled
 
 # Nearest School
-# Finalises the nearest_school df by removing unnecessary columns
+# Finalises the nearest_school df by retaining relevant columns from merged_data df
+# This creates a df which shows the distance from each school to the nearest school
+# (irrespective of management type), the name of the nearest schools and the 
+# management type of the nearest schools
 nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_school',
        'nearest_management_type', 'nearest_distance']]
 # custom convert_distance_to_area function used to calculate area
@@ -349,7 +400,9 @@ nearest_school
 nearest_school.to_csv("Outputs/5. nearest_school.csv", index=False)
 
 # Nearest school in the same management type
-# Finalises the nearest_school_same_management df by removing unnecessary columns
+# Finalises the nearest_school_same_management df by retaining relevant columns
+# This creates a df which shows the distance from each school to the nearest school
+# of the same management type and the name of the nearest school
 nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_same_management_distance',
        'nearest_same_management_school']]
 # custom convert_distance_to_area function used to calculate area
@@ -359,7 +412,10 @@ nearest_school_same_management
 nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management.csv", index=False)
 
 # Nearest school not in the same managment type
-# Finalises the nearest_school_not_same_management df by removing unnecessary columns
+# Finalises the nearest_school_not_same_management df by retaining relevant columns
+# This creates a df which shows the distance from each school to the nearest school
+# of a different management type and the name of the nearest school and the management
+# type of this school
 nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name', 'management type', 'constituency', 'total enrolment', 'nearest_distance_other_management',
        'nearest_school_other_management', 'nearest_management_type_other_management']]
 # custom convert_distance_to_area function used to calculate area
@@ -409,7 +465,7 @@ Roulston_Cook.to_csv("Outputs/8. Roulston_Cook.csv", index=False)
 ################################################################################
 """
 This is the key section of the project.
-This chuck filters for all schools that are not sustainable based on enrolment.
+This chunk filters for all schools that are not sustainable based on enrolment.
 It filters out to retain only the Catholic Maintianed and the Controlled schools.
 They are sorted in descending order by the distance to the nearest school in the 
 same management type.
@@ -422,18 +478,28 @@ strategically_important_small_schools.drop(columns=['Sustainability'], inplace=T
 strategically_important_small_schools = strategically_important_small_schools.sort_values(by='nearest_same_management_distance', ascending=False)
 
 # Bin the distances into specified ranges
+# New columndistance_range is added to strategically_important_small_schools df
+# This reads in the nearest_same_management_distance column and depending on the 
+# value creates a new value based on the bins vector which was created
 strategically_important_small_schools['distance_range'] = pd.cut(strategically_important_small_schools['nearest_same_management_distance'], bins=bins, labels=labels, right=False)
 
 # Count occurrences in each bin
+# Creates a new df based on the distance_range column in the strategically_important_small_schools
+# df. This new df counts the number of occurnaces of the distance_range column
 distance_counts = pd.DataFrame(strategically_important_small_schools['distance_range'].value_counts(sort=False).reindex(labels, fill_value=0))
 distance_counts.reset_index(inplace=True)
 
-# This next line counts the enumber of schools where the distance to the nearest
+# This next line counts the number of schools where the distance to the nearest
 # school in a differnet management type is greater than 7.5km
+# This counts the number of schools in the strategically_important_small_schools
+# df which are more than 7.5km/ 7500m to the nearest school (in the same management
+# type)
 greater_than_7500m = len(strategically_important_small_schools[strategically_important_small_schools['nearest_same_management_distance'] >= 7.5])
 
 # This df selects only the schools where the distance to the nearest school in a
 # different management type is greater then 7.5km
+# The head function is used to extract the number of rows from the greater_than_7500m
+# count from the strategically_important_small_schools df
 strategically_important_small_schools = strategically_important_small_schools.head(greater_than_7500m)
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools['area'] = strategically_important_small_schools.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
@@ -442,6 +508,8 @@ strategically_important_small_schools
 strategically_important_small_schools.to_csv("Outputs/9. strategically_important_small_schools.csv", index=False)
 
 # Counts the number of strategically important small schools by management type
+# This chunk counts the numebr of occurances of management type and sorts the 
+# output in descending order
 count_strategically_important_small_schools_management_type = strategically_important_small_schools.groupby(['management type']).size().reset_index(name='count')
 count_strategically_important_small_schools_management_type = count_strategically_important_small_schools_management_type.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_management_type
@@ -449,6 +517,8 @@ count_strategically_important_small_schools_management_type
 count_strategically_important_small_schools_management_type.to_csv("Outputs/10. count_strategically_important_small_schools_management_type.csv", index=False)
 
 # Counts the number of strategically important small schools by constituency
+# This chunk counts the numebr of occurances of constituency and sorts the 
+# output in descending order
 count_strategically_important_small_schools_constituency = strategically_important_small_schools.groupby(['constituency']).size().reset_index(name='count')
 count_strategically_important_small_schools_constituency = count_strategically_important_small_schools_constituency.sort_values(by='count', ascending=False)
 count_strategically_important_small_schools_constituency
