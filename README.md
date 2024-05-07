@@ -16,6 +16,9 @@
 # 🎯 Aim
 This study uses the Python programming language to apply Geographic Information Systems (GIS) analysis to Northern Ireland (NI) primary school level enrolment data. The primary aim of the analysis is to produce evidence-based analysis of the distance between each of the 787 primary schools in NI and their closest school, based on differing management types. This study examines the sustainability of all primary schools, investigating the potential for designating a number of small schools as being Strategically Important Small Schools (SISS).
 
+> [!IMPORTANT]  
+> All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
+
 # 📖 Background
 According to [NI school enrolment data published by the NI Department of Education](https://www.education-ni.gov.uk/publications/school-enrolment-school-level-data-202223) there are 787 primary schools in Northern Ireland for the academic year 2023/24. 
 
@@ -36,7 +39,7 @@ Every year the management authority of schools work together with the Education 
 
 For a number of years, there has been a growing sense that the Sustainable Schools Policy has been a blunt instrument used as the justification for the closing of small, rural schools, and that criteria should be used to identify small schools which are strategically important. This would not mean that these schools would be exempt from the consideration of the Sustainable Schools Policy but that their relative remoteness would be taken into consideration when schools were being assessed under the policy.
 
-In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the New Decade, New Approach deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However, it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long-term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
+In December 2023, the long-awaited *Independent Review of Education* was [published](https://www.independentreviewofeducation.org.uk/). The Review is an outworking of the [New Decade, New Approach](https://assets.publishing.service.gov.uk/media/5e178b56ed915d3b06f2b795/2020-01-08_a_new_decade__a_new_approach.pdf) deal, which stated “the education system has a diversity of school types, each with its own distinctive ethos and values. However, it is not sustainable. The parties acknowledge the progress made in developing new models of sharing, cooperation and integration. There is a desire to build on this as a basis for delivering long-term improvements in the quality, equity and sustainability of the system. The parties agree that the Executive will commission and oversee an independent fundamental review with a focus on quality and sustainability.”
 
 # 🏫 Strategically Important Small Schools
 The idea of designating some schools as being strategically important has been discussed for a number of years but there has been no actual progress on how to determine what constitutes a strategically important small school. And that is the issue which this project aims to address.
@@ -54,15 +57,20 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 
 # 📥 Installation Instructions
 
-## Setting up R Studio
+## Setup
 > [!IMPORTANT]  
-> All of the Python script and data required to create the outputs of this project are provided directly in GitHub.
+> To run this code you need to have R Studio (or a different IDE), Python and Git installed.
+> 1.	R Studio Integrated Development Environment (IDE) from the [Posit website](https://posit.co/download/rstudio-desktop/).
+> 2.	Python which can be directly downloaded from the [Python website](https://www.python.org/downloads/). This code was written in `Python Version 3.13` in R Studio.
+> 3.	[Git For Windows](https://git-scm.com/downloads), this will ensure that you can connect your IDE to the[ Strategically Important Small Schools GitHub repository](https://github.com/nkellyulster/Strategically-Important-Small-Schools).
+>
+> You will also need a [GitHub account which you can sign up for free](https://github.com/join).
 
-You will need to ensure that you have the [latest version of Python installed](https://www.python.org/downloads/). You will also require an IDE such as [R Studio](https://posit.co/download/rstudio-desktop/), [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
+## Other IDEs
+This project was written in R Studio but other IDEs are available, such as [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
 
-Once you have both Python and your IDE installed the easiest way to access the code and files is to link your IDE to the GitHub repository. To do this you will need to have a [GitHub account](https://github.com/) and then [install Git For Windows](https://git-scm.com/download/win).
-
-To access this code you will need to clone this repository to your machine. This code was written in `Python Version 3.13` in R Studio. To connect this repository to R Studio you will need Git For Windows and the latest version of R Studio installed. Once they are installed complete the following steps to access the repository.
+## Setting up R Studio
+To run this code you will need to clone this repository to your machine. Once you have all the software installed and have a GitHub account, complete the following steps to access the repository.
 1.  In R Studio click on File > New Project
 
 ![Step 1](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step1.png)
@@ -86,11 +94,11 @@ Finally, click the Create Project button.
    
 ![Step 5](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step5.png)
 
-6.	Your project is now created and you are connected to the SISS GitHub repository.
+6.	Your project is now created and you are connected to the Strategically Important Small Schools GitHub repository.
 
 ![Step 6](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step6.png)
 
-Should you wish to manually load the data from the original sources you can do this.
+Should you wish to manually load the data from the original sources you can do this. A step by step guide on how to do this is provided in the [Manual Installation](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation) section of this Readme.
 
 NI primary school enrolment data is updated on an annual basis by the NI Department of Education. The [school enrolments page](https://www.education-ni.gov.uk/topics/statistics-and-research/school-enrolments) contains a plethora of information and datasets. School level enrolment data from 2009/10 - 2023/24 is available on the [School enrolments - school level data page](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). The most recent dataset, for 2023/24 was published on 19 March 2024 and the [datatset used in this project is available as an XLSX file](https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX).
 
@@ -109,6 +117,8 @@ The following packages are used to run this Python script.
 *  [folium.plugins](https://python-visualization.github.io/folium/latest/user_guide/plugins.html)
 *  [haversine](https://pypi.org/project/haversine/)
 *  [shapely](https://pypi.org/project/shapely/)
+
+If all the dependencies are not loaded, the code will not run cleanly; some elements will run but the desired outputs will not be produced.
 
 # 📤 Manual Installation
 To manually load the 2023/24 dataset and read in the reference data sheet run the following Python script:
@@ -195,6 +205,17 @@ A number of csv outputs are produced from this stage.
 ### 8. Strategically Important Small Schools Analysis
 The purpose of this project is to carry out analysis on Strategically Important Small Schools and this section is where this analysis is carried out.
 
+Distances between schools are binned into the following categories for ease of analysis.
+
+| Title | Bin Range |
+| --- | --- |
+|Less than 1km | <1 |
+|Between 1km and 2.9km | 1-2.9 |
+|Between 3km and 4.9km | 3 - 4.9 |
+|Between 5km and 7.4km | 5 - 7.4 |
+|Between 7.5km and 9.9km | 7.5 - 9.9 |
+|Greater than 10km | >=10 |
+
 ### 9. Create charts outputs
 3 interactive charts are created to highlight some of the key findings of this study.
 
@@ -234,8 +255,19 @@ This code produces the following outputs:
 *  `Chart: bar chart of all pupils by management type` this interactive bar chart provides a breakdown of all pupils by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of all schools by management type` this interactive treemap provides a breakdown of all schools by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of all schools by constituency and management type` this interactive treemap provides a breakdown of all schools by both constituency and management type. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Chart: treemap of total enrolment in SISS by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Chart: treemap of total enrolment in Strategically Important Small Schools by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Chart: treemap of count of Strategically Important Small Schools by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
+
+##
+The Maps which are created label each of the schools by their Management Type. The legend for each Management Type is listed below:
+| Management Type | Legend |
+| --- | --- |
+| Controlled | Blue |
+| Catholic Maintained | Green | 
+| Other Maintained | Red |
+| Controlled Integrated | Yellow | 
+| GMI | Orange | 
+| Voluntary | Purple | 
 
 # 🎛️ Troubleshooting
 There are limited things that can go wrong with this code, as all of the input files are read directly from the GitHub repository and guidance is provided above on how to manually read in data.
