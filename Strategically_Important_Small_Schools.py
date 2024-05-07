@@ -322,11 +322,12 @@ total_enrolment_sum
 # Produces a df which counts the numebr of pupils in each school and groups
 # output by management type. Produces a df where results are ordered by count in 
 # descending order
-total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum()
+total_enrolment_by_management_type = merged_data.groupby('management type')['total enrolment'].sum().round(0)
 total_enrolment_by_management_type = pd.DataFrame(total_enrolment_by_management_type)
 total_enrolment_by_management_type = total_enrolment_by_management_type.sort_values(by='total enrolment', ascending=False)
-total_enrolment_by_management_type = total_enrolment_by_management_type_sorted.rename_axis('management type').reset_index()
+total_enrolment_by_management_type = total_enrolment_by_management_type.reset_index().rename_axis('management type')
 total_enrolment_by_management_type
+
 # Writes this output as a CSV file
 total_enrolment_by_management_type.to_csv("Outputs/3. total_enrolment_by_management_type.csv", index=False)
 
@@ -357,7 +358,7 @@ sustainable_count
 # In a smilar approach as above, the number of pupils in sustainable and not
 # sustainable schools is calculated and the percenatge of pupils is determined
 sustainable_pupils = merged_data.groupby('Sustainability').agg({'total enrolment': 'sum'})
-sustainable_pupils['Percentage'] = (sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100
+sustainable_pupils['Percentage'] = round((sustainable_pupils['total enrolment'] / total_enrolment_sum) * 100,1)
 sustainable_pupils
 
 # Number of Catholic Maintained & Controlled Schools
@@ -398,6 +399,8 @@ nearest_school = merged_data.loc[:, ['De ref', 'school name', 'management type',
        'nearest_management_type', 'nearest_distance']]
 # custom convert_distance_to_area function used to calculate area
 nearest_school['area'] = nearest_school.apply(lambda row: convert_distance_to_area(row, 'nearest_distance'), axis=1)
+nearest_school['nearest_distance'] = nearest_school['nearest_distance'].round(1)
+nearest_school['area'] = nearest_school['area'].round(1)
 nearest_school
 # Writes this output as a CSV file
 nearest_school.to_csv("Outputs/5. nearest_school.csv", index=False)
@@ -410,6 +413,8 @@ nearest_school_same_management = merged_data.loc[:, ['De ref', 'school name', 'm
        'nearest_same_management_school']]
 # custom convert_distance_to_area function used to calculate area
 nearest_school_same_management['area'] = nearest_school_same_management.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
+nearest_school_same_management['nearest_same_management_distance'] = nearest_school_same_management['nearest_same_management_distance'].round(1)
+nearest_school_same_management['area'] = nearest_school_same_management['area'].round(1)
 nearest_school_same_management
 # Writes this output as a CSV file
 nearest_school_same_management.to_csv("Outputs/6. nearest_school_same_management.csv", index=False)
@@ -424,6 +429,8 @@ nearest_school_not_same_management = merged_data.loc[:, ['De ref', 'school name'
 # custom convert_distance_to_area function used to calculate area
 nearest_school_not_same_management['area'] = nearest_school_not_same_management.apply(lambda row: convert_distance_to_area(row, 'nearest_distance_other_management'), axis=1)
 nearest_school_not_same_management = nearest_school_not_same_management.sort_values(by='nearest_distance_other_management', ascending=True)
+nearest_school_not_same_management['nearest_distance_other_management'] = nearest_school_not_same_management['nearest_distance_other_management'].round(1)
+nearest_school_not_same_management['area'] = nearest_school_not_same_management['area'].round(1)
 nearest_school_not_same_management
 # Writes this output as a CSV file
 nearest_school_not_same_management.to_csv("Outputs/7. nearest_school_not_same_management.csv", index=False)
@@ -506,6 +513,8 @@ greater_than_7500m = len(strategically_important_small_schools[strategically_imp
 strategically_important_small_schools = strategically_important_small_schools.head(greater_than_7500m)
 strategically_important_small_schools = strategically_important_small_schools.drop('distance_range', axis = 1)
 strategically_important_small_schools['area'] = strategically_important_small_schools.apply(lambda row: convert_distance_to_area(row, 'nearest_same_management_distance'), axis=1)
+strategically_important_small_schools['nearest_same_management_distance'] = strategically_important_small_schools['nearest_same_management_distance'].round(1)
+strategically_important_small_schools['area'] = strategically_important_small_schools['area'].round(1)
 strategically_important_small_schools
 # Writes this output as a CSV file
 strategically_important_small_schools.to_csv("Outputs/9. strategically_important_small_schools.csv", index=False)
