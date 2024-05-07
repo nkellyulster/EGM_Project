@@ -94,7 +94,7 @@ Finally, click the Create Project button.
    
 ![Step 5](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step5.png)
 
-6.	Your project is now created and you are connected to the SISS GitHub repository.
+6.	Your project is now created and you are connected to the Strategically Important Small Schools GitHub repository.
 
 ![Step 6](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step6.png)
 
@@ -117,6 +117,8 @@ The following packages are used to run this Python script.
 *  [folium.plugins](https://python-visualization.github.io/folium/latest/user_guide/plugins.html)
 *  [haversine](https://pypi.org/project/haversine/)
 *  [shapely](https://pypi.org/project/shapely/)
+
+If all the dependencies are not loaded, the code will not run cleanly; some elements will run but the desired outputs will not be produced.
 
 # 📤 Manual Installation
 To manually load the 2023/24 dataset and read in the reference data sheet run the following Python script:
@@ -253,8 +255,8 @@ This code produces the following outputs:
 *  `Chart: bar chart of all pupils by management type` this interactive bar chart provides a breakdown of all pupils by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of all schools by management type` this interactive treemap provides a breakdown of all schools by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of all schools by constituency and management type` this interactive treemap provides a breakdown of all schools by both constituency and management type. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Chart: treemap of total enrolment in SISS by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Chart: treemap of count of SISS by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Chart: treemap of total enrolment in Strategically Important Small Schools by management type and constituency` this interactive treemap provides a breakdown of pupil enrolment in Strategically Important Small Schools by management type and constituency. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Chart: treemap of count of Strategically Important Small Schools by constituency and management type` this interactive treemap provides a breakdown of all Strategically Important Small Schools by constituency management type. This output is also saved as a `HTML` file in the `Outputs` folder
 
 ##
 The Maps which are created label each of the schools by their Management Type. The legend for each Management Type is listed below:
