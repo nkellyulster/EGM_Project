@@ -315,7 +315,7 @@ management_type_constituency_count.to_csv("Outputs/2. management_type_constituen
 # Total number of pupils
 # Produces a value of the total number of pupils in all schools by summing values
 # in total enrolment column
-total_enrolment_sum = merged_data['total enrolment'].sum()
+total_enrolment_sum = round(merged_data['total enrolment'].sum())
 total_enrolment_sum
 
 # Total number of pupils by management type
@@ -349,7 +349,8 @@ sustainable_count = merged_data.groupby(['Sustainability']).agg({'total enrolmen
 # previous line by total number of primary schools (school_count). These values
 # are then multiplied by 100 to calcuate the percentage of sustainable and not
 # sustainable schools
-sustainable_count['Percentage'] = (sustainable_count['total enrolment'] / school_count) * 100
+# Rounded to 1 DP
+sustainable_count['Percentage'] = round((sustainable_count['total enrolment'] / school_count) * 100,1)
 sustainable_count
 
 # Total number of pupils in unsustainable schools
@@ -369,7 +370,8 @@ count_catholic_maintained_controlled
 # Percantage Catholic Maintained and Controlled schools
 # The output from above is divided by the school_count and then multiplied by 100
 # to calculate the percentage of schools which are either Catholic Maintained and Controlled
-percentage_schools_catholic_maintained_controlled = count_catholic_maintained_controlled / school_count * 100
+# Rounded to 1 DP
+percentage_schools_catholic_maintained_controlled = round(count_catholic_maintained_controlled / school_count * 100,1)
 percentage_schools_catholic_maintained_controlled
 
 # Number of pupils educated in Catholic Maintained & Controlled Schools
@@ -383,7 +385,8 @@ sum_catholic_maintained_controlled
 # Similar to above the percentage of children educated in Catholic Maintained and
 # Controlled schools is calculated by dividing the number ofpupils by total_enrolment_sum
 # and multiplying this number by 100
-percentage_enroled_catholic_maintained_controlled = sum_catholic_maintained_controlled / total_enrolment_sum * 100
+# Rounded to 1 DP
+percentage_enroled_catholic_maintained_controlled = round(sum_catholic_maintained_controlled / total_enrolment_sum * 100,1)
 percentage_enroled_catholic_maintained_controlled
 
 # Nearest School
