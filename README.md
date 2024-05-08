@@ -33,7 +33,7 @@ The policy sets out six criteria to be considered in assessing a school's educat
 * accessibility
 * strong links with the community
 
-In reality, the key determinant of a school's sustainability is its enrolment. In an urban area the enrolment threshold for a sustainable school is 140 pupils, and in a rural area it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
+In reality, the key determinant of a school's sustainability is its enrolment. In an urban area, the enrolment threshold for a sustainable school is 140 pupils, and in a rural area, it is 105 pupils. According to the Department's own criteria, in 2023/24 there are 210 schools (27% of the total primary schools) which are ‘not sustainable’ based on enrolment.
 
 Every year the management authority of schools work together with the Education Authority and Department of Education to determine which primary schools which are deemed as unsustainable should be considered for closure. The process that feeds into this involves the publication of a Case for Change from the management authority and this can lead to the creation of a Development Proposal which can ultimately lead to the Minister of Education making a decision on whether or not a school should close. Since 2009/10 over 60 small, mostly rural primary schools have been closed, having been deemed unsustainable.
 
@@ -98,11 +98,11 @@ Finally, click the Create Project button.
 
 ![Step 6](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step6.png)
 
-Should you wish to manually load the data from the original sources you can do this. A step by step guide on how to do this is provided in the [Manual Installation](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation) section of this Readme.
+Should you wish to manually load the data from the original sources you can do this. A step-by-step guide on how to do this is provided in the [Manual Installation](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-manual-installation) section of this Readme.
 
 NI primary school enrolment data is updated on an annual basis by the NI Department of Education. The [school enrolments page](https://www.education-ni.gov.uk/topics/statistics-and-research/school-enrolments) contains a plethora of information and datasets. School level enrolment data from 2009/10 - 2023/24 is available on the [School enrolments - school level data page](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). The most recent dataset, for 2023/24 was published on 19 March 2024 and the [datatset used in this project is available as an XLSX file](https://www.education-ni.gov.uk/sites/default/files/publications/education/School%20level%20-%20pre-school%20data%20-%20202324.XLSX).
 
-Links are provided in the code so that enrolment data from every year since 2009/10 can be analsysed.
+Links are provided in the code so that enrolment data from every year since 2009/10 can be analysed.
 
 ## Packages
 The following packages are used to run this Python script.
@@ -135,7 +135,7 @@ sheet_name = "total enrolment",
 skiprows = 3)
 ```
 
-The locational data comes from the Doogal website and is already saved in GitHub as the `BT_postcodes.csv` file. Should you wish to manually read the spreadsheet you first need to download the file from the [BT postcodes Northern Ireland page](https://www.doogal.co.uk/UKPostcodes?Search=BT). Click on the Download button and select "Data for this area as CSV (for Excel etc)". This will download the CSV file to your machine. Simply insert the file path in the code chuck below to read it into Pyth:
+The locational data comes from the Doogal website and is already saved in GitHub as the `BT_postcodes.csv` file. Should you wish to manually read the spreadsheet you first need to download the file from the [BT postcodes Northern Ireland page](https://www.doogal.co.uk/UKPostcodes?Search=BT). Click on the Download button and select "Data for this area as CSV (for Excel etc)". This will download the CSV file to your machine. Simply insert the file path in the code chunk below to read it into Pyth:
 ```ruby
 bt_postcodes = pd.read_csv(<you_file_path.csv>)
 ```
@@ -150,7 +150,7 @@ To run all the code, from start to finish, to produce all of the outputs, simply
 
 ![Running the code](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Running-Code.png)
 
-If you want to run through the code chunk by chunk, to see what the output of each process is, simply higlight the rows you wish to run, then run the code, as outlined above.
+If you want to run through the code chunk by chunk, to see what the output of each process is, simply highlight the rows you wish to run, then run the code, as outlined above.
 
 # 🐍 What the script does!
 The scripts are hopefully written in a way that are hopefully logical and clear to understand. This section will look at the scripts at a very high level, giving an overview, rather than a line-by-line blow of what they do.
@@ -158,12 +158,12 @@ There are 2 main scripts used for this project.
 
 ## Functions
 This is a short script file and is only 49 lines long. In it are 3 custom functions which:
-*   Convert kilometers to miles
+*   Convert kilometres to miles
 *   Convert distance to area
 *   Classify a school as being Sustainable or Not Sustainable based on Department of Education guidelines.
 
-All funtions use `docstrings` to explain in more detail what the functions do, what the inputs are and what the outputs are.
-All functions are read in to the Strategically Important Small Schools script.
+All functions use `docstrings` to explain in more detail what the functions do, what the inputs are and what the outputs are.
+All functions are read into the Strategically Important Small Schools script.
 
 ## Strategically Important Small Schools
 This is the main script file for the project and is almost 600 lines long.
@@ -171,7 +171,7 @@ This is the main script file for the project and is almost 600 lines long.
 This script is broken down into several different sections to make it easier to understand and navigate.
 ### 1. Setup
 #### 1.1 External Modules
-External modules, which are outlined in the [Packages section of this document](https://github.com/nkellyulster/Strategically-Important-Small-Schools#packages) are laoded here.
+External modules, which are outlined in the [Packages section of this document](https://github.com/nkellyulster/Strategically-Important-Small-Schools#packages) are loaded here.
 #### 1.2 Import my functions
 The 3 custom functions from [functions.py](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/functions.py) are loaded here.
 
@@ -182,13 +182,13 @@ This brief section gives some background to the type of data that is read in to 
 This section is where the inputs are read in from. Basic data manipulation is used to indicate which tabs from which spreadsheets are used.
 
 ### 4. Previous years data
-Links to 14 years worth of data are provided. This covers the period from 2009/10 to 2022/23. By uncommenting these links the user can read in enrolment and school data for the academic year they want. This allows the users to compare the changing nature of the primary school estate over the past number of years.
+Links to 14 years' worth of data are provided. This covers the period from 2009/10 to 2022/23. By uncommenting these links the user can read in enrolment and school data for the academic year they want. This allows the users to compare the changing nature of the primary school estate over the past number of years.
 As the links point to the datasets held on the Department of Education website there is assurance that the data contained is the original and has not been amended or altered in any way.
 
 ### 5. Data cleaning
 This section of code combines the `enrolment`, `school` and `postcodes` data into one master dataframe.
-A manual workaround is included to manually add co-ordinates for school postcode data which is missing from the `postcodes` dataframe. A check is built into this to ensure that the number of schools remains unchanged from the start of this process to the end. This section will need to be revised to look at school data from a different year.
-Dataframes are cleaned and unnecessary columns are removed in advances of the analysis stages.
+A manual workaround is included to manually add coordinates for school postcode data which is missing from the `postcodes` dataframe. A check is built into this to ensure that the number of schools remains unchanged from the start of this process to the end. This section will need to be revised to look at school data from a different year.
+Dataframes are cleaned and unnecessary columns are removed in advance of the analysis stages.
 
 ### 6. Spatial analysis
 Spatial analysis is carried out to calculate:
@@ -242,15 +242,15 @@ This code produces the following outputs:
 *  `sum_catholic_maintained_controlled` is a sum of the number of pupils being educated in Catholic Maintained and Controlled schools
 *  `percentage_enroled_catholic_maintained_controlled` is the number of pupils educated in Catholic Maintained and Controlled schools relative to the total number of primary school pupils in Northern Ireland
 *  `nearest_school` this provides the nearest primary school to each primary school, **irrespective of the management type**. This output is also saved as a `CSV` file in the `Outputs` folder
-*  `nearest_school_same_management` this provides the nearest primary school to each primary school in the **same management type**. This output is also saved as a `CSV` file in the `Outputs` folder
-*  `nearest_school_not_same_management` this provides the nearest primary school to each primary school that is **not in the same management type**. This output is also saved as a `CSV` file in the `Outputs` folder
-*  `Roulston_Cook` this replicate the research carried out by [Roulston & Cook](https://pure.ulster.ac.uk/en/publications/isolated-together-pairs-of-primary-schools-duplicating-provision) in their 2020 Research `Isolated Together: Pairs of Primary Schools Duplicating Provision`
-*  `strategically_important_small_schools` this produces the primary schools which meet the criteria of being *Strategically Important Small Schools*.  To produce this output the `nearest_school_same_management` dataframe is filtered to show only the schools which are deemed as *Unsustainable*. The distance to the nearest school in the same management time is sorted in descending order and only those schools which are at least 7.5km away from another school in the same management type are retained. This output is also saved as a `CSV` file in the `Outputs` folder 
+*  `nearest_school_same_management` provides the nearest primary school to each primary school in the **same management type**. This output is also saved as a `CSV` file in the `Outputs` folder
+*  `nearest_school_not_same_management` provides the nearest primary school to each primary school that is **not in the same management type**. This output is also saved as a `CSV` file in the `Outputs` folder
+*  `Roulston_Cook` this replicates the research carried out by [Roulston & Cook](https://pure.ulster.ac.uk/en/publications/isolated-together-pairs-of-primary-schools-duplicating-provision) in their 2020 Research `Isolated Together: Pairs of Primary Schools Duplicating Provision`
+*  `strategically_important_small_schools` produces the primary schools that meet the criteria of being *Strategically Important Small Schools*.  To produce this output the `nearest_school_same_management` dataframe is filtered to show only the schools which are deemed as *Unsustainable*. The distance to the nearest school in the same management time is sorted in descending order and only those schools which are at least 7.5km away from another school in the same management type are retained. This output is also saved as a `CSV` file in the `Outputs` folder 
 *  `count_strategically_important_small_schools_constituency` this is a simple count of the number of schools in the `strategically_important_small_schools` by constituency. This output is also saved as a `CSV` file in the `Outputs` folder
 *  `count_strategically_important_small_schools_management_type` this is a count of the number of `strategically_important_small_schools` by management type. This output is also saved as a `CSV` file in the `Outputs` folder
 *  `Map: All Primary Schools by Management Type` this map shows all primary schools in Northern Ireland, with the marker for each management type coloured differently. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Map: Strategically Important Small Schools` this map shows all of the Strategically Important Small Schools in Northern Ireland, with the marker for each management type coloured differently. This output is also saved as a `HTML` file in the `Outputs` folder
-*  `Map: Strategically Important Small Schools with boundaries` this is the same as `Map: Strategically Important Small Schools` only this has the parliamentary boundaries layer added. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Map: All Primary Schools by Constituency (Choropleth)` a count of all schools by constituency with output displayed by constituency polygon, shaded to indicate count of schools. This output is also saved as a `HTML` file in the `Outputs` folder
+*  `Map: Strategically Important Small Schools with boundaries` is the same as `Map: Strategically Important Small Schools` only this has the parliamentary boundaries layer added. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: bar chart of all schools by management type` this interactive bar chart provides a breakdown of all schools by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: bar chart of all pupils by management type` this interactive bar chart provides a breakdown of all pupils by management type. This output is also saved as a `HTML` file in the `Outputs` folder
 *  `Chart: treemap of all schools by management type` this interactive treemap provides a breakdown of all schools by management type. This output is also saved as a `HTML` file in the `Outputs` folder
@@ -274,7 +274,7 @@ There are limited things that can go wrong with this code, as all of the input f
 
 This means the only other problem that could realistically exist is that your version of Python is too old or you have not read in the required Python libraries.
 
-## Out of date Python version
+## Out-of-date Python version
 If your version of Python is too old, you should get the most recent version of Python that is available. This code was written using `version 3.12` so I would suggest using `version 3.12.`
 
 ## Package issue
@@ -287,7 +287,7 @@ Should any of these packages not install correctly they can be manually installe
 ![pip install pandas](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/terminal.png)
 
 ## Changing structure of Department of Education data
-Analysis can be carried out on data going back as far as 2009/10, but unfortunately the structure of the data has changed numerous times over the years. This can cause errors when the school level data is being read in. Should there be errors in creating the `schools` or `enrolment` dataframes this is likely the cause of the error. 
+Analysis can be carried out on data going back as far as 2009/10, but unfortunately, the structure of the data has changed numerous times over the years. This can cause errors when the school level data is being read in. Should there be errors in creating the `schools` or `enrolment` dataframes this is likely the cause of the error. 
 
 By amending the script in the `selected_enrolment` and `all_schools` dataframes this can easily be resolved.
 
@@ -296,7 +296,7 @@ For example, the error `KeyError: "['DE ref'] not found in axis` indicates that 
 ## Postcode errors
 Functionality has been provided which allows for historic data to be read in from the [Department of Education's School enrolments - school level data website](https://www.education-ni.gov.uk/articles/school-enrolments-school-level-data). 
 
-This website contains primary school enrolment data as far back as 2009/10. This allows users to compare the various outputs from the current year against data at any point from 2009/2010. There is a comment in the script to explain how to do this as well as as advisory note to say that the data structure differs from year to year so care should be taken to ensure that the `all_schools` dataframe generates correctly. Should the `all_schools` dataframe not generate as a result of missing columns or column with different names you should consult the console to determine what the error is.
+This website contains primary school enrolment data as far back as 2009/10. This allows users to compare the various outputs from the current year against data at any point from 2009/2010. There is a comment in the script to explain how to do this as well as as advisory note to say that the data structure differs from year to year so care should be taken to ensure that the `all_schools` dataframe generates correctly. Should the `all_schools` dataframe not generate as a result of missing columns or columns with different names you should consult the console to determine what the error is.
 
 This is the extract of code which is used to identify and resolve this issue:
 ~~~
@@ -306,14 +306,14 @@ bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
 # The following 3 postcodes were identified from the rows_not_in_bt_postcodes df
-# so their latitiude and logitude values were sourced from Google Maps
+# so their latitude and longitude values were sourced from Google Maps
 missing_postcodes = pd.DataFrame({
     'Postcode': ['BT13 3SY', 'BT4 3HJ', 'BT78 3GA', 'BT79 0GZ'],
     'Latitude': [54.615622286274096, 54.601342361930584, 54.512571453329244, 54.5993316600317],
     'Longitude': [-5.9826709693148885, -5.85227797613058, -7.469365801273217, -7.2545584724318095]
 })
 
-# Missing_postcodes df is appeneded to bottom of selecteD_bt_postcodes df
+# Missing_postcodes df is appended to the bottom of selected_bt_postcodes df
 selected_bt_postcodes = selected_bt_postcodes._append(missing_postcodes, ignore_index=True)
 
 # Rerun the process again
@@ -321,7 +321,7 @@ merged_data = pd.merge(all_schools, selected_bt_postcodes, how='inner', left_on=
 bt_postcodes_postcodes = selected_bt_postcodes['Postcode'].tolist()
 rows_not_in_bt_postcodes = all_schools[~all_schools['postcode'].isin(bt_postcodes_postcodes)]
 
-# At this point there is still one school missing. The issue has been caused with
+# At this point there is still one school missing. The issue has been caused by
 # a `tab` rather than a single space in the postcode in the all_schools df. This 
 # value will be replaced.
 all_schools.replace('BT6  0AG', 'BT6 0AG', inplace=True)
