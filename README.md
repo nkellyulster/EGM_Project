@@ -1,4 +1,4 @@
-![Strategically Important Small Schools logo](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/SISS%20logo.pngg)
+![Strategically Important Small Schools logo](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/SISS%20logo.png)
 
 # 🧮 Contents
 * [Aim](https://github.com/nkellyulster/Strategically-Important-Small-Schools#-aim)
