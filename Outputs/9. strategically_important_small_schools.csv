@@ -1,21 +1,21 @@
 De ref,school name,management type,constituency,total enrolment,nearest_same_management_distance,nearest_same_management_school,area
-2011860,Belleek No 2 Primary School,Controlled,Fermanagh And South Tyrone,32.0,18.949639695623446,Derrygonnelly Primary School,1128.1108761623934
-2011899,Derrygonnelly Primary School,Controlled,Fermanagh And South Tyrone,57.0,12.593638465458033,Kesh Primary School,498.25574599680954
-2033708,"St Aidan's Primary School, Limavady",Catholic Maintained,East Londonderry,60.0,11.937041876141953,"Termoncanice Primary School, Limavady",447.65486382189147
-3030588,"St Mary's Primary School, Rathlin",Catholic Maintained,North Antrim,12.0,10.472414966031613,"St Patrick's & St Brigid's Primary School, Ballycastle",344.5431008619038
-2016395,"Gortin Primary School, Omagh",Controlled,West Tyrone,63.0,10.086549584000194,Newtownstewart Model Primary School,319.6208692423431
-5036000,"St Colman's Primary School, Dromore",Catholic Maintained,Lagan Valley,107.0,10.05282305516933,"St Michael's Primary School, Finnis",317.4870017081181
-5011520,"Dromore Road Primary School, Warrenpoint",Controlled,South Down,87.0,10.036738989601282,"Windsor Hill Primary School, Newry",316.47188453084357
-4033008,"St Anne's Primary School, Donaghadee",Catholic Maintained,North Down,10.0,9.799127752324075,"St Comgall's Primary School, Bangor",301.6648520018781
-2032685,"St Brigid's Primary School, Cranagh",Catholic Maintained,West Tyrone,25.0,9.595186941268771,"St Mary's Primary School, Altinure",289.23893486844247
-2016663,"Cooley Primary School, Sixmilecross",Controlled,West Tyrone,90.0,9.371168969215946,"McClintock Primary School, Seskinore",275.890921587304
-2012707,"Dromore Primary School, Tyrone",Controlled,West Tyrone,38.0,8.984650639346913,"Lack Primary School, Enniskillen",253.60175921305586
-2016184,"Lack Primary School, Enniskillen",Controlled,Fermanagh And South Tyrone,22.0,8.984650639346913,"Dromore Primary School, Tyrone",253.60175921305586
-5016200,"Queen Elizabeth II Primary School, Pomeroy",Controlled,Mid Ulster,45.0,8.837634465562703,"Orritor Primary School, Cookstown",245.37027072355832
-5016027,"Drumhillery Primary School, Middletown",Controlled,Newry And Armagh,69.0,8.686545484296289,"Killylea Primary School, Armagh",237.05224288000989
-2036213,"St Columban's Primary School, Belcoo",Catholic Maintained,Fermanagh And South Tyrone,94.0,8.627007187609147,"Killyhommon Primary School, Enniskillen",233.8138281136737
-5032736,"St Mary's Primary School, Fivemiletown",Catholic Maintained,Fermanagh And South Tyrone,49.0,8.073190950097093,"St Mary's Primary School, Brookeborough",204.75773749325847
-2016102,Tempo Primary School,Controlled,Fermanagh And South Tyrone,84.0,7.793972143060554,Brookeborough Primary School,190.83919288554378
-3030719,"St Olcan's Primary School, Ballymoney",Catholic Maintained,North Antrim,77.0,7.740439181269063,"St Patrick's Primary School, Loughgiel",188.2266348596254
-2011879,Newtownbutler Primary School,Controlled,Fermanagh And South Tyrone,30.0,7.614058464076846,"Aghadrumsee Primary School, Roslea",182.13033528247504
-2011873,"Aghadrumsee Primary School, Roslea",Controlled,Fermanagh And South Tyrone,31.0,7.614058464076846,Newtownbutler Primary School,182.13033528247504
+2011860,Belleek No 2 Primary School,Controlled,Fermanagh And South Tyrone,32.0,18.9,Derrygonnelly Primary School,1128.1
+2011899,Derrygonnelly Primary School,Controlled,Fermanagh And South Tyrone,57.0,12.6,Kesh Primary School,498.3
+2033708,"St Aidan's Primary School, Limavady",Catholic Maintained,East Londonderry,60.0,11.9,"Termoncanice Primary School, Limavady",447.7
+3030588,"St Mary's Primary School, Rathlin",Catholic Maintained,North Antrim,12.0,10.5,"St Patrick's & St Brigid's Primary School, Ballycastle",344.5
+2016395,"Gortin Primary School, Omagh",Controlled,West Tyrone,63.0,10.1,Newtownstewart Model Primary School,319.6
+5036000,"St Colman's Primary School, Dromore",Catholic Maintained,Lagan Valley,107.0,10.1,"St Michael's Primary School, Finnis",317.5
+5011520,"Dromore Road Primary School, Warrenpoint",Controlled,South Down,87.0,10.0,"Windsor Hill Primary School, Newry",316.5
+4033008,"St Anne's Primary School, Donaghadee",Catholic Maintained,North Down,10.0,9.8,"St Comgall's Primary School, Bangor",301.7
+2032685,"St Brigid's Primary School, Cranagh",Catholic Maintained,West Tyrone,25.0,9.6,"St Mary's Primary School, Altinure",289.2
+2016663,"Cooley Primary School, Sixmilecross",Controlled,West Tyrone,90.0,9.4,"McClintock Primary School, Seskinore",275.9
+2012707,"Dromore Primary School, Tyrone",Controlled,West Tyrone,38.0,9.0,"Lack Primary School, Enniskillen",253.6
+2016184,"Lack Primary School, Enniskillen",Controlled,Fermanagh And South Tyrone,22.0,9.0,"Dromore Primary School, Tyrone",253.6
+5016200,"Queen Elizabeth II Primary School, Pomeroy",Controlled,Mid Ulster,45.0,8.8,"Orritor Primary School, Cookstown",245.4
+5016027,"Drumhillery Primary School, Middletown",Controlled,Newry And Armagh,69.0,8.7,"Killylea Primary School, Armagh",237.1
+2036213,"St Columban's Primary School, Belcoo",Catholic Maintained,Fermanagh And South Tyrone,94.0,8.6,"Killyhommon Primary School, Enniskillen",233.8
+5032736,"St Mary's Primary School, Fivemiletown",Catholic Maintained,Fermanagh And South Tyrone,49.0,8.1,"St Mary's Primary School, Brookeborough",204.8
+2016102,Tempo Primary School,Controlled,Fermanagh And South Tyrone,84.0,7.8,Brookeborough Primary School,190.8
+3030719,"St Olcan's Primary School, Ballymoney",Catholic Maintained,North Antrim,77.0,7.7,"St Patrick's Primary School, Loughgiel",188.2
+2011879,Newtownbutler Primary School,Controlled,Fermanagh And South Tyrone,30.0,7.6,"Aghadrumsee Primary School, Roslea",182.1
+2011873,"Aghadrumsee Primary School, Roslea",Controlled,Fermanagh And South Tyrone,31.0,7.6,Newtownbutler Primary School,182.1
