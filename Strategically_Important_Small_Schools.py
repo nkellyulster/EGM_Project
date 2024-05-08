@@ -610,27 +610,7 @@ for idx, row in merged_data.iterrows():
 # Saves this output as a HTML file
 m.save("Outputs/18. Map - All Primary Schools by Management Type.html")
 
-## Map 2: Strategically Important Small Schools
-# The merged_data df is filtered to retain only the rows which are in the 
-# strategically_important_small_schools df
-
-# Create a geometry column by combining Longitude and Latitude
-strategically_important_schools['geom'] = strategically_important_schools.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
-
-# Create a map centered at the mean Latitude and Longitude
-m = folium.Map(location=[strategically_important_schools['Latitude'].mean(), strategically_important_schools['Longitude'].mean()], zoom_start=8)
-title_html = '<h3 align="center" style="font-size:20px"><b>Strategically Important Small Schools by Management Type</b></h3>'
-m.get_root().html.add_child(folium.Element(title_html))
-for idx, row in strategically_important_schools.iterrows():
-    color = colors.get(row['management type'], 'black')
-    popup_content = f"<b>School Name:</b> {row['school name']}<br>"
-    popup_content += f"<b>Management Type:</b> {row['management type']}<br>"
-    popup_content += f"<b>Enrolment:</b> {row['total enrolment']}<br>"
-    folium.Marker([row['Latitude'], row['Longitude']], popup=popup_content, icon=folium.Icon(color=color)).add_to(m)
-# Saves this output as a HTML file
-m.save("Outputs/19. Map - Strategically Important Small Schools.html")
-
-## Map 3: Strategically Important Small Schools with boundaries
+## Map 2: Strategically Important Small Schools with boundaries
 
 # The merged_data df is filtered to retain only the rows which are in the 
 # strategically_important_small_schools df
@@ -650,15 +630,11 @@ folium.GeoJson(
     name='constituency boundaries',
 ).add_to(m)
 # Saves this output as a HTML file
-m.save("Outputs/20. Map - Strategically Important Small Schools with boundaries.html")
+m.save("Outputs/19. Map - Strategically Important Small Schools with boundaries.html")
 
-
-## Map 4: Choropleth Map - All Primary Schools by Constituency
-
-
+## Map 3: Choropleth Map - All Primary Schools by Constituency
 # Convert the 'constituency' column in school_count df to uppercase before merging
 schools_count['constituency'] = schools_count['constituency'].str.upper()
-
 # Merge school counts with GeoJSON constituency boundaries data
 constituency_boundaries = pd.merge(constituency_boundaries, schools_count, how='left', left_on='PC_NAME', right_on='constituency', suffixes=('_boundary', '_school'))
 # Convert GeoDataFrame to GeoJSON format
@@ -672,7 +648,6 @@ title_html = """
              <h3 align="center" style="font-size:20px"><b>Count of Primary Schools by Constituency</b></h3>
              """
 m.get_root().html.add_child(folium.Element(title_html))
-
 # Add choropleth layer
 choropleth = folium.Choropleth(
     geo_data=geojson_data,
@@ -692,4 +667,4 @@ choropleth.geojson.add_child(
     folium.features.GeoJsonTooltip(['PC_NAME', 'school_count'], aliases=['Constituency Name', 'Number of Schools'], style=style_function, labels=True)
 )
 # Save map as HTML file
-m.save("Outputs/21. Choropleth Map - All Primary Schools by Constituency.html")
+m.save("Outputs/20. Choropleth Map - All Primary Schools by Constituency.html")
