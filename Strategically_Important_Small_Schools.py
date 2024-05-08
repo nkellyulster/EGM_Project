@@ -14,6 +14,7 @@ import plotly.express as px
 from folium.plugins import MarkerCluster
 from haversine import haversine, Unit
 from shapely.geometry import Point
+import json
 
 # Import my functions
 from functions import km_to_miles
@@ -612,7 +613,6 @@ m.save("Outputs/18. Map - All Primary Schools by Management Type.html")
 ## Map 2: Strategically Important Small Schools
 # The merged_data df is filtered to retain only the rows which are in the 
 # strategically_important_small_schools df
-strategically_important_schools = merged_data[merged_data['De ref'].isin(strategically_important_small_schools['De ref'].unique())].copy()
 
 # Create a geometry column by combining Longitude and Latitude
 strategically_important_schools['geom'] = strategically_important_schools.apply(lambda row: Point(row['Longitude'], row['Latitude']), axis=1)
@@ -651,3 +651,45 @@ folium.GeoJson(
 ).add_to(m)
 # Saves this output as a HTML file
 m.save("Outputs/20. Map - Strategically Important Small Schools with boundaries.html")
+
+
+## Map 4: Choropleth Map - All Primary Schools by Constituency
+
+
+# Convert the 'constituency' column in school_count df to uppercase before merging
+schools_count['constituency'] = schools_count['constituency'].str.upper()
+
+# Merge school counts with GeoJSON constituency boundaries data
+constituency_boundaries = pd.merge(constituency_boundaries, schools_count, how='left', left_on='PC_NAME', right_on='constituency', suffixes=('_boundary', '_school'))
+# Convert GeoDataFrame to GeoJSON format
+geojson_data = constituency_boundaries.to_json()
+# Set the center point of Northern Ireland (latitude and longitude)
+center_ni = [54.597, -6.952]
+# Initialize Folium map centered at the midpoint of Northern Ireland
+m = folium.Map(location=center_ni, zoom_start=8)
+# Add title to the map
+title_html = """
+             <h3 align="center" style="font-size:20px"><b>Count of Primary Schools by Constituency</b></h3>
+             """
+m.get_root().html.add_child(folium.Element(title_html))
+
+# Add choropleth layer
+choropleth = folium.Choropleth(
+    geo_data=geojson_data,
+    name='choropleth',
+    data=constituency_boundaries,
+    columns=['PC_NAME', 'school_count'],
+    key_on='feature.properties.PC_NAME',
+    fill_color='YlGn',
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    legend_name='Number of Schools by Constituency',
+    highlight=True
+).add_to(m)
+# Add popup information
+style_function = "font-size: 12px; font-weight: bold"
+choropleth.geojson.add_child(
+    folium.features.GeoJsonTooltip(['PC_NAME', 'school_count'], aliases=['Constituency Name', 'Number of Schools'], style=style_function, labels=True)
+)
+# Save map as HTML file
+m.save("Outputs/21. Choropleth Map - All Primary Schools by Constituency.html")
