@@ -633,7 +633,8 @@ folium.GeoJson(
 m.save("Outputs/19. Map - Strategically Important Small Schools with boundaries.html")
 
 ## Map 3: Choropleth Map - All Primary Schools by Constituency
-# Convert the 'constituency' column in school_count df to uppercase before merging
+# Count schools by constituency and convert the 'constituency' column in school_count 
+# df to uppercase before merging so it is in same format as constituency_boundaries
 schools_count = merged_data.groupby('constituency').size().reset_index(name='school_count')
 schools_count['constituency'] = schools_count['constituency'].str.upper()
 # Merge school counts with GeoJSON constituency boundaries data
