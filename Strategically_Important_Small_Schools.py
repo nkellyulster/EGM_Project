@@ -634,6 +634,7 @@ m.save("Outputs/19. Map - Strategically Important Small Schools with boundaries.
 
 ## Map 3: Choropleth Map - All Primary Schools by Constituency
 # Convert the 'constituency' column in school_count df to uppercase before merging
+schools_count = merged_data.groupby('constituency').size().reset_index(name='school_count')
 schools_count['constituency'] = schools_count['constituency'].str.upper()
 # Merge school counts with GeoJSON constituency boundaries data
 constituency_boundaries = pd.merge(constituency_boundaries, schools_count, how='left', left_on='PC_NAME', right_on='constituency', suffixes=('_boundary', '_school'))
