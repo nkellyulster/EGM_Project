@@ -6,3 +6,4 @@
 .RData
 __pycache__
 .Rproj.user
+cache/
