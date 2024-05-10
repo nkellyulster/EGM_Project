@@ -117,6 +117,7 @@ The following packages are used to run this Python script.
 *  [folium.plugins](https://python-visualization.github.io/folium/latest/user_guide/plugins.html)
 *  [haversine](https://pypi.org/project/haversine/)
 *  [shapely](https://pypi.org/project/shapely/)
+*  [json](https://docs.python.org/3/library/json.html)
 
 If all the dependencies are not loaded, the code will not run cleanly; some elements will run but the desired outputs will not be produced.
 
