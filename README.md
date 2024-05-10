@@ -67,7 +67,7 @@ Anyone with an interest in primary school education in Northern Ireland or anyon
 > You will also need a [GitHub account which you can sign up for free](https://github.com/join).
 
 ## Other IDEs
-This project was written in R Studio but other IDEs are available, such as [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download).
+This project was written in R Studio but other IDEs such as [PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows), [Spyder](https://www.spyder-ide.org/#section-download) or [Anaconda](https://www.anaconda.com/download) are available.
 
 ## Setting up R Studio
 To run this code you will need to clone this repository to your machine. Once you have all the software installed and have a GitHub account, complete the following steps to access the repository.
@@ -83,8 +83,8 @@ To run this code you will need to clone this repository to your machine. Once yo
 
 ![Step 3](https://github.com/nkellyulster/Strategically-Important-Small-Schools/blob/main/Images/Step3.png)
 
-4.	In the Clone Git Repository window, in the “Repository URL” box, add the url: “https://github.com/nkellyulster/Strategically-Important-Small-Schools”
-This automatically populates the “Project directory name” box but if it does not you should key “Strategically-Important-Small-Schools”.
+4.	In the Clone Git Repository window, in the “Repository URL” box, add the url: `https://github.com/nkellyulster/Strategically-Important-Small-Schools`
+This automatically populates the “Project directory name” box but if it does not you should key `Strategically-Important-Small-Schools`.
 In “Create project as a subdirectory of:” you should select a folder on your machine to create a project folder.
 Finally, click the Create Project button.
 
